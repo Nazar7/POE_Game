@@ -1,0 +1,67 @@
+{
+  "Gems" : [
+    {
+      "id" : 1,
+      "Greater Multiple Projectiles Support": {
+        "tags": ["Support", "Projectile"],
+        "slot color": "green",
+        "parameters": {"projectiles": "add 4 additional", "angles": [-10, -5, 0, 5, 10], "mana multiplier": 1.5},
+        "damage": " - (35 - lv/10) %",
+        "quality": "0.5% increased all damage by 1% of quality"
+      }
+      },
+    {
+      "id" : 2,
+      "Spell Echo Support": {
+        "tags": ["Spell,","Support"],
+        "slot color": "blue",
+        "parameters": {"spell instances (casts, projectiles...)": "repeat additional time", "mana multiplier": 1.5},
+        "damage" : " * 0.9",
+        "cast speed" : "cast speed * ( 0.54 – (0.01 * lv ))",
+        "quality": "0.5% increased all damage by 1% of quality"
+      }
+    },
+    {
+      "id" : 3,
+      "Added Lightning Damage Support" : {
+        "tags": ["Support"],
+        "slot color": "blue",
+        "parameters": { "mana multiplier": 1.2},
+        "damage" : " + pow(lv, 2)",
+        "quality": "0.5% increased all damage by 1% of quality"
+      }
+    },
+    {
+      "id" : 4,
+      "Spell Cascade Support" : {
+        "tags": ["AoE", "Spell", "Support"],
+        "slot color": "blue",
+        "parameters": { "mana multiplier": 1.3, "add":  "apply to front and back"},
+        "damage" : " * (0.6 + 0.01 * lv)",
+        "quality": "0.5% increased all damage by 1% of quality"
+      }
+    },
+    {
+      "id" : 5,
+      "Empower Support" : {
+        "tags": ["Support"],
+        "slot color": "red",
+        "parameters": { "all linked skill gems get" : " +lv/6 levels ", "mana multiplier": 1.3},
+        "quality": "0.5% increased all damage by 1% of quality"
+      }
+    },
+    {
+      "id" : 6,
+      "Chance to Poison Support" : {
+        "tags": ["Support", "Chaos"],
+        "slot color": "green",
+        "parameters": { "chance to poison on hit" : " + 40%", "mana multiplier": 1.2},
+        "damage" : {
+        "type" : "chaos",
+        "formula" :  " + 5 * lv"
+      },
+        "quality": "0.5% increased all damage by 1% of quality"
+      }
+    }
+  ]
+}

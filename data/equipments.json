@@ -1,0 +1,12 @@
+{
+  "body" : [
+    {
+    "name" : "tabula_rasa",
+    "sockets" : ["W","W","W","W","W","W"]
+      },
+    {
+    "name" : "briskwtap",
+    "sockets" : ["G","G","G","R","G","+G"]
+      }
+  ]
+}
