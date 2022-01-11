@@ -1,6 +1,9 @@
 const equipments = require('./data/equipments.json');
 
 module.exports = class Player {
+
+    static Character = ''
+
     constructor(data) {
         this.data = data
     }
@@ -11,22 +14,40 @@ module.exports = class Player {
 
     }
 
+    showAllSockets(sockets){
+
+        // var socket_color = []
+        // var socket_info = []
+
+        var _sockets = []
+
+        for (var i = 0; i < sockets.length; i++){
+
+            _sockets.push(Object.keys(sockets[i]))
+            _sockets.push(Object.values(sockets[i]))
+        }
+
+        return _sockets
+    }
+
     createPlayer() {
+        var x = ""
         let equipmentBodyData = this.getequipmentBodyData()
-        let playerObjact = {
+        let playerObject = {
             id: 1,
             playerName: this.data.playerName,
             equipmentBody: {
                 name : equipmentBodyData.name,
-                sockets : equipmentBodyData.sockets
+                sockets :  equipmentBodyData.sockets
             },
             equipmentHelm: {
                 name : "",
                 sockets : ""
             }
         }
-        console.log(playerObjact)
-        return playerObjact
+        Player.Character = playerObject
+        console.log(playerObject)
+        return playerObject
     }
 
     getequipmentBodyData(){

@@ -1,6 +1,6 @@
 const Player = require('./player');
 
-module.exports =  class Action {
+module.exports = class Action {
     constructor(data) {
         this.data = data
     }
@@ -11,8 +11,23 @@ module.exports =  class Action {
                 let createPlayerObjact = new Player(this.data)
                 createPlayerObjact.createPlayer()
                 break;
-            case 'setgem body' :
+            case 'set gem' : {
+                switch (this.data.typeOfEquip) {
+                    case 'body': {
+                        switch (this.data.placeInItem){
+                            case '1':{
+                                Player.Character['equipmentBody']['sockets']['1-W'] = this.data.gem
+                                break
+                            }
+                        }
+                        break
+                    }
+                }
                 break;
+            }
+            case 'info': {
+                console.log(Player.Character)
+            }
             case 'setbutton' :
                 break;
             case 'press' :
