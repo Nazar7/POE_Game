@@ -18,7 +18,7 @@ module.exports = class Action {
                             case '1':{
                                 Player.Character['equipmentBody']['sockets']['1-W'] = this.data.gem
                                 break
-                            }
+                            }1
                         }
                         break
                     }
