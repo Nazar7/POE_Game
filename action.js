@@ -10,9 +10,8 @@ module.exports =  class Action {
             case 'equip' :
                 let createPlayerObjact = new Player(this.data)
                 createPlayerObjact.createPlayer()
-
                 break;
-            case 'setgem' :
+            case 'setgem body' :
                 break;
             case 'setbutton' :
                 break;

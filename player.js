@@ -5,14 +5,20 @@ module.exports = class Player {
         this.data = data
     }
 
+
+    playerSkillsVisualisation () {
+        let playerData = this.createPlayer()
+
+    }
+
     createPlayer() {
-        let gemData = this.getGemData()
+        let equipmentBodyData = this.getequipmentBodyData()
         let playerObjact = {
             id: 1,
             playerName: this.data.playerName,
             equipmentBody: {
-                name : gemData.name,
-                sockets : gemData.sockets
+                name : equipmentBodyData.name,
+                sockets : equipmentBodyData.sockets
             },
             equipmentHelm: {
                 name : "",
@@ -23,7 +29,7 @@ module.exports = class Player {
         return playerObjact
     }
 
-    getGemData(){
+    getequipmentBodyData(){
             let equipmentType = this.data.typeOfEquip;
             let equipmentName = this.data.nameOfEquip;
         switch (equipmentName) {

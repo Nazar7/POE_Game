@@ -17,5 +17,7 @@ let playerName = readlineSync.question(`What's your name? `);
 
 action.actionLoad()
 
+process.stdout.write("hello: ");
+
 
 
