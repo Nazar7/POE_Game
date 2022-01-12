@@ -10,32 +10,17 @@ module.exports = class Player {
     }
 
     setGemInItem(type,place,gem){
-        console.log(gems.Gems)
-        Player.Character['equipmentBody']['sockets'][`${place}` + "-W"] = gem;
-
-        console.log(gem)
-        // let obj = Object.keys(gems.Gems).find(key => gems.Gems[key] === gem);
-
-
-        console.log(obj)
-
-        console.log(Player.Character)
+        gems.Gems.forEach((item) => {
+            for ( let property in item ) {
+                if (property == gem){
+                    Player.Character['equipmentBody']['sockets'][`${place}` + "-W"] = item;
+                }
+            }
+        })
+        console.log(Player.Character.equipmentBody.sockets)
+        return Player.Character.equipmentBody.sockets
     }
 
-
-    playerSkillsVisualisation () {
-        let playerData = this.createPlayer()
-
-    }
-
-    showAllSockets(sockets){
-        var _sockets = []
-        for (var i = 0; i < sockets.length; i++){
-            _sockets.push(Object.keys(sockets[i]))
-            _sockets.push(Object.values(sockets[i]))
-        }
-        return _sockets
-    }
 
     createPlayer() {
         let equipmentBodyData = this.getequipmentBodyData()
