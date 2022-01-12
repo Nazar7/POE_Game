@@ -9,10 +9,10 @@ module.exports = class Player {
         this.data = data
     }
 
-    setGemInItem(type,place,gem){
+    setGemInItem(type, place, gem) {
         gems.Gems.forEach((item) => {
-            for ( let property in item ) {
-                if (property == gem){
+            for (let property in item) {
+                if (property == gem) {
                     Player.Character['equipmentBody']['sockets'][`${place}` + "-W"] = item;
                 }
             }
@@ -28,12 +28,12 @@ module.exports = class Player {
             id: 1,
             playerName: this.data.playerName,
             equipmentBody: {
-                name : equipmentBodyData.name,
-                sockets :  equipmentBodyData.sockets
+                name: equipmentBodyData.name,
+                sockets: equipmentBodyData.sockets
             },
             equipmentHelm: {
-                name : "",
-                sockets : ""
+                name: "",
+                sockets: ""
             }
         }
         Player.Character = playerObject
@@ -41,9 +41,9 @@ module.exports = class Player {
         return playerObject
     }
 
-    getequipmentBodyData(){
-            let equipmentType = this.data.typeOfEquip;
-            let equipmentName = this.data.nameOfEquip;
+    getequipmentBodyData() {
+        let equipmentType = this.data.typeOfEquip;
+        let equipmentName = this.data.nameOfEquip;
         switch (equipmentName) {
             case 'tabula_rasa' :
                 let equipmentNameData = equipments[equipmentType].find(item => item.name === equipmentName)
