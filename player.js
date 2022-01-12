@@ -1,32 +1,44 @@
 const equipments = require('./data/equipments.json');
+const gems = require('./data/gems.json');
 
 module.exports = class Player {
+
+    static Character = ''
+
     constructor(data) {
         this.data = data
     }
 
-
-    playerSkillsVisualisation () {
-        let playerData = this.createPlayer()
-
+    setGemInItem(type,place,gem){
+        gems.Gems.forEach((item) => {
+            for ( let property in item ) {
+                if (property == gem){
+                    Player.Character['equipmentBody']['sockets'][`${place}` + "-W"] = item;
+                }
+            }
+        })
+        console.log(Player.Character.equipmentBody.sockets)
+        return Player.Character.equipmentBody.sockets
     }
+
 
     createPlayer() {
         let equipmentBodyData = this.getequipmentBodyData()
-        let playerObjact = {
+        let playerObject = {
             id: 1,
             playerName: this.data.playerName,
             equipmentBody: {
                 name : equipmentBodyData.name,
-                sockets : equipmentBodyData.sockets
+                sockets :  equipmentBodyData.sockets
             },
             equipmentHelm: {
                 name : "",
                 sockets : ""
             }
         }
-        console.log(playerObjact)
-        return playerObjact
+        Player.Character = playerObject
+        console.log(playerObject.equipmentBody)
+        return playerObject
     }
 
     getequipmentBodyData(){
