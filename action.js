@@ -1,18 +1,23 @@
 const Player = require('./player');
 
-module.exports =  class Action {
+module.exports = class Action {
     constructor(data) {
         this.data = data
     }
 
     actionLoad() {
+        let createPlayerObjact = new Player(this.data)
         switch (this.data.command) {
             case 'equip' :
-                let createPlayerObjact = new Player(this.data)
                 createPlayerObjact.createPlayer()
                 break;
-            case 'setgem body' :
+            case 'set gem' : {
+                createPlayerObjact.setGemInItem(this.data.typeOfEquip,this.data.placeInItem,this.data.gem)
                 break;
+            }
+            case 'info': {
+                console.log(Player.Character)
+            }
             case 'setbutton' :
                 break;
             case 'press' :
