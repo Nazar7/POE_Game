@@ -13,13 +13,57 @@ module.exports = class Player {
     setGemInItem(type, place, gem) {
         gems.Gems.forEach((item) => {
             for (let property in item) {
-                if (property == gem) {
-                    Player.Character['equipmentBody']['sockets'][`${place}` + "-W"] = item;
+                if (Array.isArray(gem)) {
+                    if (property == gem[0]) {
+
+                        Player.Character['equipmentBody']['sockets'][`${place}` + "-W"] = item
+                        var lvl = gem[1]
+                        var qua = gem[2]
+                        Player.Character['equipmentBody']['sockets'][`${place}` + "-W"][gem[0]]['setLvl'] = lvl
+                        Player.Character['equipmentBody']['sockets'][`${place}` + "-W"][gem[0]]['setQuality'] = qua
+                    }
+                } else {
+                    if (property == gem) {
+
+                        console.log("------------------")
+
+                        for (var i = 0; i < Object.keys(Player.Character['equipmentBody']['sockets']).length; i++) {
+
+                            var currentSocket = Object.keys(Player.Character['equipmentBody']['sockets'])[i]
+                            // console.log(Object.keys(Player.Character['equipmentBody']['sockets'])[i])
+
+                            if (currentSocket[0] == place) {
+                                if (currentSocket[2] === 'W') {
+                                    console.log("TRUE" + currentSocket)
+                                    Player.Character['equipmentBody']['sockets'][currentSocket] = item
+                                } else {
+                                    for (let j = 0; j < gems.Gems.length; j++) {
+                                        if (Object.keys(gems.Gems[j])[1] == gem) {
+                                           if (currentSocket[2] == Object.values(gems.Gems[j])[1]['slot color'][0]){
+                                               console.log("TRUE 2" + Object.values(gems.Gems[j])[1]['slot color'][0])
+                                               Player.Character['equipmentBody']['sockets'][currentSocket] = item
+                                           } else {
+                                               console.log("Cant add this gem in this socket !")
+                                           }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        console.log("------------------")
+
+                        // Player.Character['equipmentBody']['sockets'][`${place}` + "-W"] = item;
+                    }
                 }
             }
         })
         // console.log(Player.Character.equipmentBody.sockets)
-        console.log(util.inspect(Player.Character.equipmentBody.sockets, {showHidden: false, depth: null, colors: true}))
+        console.log(util.inspect(Player.Character.equipmentBody.sockets, {
+            showHidden: false,
+            depth: null,
+            colors: true
+        }))
         return Player.Character.equipmentBody.sockets
     }
 

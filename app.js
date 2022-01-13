@@ -28,15 +28,32 @@ while (true) {
         }
         case '2': {
             command = 'set gem'
+            var gameStartData = ''
+            var lvl = 0
+            var quality = 0
             let typeOfEquip = readlineSync.question(`Please select type `);
             let placeInItem = readlineSync.question(`Please select place in item `)
-            let gem = readlineSync.question(`Please select gem `);
-            let gameStartData = {
+            var gem = readlineSync.question(`Please select gem `);
+
+            gameStartData = {
                 playerName,
                 command,
                 typeOfEquip,
                 placeInItem,
                 gem
+            }
+
+            if (gem.includes("_")) {
+
+                gem = gem.split("_")
+
+                gameStartData = {
+                    playerName,
+                    command,
+                    typeOfEquip,
+                    placeInItem,
+                    gem
+                }
             }
 
             var action = new Action(gameStartData)

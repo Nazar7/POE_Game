@@ -5,8 +5,8 @@ var buttons = {}
 
 function bindSpellOnButton(button, spell) {
     var result = checkGems(spell)
-    if (result === true) {
-        buttons[button] = spell
+    if (result !== undefined) {
+        buttons[button] = result
     } else {
         console.log(`User dont have ${spell} in this item`)
     }
@@ -14,10 +14,10 @@ function bindSpellOnButton(button, spell) {
 
 function checkGems(spell) {
 
-    for (var i = 0; i < Object.keys(Player.Character['equipmentBody']['sockets']).length; i++){
+    for (var i = 0; i < Object.keys(Player.Character['equipmentBody']['sockets']).length; i++) {
         var object_gem = Object.values(Player.Character['equipmentBody']['sockets'])[i]
-        if (Object.keys(object_gem)[1] === spell){
-            return  true
+        if (Object.keys(object_gem)[1] === spell) {
+            return object_gem
         }
     }
 }
