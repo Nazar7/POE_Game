@@ -34,13 +34,11 @@ module.exports = class Player {
 
                             if (currentSocket[0] == place) {
                                 if (currentSocket[2] === 'W') {
-                                    console.log("TRUE" + currentSocket)
                                     Player.Character['equipmentBody']['sockets'][currentSocket] = item
                                 } else {
                                     for (let j = 0; j < gems.Gems.length; j++) {
                                         if (Object.keys(gems.Gems[j])[1] == gem) {
                                            if (currentSocket[2] == Object.values(gems.Gems[j])[1]['slot color'][0]){
-                                               console.log("TRUE 2" + Object.values(gems.Gems[j])[1]['slot color'][0])
                                                Player.Character['equipmentBody']['sockets'][currentSocket] = item
                                            } else {
                                                console.log("Cant add this gem in this socket !")

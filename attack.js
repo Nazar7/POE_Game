@@ -3,6 +3,11 @@ const buttons = require('./buttons')
 const gems = require('./data/gems.json')
 const Player = require("./player")
 
+class UserDamage {
+
+    static Damage = ''
+}
+
 function userAttack(button) {
     checkButtonAndAttack(button)
 }
@@ -44,7 +49,26 @@ function checkButtonAndAttack(button) {
             playerCharacteristics['type damage'] = typeDamage
             playerCharacteristics['damage'] = damage
 
+            checkAllGemsForSupportingThisGem()
+
             console.log(playerCharacteristics)
+        }
+    }
+}
+
+function checkAllGemsForSupportingThisGem() {
+    for (var i = 0; i < Object.keys(Player.Character['equipmentBody']['sockets']).length; i++) {
+
+        if (Object.values(Player.Character['equipmentBody']['sockets'])[i] !== 'Empty') {
+            var currentGem = Object.values(Player.Character['equipmentBody']['sockets'])[i]
+            var nameOfCurrentGem = Object.keys(currentGem)[1]
+
+            var isSupportOrNot = checkOnSupportGem(nameOfCurrentGem)
+
+            if (isSupportOrNot === 'Support') {
+
+                console.log('Your spell has support gem !')
+            }
         }
     }
 }
@@ -55,6 +79,7 @@ function calculateDamage(formula, _quantity, _lvl) {
     const lvl = _lvl
     result = eval(formula)
     result = result * qua
+    UserDamage.Damage = result
     return result
 }
 
@@ -65,6 +90,12 @@ var playerCharacteristics = {
     'mana cost': '',
     'type damage': '',
     'damage': ''
+}
+
+function checkOnSupportGem(name) {
+    var n = name.split(" ");
+    return n[n.length - 1];
+
 }
 
 module.exports = {
