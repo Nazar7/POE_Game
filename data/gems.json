@@ -1,154 +1,246 @@
 {
-  "Gems" : [
+  "Gems": [
     {
-      "id" : 1,
+      "id": 1,
       "Frostbolt": {
-        "key" : 1,
-        "tags": ["Spell", "Projectile", "Cold"],
+        "key": 1,
+        "tags": [
+          "Spell",
+          "Projectile",
+          "Cold"
+        ],
         "slot color": "blue",
         "non-damage parameters": {
           "projectiles": 1,
           "cast speed": 0.75,
           "piercing, mana cost": "5 + lv"
         },
-        "damage" : {
-          "type" : "cold",
-          "formula" :  "200 + 5*pow(lv, 2)"
+        "damage": {
+          "type": "cold",
+          "formula": [
+            "200",
+            "+",
+            "5",
+            "*",
+            "lvl",
+            "*",
+            "lvl"
+          ]
         },
-        "quality": "lv * quality",
-        "button status": "true"
+        "quality": "lvl * qua",
+        "button status": "true",
+        "setQuality": 1,
+        "setLvl": 1
       }
     },
     {
-      "id" : 2,
-      "Ice Nova" : {
-        "key" : 2,
-        "tags": ["Spell", "AoE", "Cold", "Nova"],
+      "id": 2,
+      "Ice Nova": {
+        "key": 2,
+        "tags": [
+          "Spell",
+          "AoE",
+          "Cold",
+          "Nova"
+        ],
         "slot color": "blue",
-        "non-damage parameters": {"casts": 1, "cast speed": 0.7, "mana cost": "8 + lv/2"},
-        "damage" : {
-          "type" : "cold",
-          "formula" :  "50 + 4 *pow(lv, 2)"
+        "non-damage parameters": {
+          "casts": 1,
+          "cast speed": 0.7,
+          "mana cost": "8 + lv/2"
+        },
+        "damage": {
+          "type": "cold",
+          "formula": "50 + 4 *pow(lv, 2)"
         },
         "quality": "1% increased cold damage per 1% of quality",
         "button status": "true"
       }
     },
     {
-      "id" : 3,
-      "Tornado" : {
-        "key" : 3,
-        "tags": ["Spell", "Duration", "Physical", "AoE", "Orb"],
+      "id": 3,
+      "Tornado": {
+        "key": 3,
+        "tags": [
+          "Spell",
+          "Duration",
+          "Physical",
+          "AoE",
+          "Orb"
+        ],
         "slot color": "green",
-        "non-damage parameters": {"cast speed": 0.75, "move speed": "(lv – 1) *3%", "mana cost": "14 + lv/2"},
-        "damage" : {
-          "type" : "physical",
-          "formula" :  "30 + lv*5"
+        "non-damage parameters": {
+          "cast speed": 0.75,
+          "move speed": "(lv – 1) *3%",
+          "mana cost": "14 + lv/2"
+        },
+        "damage": {
+          "type": "physical",
+          "formula": "30 + lv*5"
         },
         "quality": "0.5% increased move speed per 1% of quality",
         "button status": "true"
       }
     },
     {
-      "id" : 4,
+      "id": 4,
       "Poisonous Concoction": {
-        "key" : 4,
-        "tags": ["Attack", "AoE", "Chaos", "Projectile"],
+        "key": 4,
+        "tags": [
+          "Attack",
+          "AoE",
+          "Chaos",
+          "Projectile"
+        ],
         "slot color": "green",
-        "non-damage parameters": {"projectiles": 1, "attack speed": 1.5, "mana cost": "6 + lv/7"},
-        "damage" : {
-          "type" : "chaos",
-          "formula" :  "(45 + pow (lv, 5/2) * 0.5) + flask power * (2 + lv/3) / 20"
+        "non-damage parameters": {
+          "projectiles": 1,
+          "attack speed": 1.5,
+          "mana cost": "6 + lv/7"
+        },
+        "damage": {
+          "type": "chaos",
+          "formula": "(45 + pow (lv, 5/2) * 0.5) + flask power * (2 + lv/3) / 20"
         },
         "button status": "true"
       }
     },
     {
-      "id" : 5,
-      "Seismic Trap" : {
-        "key" : 5,
-        "tags": ["Trap", "Spell", "Duration", "AoE", "Physical"],
+      "id": 5,
+      "Seismic Trap": {
+        "key": 5,
+        "tags": [
+          "Trap",
+          "Spell",
+          "Duration",
+          "AoE",
+          "Physical"
+        ],
         "slot color": ",green",
-        "non-damage parameters": {"trap lasts": "4 seconds", "releases": "5 waves"},
-        "damage" : {
-          "type" : "physical",
-          "formula" :  "150 + pow (lv, 5/2)"
+        "non-damage parameters": {
+          "trap lasts": "4 seconds",
+          "releases": "5 waves"
+        },
+        "damage": {
+          "type": "physical",
+          "formula": "150 + pow (lv, 5/2)"
         },
         "quality": "1% increased physical damage per 1% of quality",
         "button status": "true"
       }
     },
     {
-      "id" : 6,
+      "id": 6,
       "Greater Multiple Projectiles Support": {
-        "key" : 6,
-        "tags": ["Support", "Projectile"],
+        "key": 6,
+        "tags": [
+          "Support",
+          "Projectile"
+        ],
         "slot color": "green",
-        "parameters": {"projectiles": "add 4 additional", "angles": [-10, -5, 0, 5, 10], "mana multiplier": 1.5},
+        "parameters": {
+          "projectiles": "add 4 additional",
+          "angles": [
+            -10,
+            -5,
+            0,
+            5,
+            10
+          ],
+          "mana multiplier": 1.5
+        },
         "damage": " - (35 - lv/10) %",
         "quality": "0.5% increased all damage by 1% of quality",
         "button status": "false"
       }
-      },
+    },
     {
-      "id" : 7,
+      "id": 7,
       "Spell Echo Support": {
-        "key" : 7,
-        "tags": ["Spell,","Support"],
+        "key": 7,
+        "tags": [
+          "Spell,",
+          "Support"
+        ],
         "slot color": "blue",
-        "parameters": {"spell instances (casts, projectiles...)": "repeat additional time", "mana multiplier": 1.5},
-        "damage" : " * 0.9",
-        "cast speed" : "cast speed * ( 0.54 – (0.01 * lv ))",
+        "parameters": {
+          "spell instances (casts, projectiles...)": "repeat additional time",
+          "mana multiplier": 1.5
+        },
+        "damage": " * 0.9",
+        "cast speed": "cast speed * ( 0.54 – (0.01 * lv ))",
         "quality": "0.5% increased all damage by 1% of quality",
         "button status": "false"
       }
     },
     {
-      "id" : 8,
-      "Added Lightning Damage Support" : {
-        "key" : 8,
-        "tags": ["Support"],
+      "id": 8,
+      "Added Lightning Damage Support": {
+        "key": 8,
+        "tags": [
+          "Support"
+        ],
         "slot color": "blue",
-        "parameters": { "mana multiplier": 1.2},
-        "damage" : " + pow(lv, 2)",
+        "parameters": {
+          "mana multiplier": 1.2
+        },
+        "damage": " + pow(lv, 2)",
         "quality": "0.5% increased all damage by 1% of quality",
         "button status": "false"
       }
     },
     {
-      "id" : 9,
-      "Spell Cascade Support" : {
-        "key" : 9,
-        "tags": ["AoE", "Spell", "Support"],
+      "id": 9,
+      "Spell Cascade Support": {
+        "key": 9,
+        "tags": [
+          "AoE",
+          "Spell",
+          "Support"
+        ],
         "slot color": "blue",
-        "parameters": { "mana multiplier": 1.3, "add":  "apply to front and back"},
-        "damage" : " * (0.6 + 0.01 * lv)",
+        "parameters": {
+          "mana multiplier": 1.3,
+          "add": "apply to front and back"
+        },
+        "damage": " * (0.6 + 0.01 * lv)",
         "quality": "0.5% increased all damage by 1% of quality",
         "button status": "false"
       }
     },
     {
-      "id" : 10,
-      "Empower Support" : {
-        "key" : 10,
-        "tags": ["Support"],
+      "id": 10,
+      "Empower Support": {
+        "key": 10,
+        "tags": [
+          "Support"
+        ],
         "slot color": "red",
-        "parameters": { "all linked skill gems get" : " +lv/6 levels ", "mana multiplier": 1.3},
+        "parameters": {
+          "all linked skill gems get": " +lv/6 levels ",
+          "mana multiplier": 1.3
+        },
         "quality": "0.5% increased all damage by 1% of quality",
         "button status": "false"
       }
     },
     {
-      "id" : 11,
-      "Chance to Poison Support" : {
-        "key" : 11,
-        "tags": ["Support", "Chaos"],
+      "id": 11,
+      "Chance to Poison Support": {
+        "key": 11,
+        "tags": [
+          "Support",
+          "Chaos"
+        ],
         "slot color": "green",
-        "parameters": { "chance to poison on hit" : " + 40%", "mana multiplier": 1.2},
-        "damage" : {
-        "type" : "chaos",
-        "formula" :  " + 5 * lv"
-      },
+        "parameters": {
+          "chance to poison on hit": " + 40%",
+          "mana multiplier": 1.2
+        },
+        "damage": {
+          "type": "chaos",
+          "formula": " + 5 * lv"
+        },
         "quality": "0.5% increased all damage by 1% of quality",
         "button status": "false"
       }
