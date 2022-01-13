@@ -1,5 +1,6 @@
 const equipments = require('./data/equipments.json');
 const gems = require('./data/gems.json');
+const util = require('util')
 
 module.exports = class Player {
 
@@ -17,10 +18,10 @@ module.exports = class Player {
                 }
             }
         })
-        console.log(Player.Character.equipmentBody.sockets)
+        // console.log(Player.Character.equipmentBody.sockets)
+        console.log(util.inspect(Player.Character.equipmentBody.sockets, {showHidden: false, depth: null, colors: true}))
         return Player.Character.equipmentBody.sockets
     }
-
 
     createPlayer() {
         let equipmentBodyData = this.getequipmentBodyData()
@@ -44,14 +45,12 @@ module.exports = class Player {
     getequipmentBodyData() {
         let equipmentType = this.data.typeOfEquip;
         let equipmentName = this.data.nameOfEquip;
+        console.log(equipmentType)
+        console.log(equipmentName)
         switch (equipmentName) {
             case 'tabula_rasa' :
                 let equipmentNameData = equipments[equipmentType].find(item => item.name === equipmentName)
                 return equipmentNameData
-                break;
-            case 'setgem' :
-                break;
-            case 'setbutton' :
                 break;
         }
     }
