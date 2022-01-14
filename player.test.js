@@ -1,5 +1,6 @@
-const Player = require("./player")
+const Player = require("./player");
 const util = require("util");
+const gems = require('./data/gems.json');
 
 describe('PlayerService Class', () => {
 let player
@@ -12,7 +13,7 @@ let player
         player = new Player(obj);
     })
 
-    test("Receiving type of bodyequipment and its data ", function () {
+    test("Receiving type of player equipment and empty data object of this equipment ", function () {
         let body = {
                 "name": "tabula_rasa",
                 "sockets": {
@@ -40,13 +41,45 @@ let player
     });
 
     test("Setting gem in selected socket and receiving updated player object", function () {
+        let type = "body"
+        let place = 2
+        let gem = "Frostbolt"
+        let playerDataObjact = {
+            "2-W": {
+                "Frostbolt": {
+                    "button status": "true",
+                    "damage": {
+                        "formula": "200 + 5 * lvl * lvl",
+                        "type": "cold"
+                    },
+                    "key": 1,
+                    "non-damage parameters": {
+                        "cast speed": 0.75,
+                        "piercing, mana cost": "5 + lv",
+                        "projectiles": 1
+                    },
+                    "quality": "lvl * qua",
+                    "setLvl": 1,
+                    "setQuality": 1,
+                    "slot color": "blue",
+                    "tags": [
+                        "Spell",
+                        "Projectile",
+                        "Cold"
+                    ]
+                },
+                "id": 1
+            }
+        }
 
-
+        let playerOb = player.setGemInItem(type, place, gem)
+        console.log(util.inspect(playerOb, {showHidden: false, depth: null, colors: true}))
+        expect(playerOb).toEqual(playerDataObjact)
     })
 
 
     test("Creating new player and receiving new player object", function () {
-        let play = {
+        let playerDataObjact = {
             id: 1,
             playerName: "Nazar",
             equipmentBody: {
@@ -64,7 +97,7 @@ let player
         }
         let playerObj = player.createPlayer()
         console.log(util.inspect(playerObj, {showHidden: false, depth: null, colors: true}) + " !!!!!!!!!!!!!!!!!!!")
-        expect(playerObj).toEqual(play)
+        expect(playerObj).toEqual(playerDataObjact)
     })
 
 

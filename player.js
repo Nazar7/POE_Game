@@ -4,7 +4,12 @@ const util = require('util')
 
 module.exports = class Player {
 
-    static Character = ''
+    static Character = {
+        equipmentBody: {
+            sockets: {
+            }
+        }
+    }
 
     constructor(data) {
         this.data = data
@@ -13,7 +18,7 @@ module.exports = class Player {
     setGemInItem(type, place, gem) {
         gems.Gems.forEach((item) => {
             for (let property in item) {
-                if (property == gem) {
+                if (property === gem) {
                     Player.Character['equipmentBody']['sockets'][`${place}` + "-W"] = item;
                 }
             }

@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b556708c-b204-452e-b3e6-e39e216aa3a8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attack.js" beforeDir="false" afterPath="$PROJECT_DIR$/attack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/equipments.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/equipments.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/gems.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/gems.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/player.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/player.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/player.test.js" afterDir="false" />
     </list>
@@ -93,7 +88,8 @@
       <workItem from="1642059708635" duration="89000" />
       <workItem from="1642061337627" duration="2082000" />
       <workItem from="1642063450105" duration="16000" />
-      <workItem from="1642065001305" duration="12897000" />
+      <workItem from="1642065001305" duration="15427000" />
+      <workItem from="1642144580698" duration="3457000" />
     </task>
     <servers />
   </component>
@@ -110,27 +106,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/player.js</url>
-          <line>25</line>
-          <properties lambdaOrdinal="-1" />
+          <line>30</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/player.js</url>
-          <line>40</line>
-          <properties lambdaOrdinal="-1" />
+          <line>45</line>
           <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/player.test.js</url>
-          <line>65</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/player.test.js</url>
-          <line>64</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
