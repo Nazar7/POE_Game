@@ -38,5 +38,6 @@ module.exports = class Action {
                 break
             }
         }
+        return this.data.command
     }
 }

@@ -5,11 +5,12 @@
       "Frostbolt": {
         "key": 1,
         "tags": ["Spell", "Projectile", "Cold"],
-        "slot color": "blue",
+        "slot color": "Blue",
         "non-damage parameters": {
           "projectiles": 1,
           "cast speed": 0.75,
-          "piercing, mana cost": "5 + lv"
+          "piercing": "",
+          "mana cost": "5 + lvl"
         },
         "damage": {
           "type": "cold",
@@ -108,16 +109,16 @@
       "Greater Multiple Projectiles Support": {
         "key": 6,
         "tags": ["Support", "Projectile"],
-        "slot color": "green",
-        "parameters": {
-          "projectiles": "add 4 additional",
+        "slot color": "Green",
+        "non-damage parameters": {
+          "projectiles": "+ 4",
           "angles": [-10, -5, 0, 5, 10],
           "mana multiplier": 1.5
         },
         "damage": {
-          "formula": "damage - (35 - lv/10) %"
+          "formula": "damage - (35 - lvl / 10) %"
         },
-        "quality": "0.5% increased all damage by 1% of quality",
+        "quality": "qua * 0.5",
         "button status": "false",
         "setQuality": 1,
         "setLvl": 1
