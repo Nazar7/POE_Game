@@ -3,26 +3,19 @@ const buttons = require('./buttons')
 const gems = require('./data/gems.json')
 const Player = require("./player")
 
-class UserDamage {
-
-    static Damage = ''
-}
+// class UserDamage {
+//
+//     static Damage = ''
+// }
 
 function userAttack(button) {
     checkButtonAndAttack(button)
 }
 
 function checkButtonAndAttack(button) {
+
     for (let i = 0; i < Object.keys(buttons.buttons).length; i++) {
-        // if (Object.keys(buttons.buttons)[i] == button){
-        //     for (let j = 0; j < gems.Gems.length; j++) {
-        //         if (Object.keys(gems.Gems[j])[1] == Object.values(buttons.buttons)[i]) {
-        //             console.log(`User press ${button} and attack`)
-        //             let damage = calculateDamage((Object.values(gems.Gems[j])[1])['damage']['formula'],(Object.values(gems.Gems[j])[1])['setQuality'],(Object.values(gems.Gems[j])[1])['setLvl'])
-        //             console.log(`Damage: ${damage}`)
-        //         }
-        //     }
-        // }
+
         if (Object.keys(buttons.buttons)[i] == button) {
 
             var gem_object = Object.values(buttons.buttons)[i]
@@ -52,6 +45,8 @@ function checkButtonAndAttack(button) {
             checkAllGemsForSupportingThisGem()
 
             console.log(playerCharacteristics)
+
+            return 322
         }
     }
 }
@@ -67,7 +62,20 @@ function checkAllGemsForSupportingThisGem() {
 
             if (isSupportOrNot === 'Support') {
 
+                /*
+                Якщо в нас є саппорт гем, то потрібно перевірити, чи саппортить він наш скіл.
+                Тут ми отримуємо сам об*єкт гему, якщо він вставлений в шмотку і в його назві є слово саппорт.
+                Якщо він підходить і саппортить наш скіл, то в статичний об*єкт цього класу потрібно добавити додаткові параметри атаки.
+                */
+
                 console.log('Your spell has support gem !')
+
+                // console.log(currentGem[nameOfCurrentGem])
+                // console.log(currentGem[nameOfCurrentGem]['non-damage parameters']['projectiles'])
+
+                if (currentGem[nameOfCurrentGem]['non-damage parameters']['projectiles'] !== undefined){
+                    playerCharacteristics['projectiles'] = eval(playerCharacteristics['projectiles'] + currentGem[nameOfCurrentGem]['non-damage parameters']['projectiles'])
+                }
             }
         }
     }
@@ -79,7 +87,7 @@ function calculateDamage(formula, _quantity, _lvl) {
     const lvl = _lvl
     result = eval(formula)
     result = result * qua
-    UserDamage.Damage = result
+    // UserDamage.Damage = result
     return result
 }
 
@@ -99,5 +107,8 @@ function checkOnSupportGem(name) {
 }
 
 module.exports = {
-    userAttack
+    userAttack,
+    calculateDamage,
+    checkButtonAndAttack,
+    checkAllGemsForSupportingThisGem
 }
