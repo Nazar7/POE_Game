@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b556708c-b204-452e-b3e6-e39e216aa3a8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/action.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attack.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/action.js" beforeDir="false" afterPath="$PROJECT_DIR$/action.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/attack.js" beforeDir="false" afterPath="$PROJECT_DIR$/attack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/buttons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/gems.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/gems.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/player.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +46,20 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Jest.All Tests">
+  <component name="RunManager" selected="Jest.PlayerService Class.Setting gem in selected socket and receiving updated player object">
+    <configuration name="Перевірка функції підрахунку damage скіла." type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/attack.test.js" />
+      <test-names>
+        <test-name value="Перевірка функції підрахунку damage скіла." />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="All Tests" type="JavaScriptTestRunnerJest" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -58,6 +67,46 @@
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PlayerService Class.Setting gem in selected socket and receiving updated player object" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/player.test.js" />
+      <test-names>
+        <test-name value="PlayerService Class" />
+        <test-name value="Setting gem in selected socket and receiving updated player object" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Unnamed" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/action.test.js" />
+      <test-names>
+        <test-name value="" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="'Перевірка функції, які підраховує характеристики ударі.' +&#10;    'Вхідні дані - кнопка, яку натискає користувач.' +&#10;    'Вихідні дані - характеристики удару.'" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/attack.test.js" />
+      <test-names>
+        <test-name value="'Перевірка функції, які підраховує характеристики ударі.' +&#10;    'Вхідні дані - кнопка, яку натискає користувач.' +&#10;    'Вихідні дані - характеристики удару.'" />
+      </test-names>
       <method v="2" />
     </configuration>
     <configuration name="app.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="app.js" working-dir="$PROJECT_DIR$">
@@ -74,7 +123,19 @@
       <item itemvalue="Cucumber.js.Unnamed" />
       <item itemvalue="Jest.All Tests" />
       <item itemvalue="Node.js.app.js" />
+      <item itemvalue="Jest.Unnamed" />
+      <item itemvalue="Jest.Перевірка функції підрахунку damage скіла." />
+      <item itemvalue="Jest.'Перевірка функції, які підраховує характеристики ударі.' +&#10;    'Вхідні дані - кнопка, яку натискає користувач.' +&#10;    'Вихідні дані - характеристики удару.'" />
+      <item itemvalue="Jest.PlayerService Class.Setting gem in selected socket and receiving updated player object" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.PlayerService Class.Setting gem in selected socket and receiving updated player object" />
+        <item itemvalue="Jest.'Перевірка функції, які підраховує характеристики ударі.' +&#10;    'Вхідні дані - кнопка, яку натискає користувач.' +&#10;    'Вихідні дані - характеристики удару.'" />
+        <item itemvalue="Jest.Перевірка функції підрахунку damage скіла." />
+        <item itemvalue="Jest.Unnamed" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -95,7 +156,7 @@
       <workItem from="1642061337627" duration="2082000" />
       <workItem from="1642063450105" duration="16000" />
       <workItem from="1642065001305" duration="15427000" />
-      <workItem from="1642144580698" duration="3869000" />
+      <workItem from="1642144580698" duration="20981000" />
     </task>
     <servers />
   </component>
@@ -112,13 +173,67 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/player.js</url>
-          <line>67</line>
+          <line>69</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/player.js</url>
-          <line>82</line>
+          <line>84</line>
           <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/player.test.js</url>
+          <line>103</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/player.test.js</url>
+          <line>104</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/player.js</url>
+          <line>17</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/player.js</url>
+          <line>26</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/player.js</url>
+          <line>29</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/player.js</url>
+          <line>30</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/player.js</url>
+          <line>61</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/player.js</url>
+          <line>33</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/player.js</url>
+          <line>37</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -67,14 +67,29 @@ function checkAllGemsForSupportingThisGem() {
                 Тут ми отримуємо сам об*єкт гему, якщо він вставлений в шмотку і в його назві є слово саппорт.
                 Якщо він підходить і саппортить наш скіл, то в статичний об*єкт цього класу потрібно добавити додаткові параметри атаки.
                 */
-
                 console.log('Your spell has support gem !')
 
-                // console.log(currentGem[nameOfCurrentGem])
-                // console.log(currentGem[nameOfCurrentGem]['non-damage parameters']['projectiles'])
-
-                if (currentGem[nameOfCurrentGem]['non-damage parameters']['projectiles'] !== undefined){
+                if (currentGem[nameOfCurrentGem]['non-damage parameters']['projectiles'] !== undefined) {
                     playerCharacteristics['projectiles'] = eval(playerCharacteristics['projectiles'] + currentGem[nameOfCurrentGem]['non-damage parameters']['projectiles'])
+                }
+                if (currentGem[nameOfCurrentGem]['non-damage parameters']['angles'] !== undefined) {
+                    playerCharacteristics['angles'] = currentGem[nameOfCurrentGem]['non-damage parameters']['angles']
+                }
+                if (currentGem[nameOfCurrentGem]['non-damage parameters']['mana multiplier'] !== undefined) {
+                    var currentMC = playerCharacteristics['mana cost']
+                    var MMinGem = currentGem[nameOfCurrentGem]['non-damage parameters']['mana multiplier']
+                    var result = currentMC * MMinGem
+                    playerCharacteristics['mana cost'] = result
+                }
+                if (currentGem[nameOfCurrentGem]['damage']['formula'] !== undefined) {
+                    var lvl = playerCharacteristics['lvl']
+                    var damage = playerCharacteristics['damage']
+                    playerCharacteristics['damage'] = eval(currentGem[nameOfCurrentGem]['damage']['formula'])
+                }
+                if (currentGem[nameOfCurrentGem]['quality'] !== undefined) {
+                    var qua = currentGem[nameOfCurrentGem]['setQuality']
+                    var addDmg = eval(currentGem[nameOfCurrentGem]['quality'])
+                    playerCharacteristics['damage'] = playerCharacteristics['damage'] * (addDmg / 100 + 1)
                 }
             }
         }

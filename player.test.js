@@ -44,7 +44,8 @@ let player
         let type = "body"
         let place = 2
         let gem = "Frostbolt"
-        let playerDataObjact = {
+
+        let playerDataObjact1 = {
             "2-W": {
                 "Frostbolt": {
                     "button status": "true",
@@ -72,9 +73,37 @@ let player
             }
         }
 
+        let playerDataObjact20 = {
+            "2-W": {
+                "Frostbolt": {
+                    "button status": "true",
+                    "damage": {
+                        "formula": "200 + 5 * lvl * lvl",
+                        "type": "cold"
+                    },
+                    "key": 1,
+                    "non-damage parameters": {
+                        "cast speed": 0.75,
+                        "piercing, mana cost": "5 + lv",
+                        "projectiles": 1
+                    },
+                    "quality": "lvl * qua",
+                    "setLvl": 20,
+                    "setQuality": 20,
+                    "slot color": "blue",
+                    "tags": [
+                        "Spell",
+                        "Projectile",
+                        "Cold"
+                    ]
+                },
+                "id": 1
+            }
+        }
+
         let playerOb = player.setGemInItem(type, place, gem)
         console.log(util.inspect(playerOb, {showHidden: false, depth: null, colors: true}))
-        expect(playerOb).toEqual(playerDataObjact)
+        expect(playerOb).toEqual(playerDataObjact1)
     })
 
 
