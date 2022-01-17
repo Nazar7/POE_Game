@@ -31,7 +31,7 @@ module.exports = class Player {
                         Player.Character['equipmentBody']['sockets'][`${place}` + "-W"][gemArray[0]]['setQuality'] = qua
                     }
                         console.log("------------------")
-                        // for (var i = 0; i < Object.keys(Player.Character['equipmentBody']['sockets']).length; i++) {
+                        for (var i = 0; i < Object.keys(Player.Character['equipmentBody']['sockets']).length; i++) {
                             var currentSocket = Object.keys(Player.Character['equipmentBody']['sockets'])[i]
                             // console.log(Object.keys(Player.Character['equipmentBody']['sockets'])[i])
                             if (currentSocket[0] == place) {
@@ -55,7 +55,7 @@ module.exports = class Player {
                         console.log("------------------")
                         // Player.Character['equipmentBody']['sockets'][`${place}` + "-W"] = item;
 
-                    // }
+                    }
 
         })
         console.log(Player.Character.equipmentBody.sockets + " !!!!!!!!!!!!!!!!!!!!!!!")
