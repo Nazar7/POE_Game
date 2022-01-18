@@ -135,5 +135,7 @@ class App {
 const app = new App();
 app.start();
 
+module.exports = App;
+
 
 

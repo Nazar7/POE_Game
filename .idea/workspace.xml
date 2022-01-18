@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b556708c-b204-452e-b3e6-e39e216aa3a8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/equipAction.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/supportGems.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/supportGems.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/action.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/action.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/attack.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/attack.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/player.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +59,12 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Node.js.app.js">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\POE_Nazar_Max\POE_Game\tests" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Jest.All Tests">
     <configuration name="Перевірка функції підрахунку damage скіла." type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -192,12 +201,12 @@
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/player.test.js</url>
+          <url>file://$PROJECT_DIR$/tests/player.test.js</url>
           <line>103</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/player.test.js</url>
+          <url>file://$PROJECT_DIR$/tests/player.test.js</url>
           <line>104</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
