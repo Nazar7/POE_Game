@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b556708c-b204-452e-b3e6-e39e216aa3a8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/equipAction.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/action.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/action.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attack.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/attack.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/player.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/character.js" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/character.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/equipment.js" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/equipment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/equipAction.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/equipAction.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,6 +212,24 @@
           <url>file://$PROJECT_DIR$/player.js</url>
           <line>17</line>
           <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/handlers/character.js</url>
+          <line>12</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/handlers/equipment.js</url>
+          <line>24</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/handlers/equipment.js</url>
+          <line>25</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

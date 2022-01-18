@@ -21,7 +21,7 @@ class Equipment {
         this._type = value;
     }
 
-    constructor(equipmentName) {
+    load(equipmentName) {
         let equipment = false;
         for (const equipmentType of conf.equipmentTypes) {
             const equipmentArray = eval(equipmentType + 'Equipment');
@@ -31,13 +31,15 @@ class Equipment {
                     data.type = equipmentType;
                     equipment = data;
                     break;
-                } else return false;
+                }
             }
         }
         if(!equipment) return false;
-
         this.name = equipment.name;
         this.type = equipment.type;
+
+        return equipment;
+
     }
 }
 

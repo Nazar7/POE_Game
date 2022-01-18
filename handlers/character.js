@@ -9,12 +9,13 @@ class Character {
     }
 
     equip(equipmentType, equipmentName) {
-        const equipment = new Equipment(equipmentName);
+        const equipmentObject = new Equipment();
+        const equipment = equipmentObject.load(equipmentName);
         if (!equipment) {
             return 'Unable to comply, there is no such equipment'
         }
         this.equipment.push(equipment);
-        return 'Equipment Added'; //треба щось норм поверати ==> need to add slots of equip
+        return `Equipment Added: ${JSON.stringify(equipment)}`; //треба щось норм поверати ==> need to add slots of equip
     }
 
     //equip(equipmentType, equipmentName) ->create new equip and add it to all equipments
