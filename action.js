@@ -3,6 +3,15 @@
 // const attack = require('./attack')
 
 module.exports = class Action {
+    _character = {};
+
+    get character() {
+        return this._character;
+    }
+
+    constructor(character) {
+        this._character = character;
+    }
 
     parseCommand(command) {
         const splitedInput = command.split(' ');
@@ -19,9 +28,9 @@ module.exports = class Action {
         //TODO Switcher
         switch (action) {
             case 'equip':
-                equipmentName = splitedInput[2];
                 equipmentType = splitedInput[1];
-                result = 'will be come soon';
+                equipmentName = splitedInput[2];
+                result = this.character.equip(equipmentType, equipmentName);
                 return result;
                 break;
             case 'setgem':
@@ -55,8 +64,6 @@ module.exports = class Action {
                 const error = 'unable to comply, there is no such action'
                 return error;
         }
-
-
     }
     // constructor(data) {
     //     this.data = data

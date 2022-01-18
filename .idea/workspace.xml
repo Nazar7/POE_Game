@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b556708c-b204-452e-b3e6-e39e216aa3a8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/conf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/bodyEquipment.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/handlers/equipment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/action.js" beforeDir="false" afterPath="$PROJECT_DIR$/action.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/equipments.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/handlers/character.js" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/character.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/player.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +195,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/action.js</url>
-          <line>65</line>
+          <line>74</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

@@ -1,4 +1,4 @@
-const equipments = require('./data/equipments.json');
+const equipments = require('./data/bodyEquipment.json');
 const gems = require('./data/gems.json');
 const util = require('util')
 

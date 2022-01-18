@@ -1,13 +1,13 @@
 const readlineSync = require('readline-sync');
 const Action = require('./action');
+const Character = require('./handlers/character');
 // const gems = require('./data/gems.json');
 
 class App {
 
     start() {
-        // const character =  new Character();
-        // const action = new Action(character);
-        const action = new Action();
+        const character =  new Character();
+        const action = new Action(character);
 
         //TO
         while (true) {

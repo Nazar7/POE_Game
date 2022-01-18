@@ -1,0 +1,62 @@
+{
+  "tabula_rasa": {
+    "sockets_qty": 6,
+    "linked": 6,
+    "color": {
+      "white": 6,
+      "blue": 0,
+      "green": 0,
+      "red": 0
+    }
+  },
+  "briskwrap": {
+    "sockets_qty": 6,
+    "linked": 5,
+    "color": {
+      "white": 0,
+      "blue": 0,
+      "green": 5,
+      "red": 1
+    }
+  },
+  "dendrobate_changed": {
+    "sockets_qty": 6,
+    "linked": 6,
+    "color": {
+      "white": 0,
+      "blue": 1,
+      "green": 4,
+      "red": 1
+    }
+  },
+  "corruption_sanctuary": {
+    "sockets_qty": 3,
+    "linked": 3,
+    "color": {
+      "white": 0,
+      "blue": 2,
+      "green": 0,
+      "red": 1
+    },
+    "affectLevel": {
+      "skillGem": {
+        "formula": "value + 3"
+      },
+      "supportGem": {
+        "formula": "value + 3"
+      }
+    },
+    "damage": {
+      "lightning": {
+        "formula": "value + 5"
+      }
+    },
+    "quality": {
+      "damage": {
+        "lightning": {
+          "formula": "value * 1.4"
+        }
+      }
+    }
+  }
+}
