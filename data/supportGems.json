@@ -10,7 +10,7 @@
     "quality": {
       "damage": {
         "all": {
-          "formula": "value + (0.5 * (quality * 1)/100)"
+          "formula": "value + (1 + (0.5 * quality/100))"
         }
       }
     },
@@ -37,7 +37,7 @@
     "quality": {
       "damage": {
         "all": {
-          "formula": "value + (0.5 * (quality * 1)/100)"
+          "formula": "value + (1 + (0.5 * quality/100))"
         }
       }
     },
@@ -67,7 +67,7 @@
     "quality": {
       "damage": {
         "lightning": {
-          "formula": "value + (0.5 * (quality * 1)/100)"
+          "formula": "value + (1 + (0.5 * quality/100))"
         }
       }
     },
@@ -88,7 +88,7 @@
     "quality": {
       "damage": {
         "all": {
-          "formula": "value + (0.5 * (quality * 1)/100)"
+          "formula": "value + (1 + (0.5 * quality/100))"
         }
       }
     },
@@ -113,6 +113,13 @@
       "skillGem": {
         "formula": "value + (lv/6)"
       }
+    },
+    "quality": {
+      "damage": {
+        "all": {
+          "formula": "value + 0"
+        }
+      }
     }
   },
   "chanceToPoisonSupport": {
@@ -126,7 +133,7 @@
     "quality": {
       "damage": {
         "chaos": {
-          "formula": "value + (0.5 * (quality * 1)/100)"
+          "formula": "value + (1 + (0.5 * quality/100))"
         }
       }
     },
