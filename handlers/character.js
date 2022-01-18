@@ -1,6 +1,6 @@
 const Equipment = require('./equipment');
 const Gem = require('./gem');
-const CastProcessor = require('./castProcessor');
+// const CastProcessor = require('./castProcessor');
 
 class Character {
     _equipment = [];
@@ -123,3 +123,5 @@ class Character {
         return false;
     }
 }
+
+module.exports = Character;
