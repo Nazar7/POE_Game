@@ -1,6 +1,6 @@
 const fs = require('fs')
 const buttons = require('./buttons')
-const gems = require('./data/gems.json')
+const gems = require('./data/skillGems.json')
 const Player = require("./player")
 
 // class UserDamage {

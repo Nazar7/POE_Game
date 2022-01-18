@@ -1,5 +1,5 @@
 const equipments = require('./data/bodyEquipment.json');
-const gems = require('./data/gems.json');
+const gems = require('./data/skillGems.json');
 const util = require('util')
 
 module.exports = class Player {

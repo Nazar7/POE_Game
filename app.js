@@ -1,7 +1,7 @@
 const readlineSync = require('readline-sync');
 const Action = require('./action');
 const Character = require('./handlers/character');
-// const gems = require('./data/gems.json');
+// const gems = require('./data/skillGems.json');
 
 class App {
 

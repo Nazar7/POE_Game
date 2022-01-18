@@ -1,6 +1,6 @@
 const Player = require("./player");
 const util = require("util");
-const gems = require('./data/gems.json');
+const gems = require('./data/skillGems.json');
 
 describe('PlayerService Class', () => {
 let player
