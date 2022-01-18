@@ -1,20 +1,19 @@
 const readlineSync = require('readline-sync');
 const Action = require('./action');
-const gems = require('./data/gems.json')
+// const gems = require('./data/gems.json');
+
 class App {
 
-
     start() {
-        const character =  new Character();
-        const action = new Action(character);
-
+        // const character =  new Character();
+        // const action = new Action(character);
+        const action = new Action();
 
         //TO
         while (true) {
-            readlineSync.question(`enter your action `);
-
-
-            action.parseCommand();
+            let command = readlineSync.question(`Enter your action`);
+            const result = action.parseCommand(command);
+            console.log(result);
 
             // console.log(command)
             // switch (command) {
