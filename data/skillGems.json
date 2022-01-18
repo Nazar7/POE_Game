@@ -4,13 +4,15 @@
     "slot color": "blue",
     "damage": {
       "cold": {
-        "formula": "200 + 5*pow(lv, 2)"
+        "formula": "200 + 5*pow(lv, 2)" 
       }
     },
     "quality": {
       "damage": {
         "cold": {
-          "formula": "value * (1 + quality/100)"
+          "increase": {
+            "formula": "value + (1 + quality/100)"
+          }
         }
       }
     },
@@ -40,7 +42,9 @@
     "quality": {
       "damage": {
         "cold": {
-          "formula": "value * (1 + quality/100)"
+          "increase": {
+            "formula": "value + (1 + quality/100)"
+          }
         }
       }
     },
@@ -62,8 +66,12 @@
       }
     },
     "quality": {
-      "moveSpeed": {
-        "formula": "value * (1 + quality/100)"
+      "nonDamage": {
+        "moveSpeed": {
+          "increase": {
+            "formula": "value + (1 + quality/100)"
+          }
+        }
       }
     },
     "non-damage": {
@@ -110,7 +118,9 @@
     "quality": {
       "damage": {
         "physical": {
-          "formula": "value * (1 + quality/100)"
+          "increase": {
+            "formula": "value + (1 + quality/100)"
+          }
         }
       }
     },

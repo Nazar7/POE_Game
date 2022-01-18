@@ -54,7 +54,9 @@
     "quality": {
       "damage": {
         "lightning": {
-          "formula": "value * 1.4"
+          "increase": {
+            "formula": "value + 40"
+          }
         }
       }
     }
