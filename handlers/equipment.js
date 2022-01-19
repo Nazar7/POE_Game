@@ -5,7 +5,7 @@ const Socket = require('../handlers/socket');
 
 class Equipment {
     _name = '';
-    _info = {};
+    _links = [];
     _sockets = [];
     _type = '';
     _affectLevel = false;
@@ -23,12 +23,12 @@ class Equipment {
         this._name = value;
     }
 
-    get info() {
-        return this._info;
+    get links() {
+        return this._links;
     }
 
-    set info(value) {
-        this._info = value;
+    set links(value) {
+        this._links = value;
     }
 
     get sockets() {
@@ -37,15 +37,10 @@ class Equipment {
 
     set sockets(value) {
         const sockets = [];
-        let i = 1;
-        for(const[color, qty] of Object.entries(value)) {
-            for (let j = 0;j < qty; j++) {
-                const socket = new Socket(color, i);
-                sockets.push(socket);
-                i++;
-            }
+        for (const [id, color] of Object.entries(value)) {
+            const socket = new Socket(color, parseInt(id));
+            this.sockets.push(socket);
         }
-        this._sockets = sockets;
     }
 
     get type() {
@@ -120,6 +115,7 @@ class Equipment {
         if(!equipment) return false;
         this.name = equipment.name;
         this.type = equipment.type;
+        this.links = equipment.links;
         this.sockets = equipment.color;
         this.affectLevel = equipment.affectLevel ?? false;
         this.useFlask = equipment.useFlask ?? false;
@@ -165,6 +161,15 @@ class Equipment {
             return this[category][subCategory].formula;
         }
     }
+
+    getAllLinkedSocketsIds(socketId) {
+        for(const [id, linkedSocketsIds] of Object.entries(this.links)) {
+            if(parseInt(id) === socketId) {
+                return linkedSocketsIds;
+            }
+        }
+    }
+
 }
 
 module.exports = Equipment;

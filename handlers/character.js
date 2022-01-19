@@ -56,6 +56,7 @@ class Character {
         }
         if (socket.checkGemColor(gem.color)) {
             socket.gem = gem;
+            gem.socketId = socket.id;
             return equipmentItem.sockets; //успішно засечено треба щось повернути толкове, по-хоуд всі сокети)
         } else
             // по-кольору не пышло

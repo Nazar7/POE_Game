@@ -12,6 +12,7 @@ class CastProcessor {
     getSuitableSupportGems(gem, usedEquipment, equipment) {
         const suitableEquipment = [];
         const flasks = [];
+        const linkedSocketsIds = usedEquipment.getAllLinkedSocketsIds(gem.socketId);
 
         let supportGems = [];
         for(const equipmentItem of equipment) {
@@ -30,6 +31,7 @@ class CastProcessor {
         for (const gemTag of gem.tags.concat('Support')) {
             for (const supportGem of supportGems) {
                 if (gemTag === 'Support' && supportGem.tags.length === 1 && supportGem.tags[0] === 'Support') {
+                    if (!linkedSocketsIds.includes(supportGem.socketId)) continue;
                     suitableGems.push(supportGem);
                     continue;
                 } else if (gemTag === 'Support') {
@@ -37,6 +39,7 @@ class CastProcessor {
                 }
                 for(const supportGemTag of supportGem.tags) {
                     if (gemTag === supportGemTag) {
+                        if (!linkedSocketsIds.includes(supportGem.socketId)) continue;
                         suitableGems.push(supportGem);
                     }
                 }

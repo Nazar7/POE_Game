@@ -14,6 +14,7 @@ class Gem {
     _quality = {};
     _level = 1;
     _qualityLevel = 0;
+    _socketId = 0;
 
     get name() {
         return this._name;
@@ -101,6 +102,14 @@ class Gem {
 
     set qualityLevel(value) {
         this._qualityLevel = value;
+    }
+
+    get socketId() {
+        return this._socketId;
+    }
+
+    set socketId(value) {
+        this._socketId = value;
     }
 
     load(gemInfo) {

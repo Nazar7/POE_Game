@@ -10,11 +10,11 @@ class App {
         const action = new Action(character);
 
         // testint
-        // character.equip('body', 'tabula_rasa')
-        // character.setGem(2, {gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
-        // character.setGem(3, {gemName: 'empowerSupport', gemLevel: 1, gemQuality: 0}, 'body');
-        // character.setButton('key', 't', 'frostbolt', 'body', 2);
-        // character.press( 'key', 't');
+        character.equip('body', 'tabula_rasa')
+        character.setGem(2, {gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(3, {gemName: 'empowerSupport', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setButton('key', 't', 'frostbolt', 'body', 2);
+        character.press( 'key', 't');
 
         while (true) {
             let command = readlineSync.question(`Enter your action `);
