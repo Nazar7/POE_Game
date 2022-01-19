@@ -9,7 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jest": "^27.4.7",
+    "expr-eval": "^2.0.2",
     "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7"
   }
 }

@@ -54,14 +54,12 @@ class Character {
             //немає сокету)
             return 'Unable to comply, socketId is not exist'
         }
-
         if (socket.checkGemColor(gem.color)) {
             socket.gem = gem;
             return equipmentItem.sockets; //успішно засечено треба щось повернути толкове, по-хоуд всі сокети)
-        } else {
+        } else
             // по-кольору не пышло
             return `Unable to comply, color ${gem.color} is not appropriate`
-        }
     }
 
 
