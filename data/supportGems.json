@@ -38,7 +38,7 @@
             "formula": "value + (1 + (0.5 * quality/100))"
           },
           "decrease": {
-            "formula": "value + 10"
+            "formula": "value + 0.9"
           }
         }
       }

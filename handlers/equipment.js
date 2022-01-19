@@ -137,7 +137,7 @@ class Equipment {
 
     getGemByNameSocketId(gemName, socketId) {
         for(const socket of this.sockets) {
-            if ((socket.id === socketId || !socketId) && socket.gem.name === gemName) {
+            if ((socket.id === parseInt(socketId) || !socketId) && socket.gem.name === gemName) {
                 return socket.gem;
             }
         }

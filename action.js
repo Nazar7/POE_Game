@@ -37,8 +37,8 @@ module.exports = class Action {
                 const gemInfoArray = splitedInput[2].split('_');
                 gemInfo = {
                     gemName: gemInfoArray[0],
-                    gemLevel: gemInfoArray[1] ?? 1,
-                    gemQuality: gemInfoArray[1] ?? 0
+                    gemLevel: gemInfoArray[1] ? parseInt(gemInfoArray[1]) : 1,
+                    gemQuality: gemInfoArray[2] ? parseInt(gemInfoArray[2]) : 0
                 }
                 socketId = parseInt(splitedInput[1]);
                 equipmentType = splitedInput[3] ?? 'body';
@@ -50,7 +50,7 @@ module.exports = class Action {
                 gemName = splitedInput[3];
                 device = splitedInput[1];
                 equipmentType = splitedInput[4] ?? 'body';
-                socketId = splitedInput[5] ?? false;
+                socketId = splitedInput[5] ? parseInt(splitedInput[5]) : false;
                 result = this.character.setButton(device, key, gemName, equipmentType, socketId);
                 return result;
                 break;

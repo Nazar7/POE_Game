@@ -10,10 +10,13 @@ class App {
         const action = new Action(character);
 
         // testint
-        character.equip('body', 'tabula_rasa')
-        character.setGem(2, {gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
-        character.setGem(3, {gemName: 'empowerSupport', gemLevel: 1, gemQuality: 0}, 'body');
-        character.setButton('key', 't', 'frostbolt', 'body', 2);
+        character.equip('body', 'tabula_rasa');
+
+        // seismicTrap
+        character.setGem(2, {gemName: 'iceNova', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(3, {gemName: 'spellEchoSupport', gemLevel: 1, gemQuality: 0}, 'body');
+        // character.setGem(3, {gemName: 'empowerSupport', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setButton('key', 't', 'iceNova', 'body', 2);
         character.press( 'key', 't');
 
         while (true) {

@@ -153,7 +153,7 @@ class Gem {
                 replace('lv', this.level);
             }
             if (this.quality[category][subCategory].decrease) {
-                quality.increase = this.quality[category][subCategory].decrease.formula.
+                quality.decrease = this.quality[category][subCategory].decrease.formula.
                 replace('quality', this.qualityLevel).
                 replace('lv', this.level);
             }

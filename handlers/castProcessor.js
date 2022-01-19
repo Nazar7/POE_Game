@@ -353,15 +353,16 @@ class CastProcessor {
                 && calculationResult.quality.damage[damageType].increase_value) {
                 calculationResult.damage[damageType].value =
                     calculationResult.damage[damageType].value
-                    * (1 + calculationResult.quality.damage[damageType].increase_value/100);
+                    * calculationResult.quality.damage[damageType].increase_value;
             }
 
-            if (calculationResult.quality.damage
+            if (calculationResult.damage[damageType]
+                && calculationResult.quality.damage
                 && calculationResult.quality.damage.all
                 && calculationResult.quality.damage.all.increase_value) {
                 calculationResult.damage[damageType].value =
                     calculationResult.damage[damageType].value
-                    * (1 + calculationResult.quality.damage.all.increase_value/100);
+                    * calculationResult.quality.damage.all.increase_value;
             }
 
         }
@@ -376,15 +377,16 @@ class CastProcessor {
                 && calculationResult.quality.damage[damageType].decrease_value) {
                 calculationResult.damage[damageType].value =
                     calculationResult.damage[damageType].value
-                    * (1 + calculationResult.quality.damage[damageType].decrease_value/100);
+                    * calculationResult.quality.damage[damageType].decrease_value;
             }
 
-            if (calculationResult.quality.damage
+            if (calculationResult.damage[damageType]
+                && calculationResult.quality.damage
                 && calculationResult.quality.damage.all
                 && calculationResult.quality.damage.all.decrease_value) {
                 calculationResult.damage[damageType].value =
                     calculationResult.damage[damageType].value
-                    * (1 + calculationResult.quality.damage.all.decrease_value/100);
+                    * calculationResult.quality.damage.all.decrease_value;
             }
 
         }
@@ -401,7 +403,7 @@ class CastProcessor {
                 && calculationResult.quality.nonDamage[nonDamageParam].increase_value) {
                 calculationResult.nonDamage[nonDamageParam].value =
                     calculationResult.nonDamage[nonDamageParam].value
-                    * (1 + calculationResult.quality.nonDamage[nonDamageParam].increase_value/100);
+                    * calculationResult.quality.nonDamage[nonDamageParam].increase_value;
             }
 
             if (calculationResult.quality.nonDamage
@@ -409,7 +411,7 @@ class CastProcessor {
                 && calculationResult.quality.nonDamage.all.increase_value) {
                 calculationResult.nonDamage[nonDamageParam].value =
                     calculationResult.nonDamage[nonDamageParam].value
-                    * (1 + calculationResult.quality.nonDamage.all.increase_value/100);
+                    * calculationResult.quality.nonDamage.all.increase_value;
             }
 
         }
@@ -423,7 +425,7 @@ class CastProcessor {
                 && calculationResult.quality.nonDamage[nonDamageParam].decrease_value) {
                 calculationResult.nonDamage[nonDamageParam].value =
                     calculationResult.nonDamage[nonDamageParam].value
-                    * (1 + calculationResult.quality.nonDamage[nonDamageParam].decrease_value/100);
+                    * calculationResult.quality.nonDamage[nonDamageParam].decrease_value;
             }
 
             if (calculationResult.quality.nonDamage
@@ -431,11 +433,14 @@ class CastProcessor {
                 && calculationResult.quality.nonDamage.all.decrease_value) {
                 calculationResult.nonDamage[nonDamageParam].value =
                     calculationResult.nonDamage[nonDamageParam].value
-                    * (1 + calculationResult.quality.nonDamage.all.decrease_value/100);
+                    * calculationResult.quality.nonDamage.all.decrease_value;
             }
         }
         /*** CALCULATING NON DAMAGE INCREAE DESCRESE END*/
 
+        if (calculationResult.quality) {
+            delete calculationResult.quality;
+        }
         return calculationResult;
     }
 
