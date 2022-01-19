@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "expr-eval": "^2.0.2",
     "jest": "^27.4.7",
     "readline-sync": "^1.4.10"
   }
