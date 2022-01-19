@@ -42,7 +42,7 @@ module.exports = class Action {
                 }
                 socketId = parseInt(splitedInput[1]);
                 equipmentType = splitedInput[3] ?? 'body';
-                result = 'will be come soon';
+                result = this.character.setGem(socketId, gemInfo, equipmentType);
                 return result;
                 break;
             case 'setbutton':
@@ -51,13 +51,13 @@ module.exports = class Action {
                 device = splitedInput[1];
                 equipmentType = splitedInput[4] ?? 'body';
                 socketId = splitedInput[5] ?? false;
-                result = 'will be come soon';
+                result = this.character.setButton(device, key, gemName, equipmentType, socketId);
                 return result;
                 break;
             case 'press':
                 key = splitedInput[2];
                 device = splitedInput[1];
-                result = 'will be come soon';
+                result = this.character.press(device, key);
                 return result;
                 break;
             default:

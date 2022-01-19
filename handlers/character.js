@@ -41,15 +41,18 @@ class Character {
         const equipmentItem = this.getEquipmentByType(equipmentType);
         if (!equipmentItem) {
             //  немає до якого предмету прив'язати
+            return 'Unable to comply, add equipment first'
         }
         const gemObject = new Gem();
         const gem = gemObject.load(gemInfo)
         if (!gem) {
             //немає заданого джему
+            return 'Unable to comply, unknown gem'
         }
         const socket = equipmentItem.getSocketById(socketId);
         if (!socket) {
             //немає сокету)
+            return 'Unable to comply, socketId is not exist'
         }
 
         if (socket.checkGemColor(gem.color)) {
@@ -57,6 +60,7 @@ class Character {
             return equipmentItem.sockets; //успішно засечено треба щось повернути толкове, по-хоуд всі сокети)
         } else {
             // по-кольору не пышло
+            return `Unable to comply, color ${gem.color} is not appropriate`
         }
     }
 
