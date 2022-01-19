@@ -31,8 +31,22 @@ class Character {
         if (!equipment) {
             return 'Unable to comply, there is no such equipment'
         }
+        const existEquipment = this.getEquipmentByType(equipmentType);
+        if (existEquipment) {
+            this.unEquip(equipmentType);
+        }
         this.equipment.push(equipment);
         return `Equipment Added: ${JSON.stringify(equipment)}`; //треба щось норм поверати ==> need to add slots of equip
+    }
+
+    unEquip(equipmentType) {
+        const equipment = [];
+        for(const equipmentItem of this.equipment) {
+            if (equipmentItem.type !== equipmentType) {
+                equipment.push(equipmentItem);
+            }
+        }
+        this.equipment = equipment;
     }
 
     setGem(socketId, gemInfo, equipmentType) {
@@ -118,13 +132,15 @@ class Character {
     }
 
     getEquipmentByType(equipmentType) {
-        for(const equipmentItem of this._equipment) {
+        for(const equipmentItem of this.equipment) {
             if (equipmentItem.type === equipmentType) {
                 return equipmentItem;
             }
         }
         return false;
     }
+
+
 }
 
 module.exports = Character;
