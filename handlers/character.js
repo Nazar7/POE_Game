@@ -75,13 +75,16 @@ class Character {
         if (socket.checkGemColor(gem.color)) {
             socket.gem = gem;
             gem.socketId = socket.id;
-            const sockedParams = equipmentItem.sockets.map(el => {
-                if (Object.keys(el._gem).length !== 0) {
-                    return {...el, _gem: { _name: el._gem._name, _type: el._gem._type }}
+            const socketParams = [];
+            equipmentItem.sockets.map(el => {
+                if (Object.keys(el.gem).length !== 0) {
+                    socketParams.push({...el, _gem: { _name: el.gem.name, _type: el.gem.type }});
+                } else {
+                    socketParams.push(el);
                 }
-                return el;
+                return true;
             });
-            return sockedParams; //успішно засечено треба щось повернути толкове, по-хоуд всі сокети)
+            return socketParams; //успішно засечено треба щось повернути толкове, по-хоуд всі сокети)
         } else
             // по-кольору не пышло
             return `Unable to comply, color ${gem.color} is not appropriate`

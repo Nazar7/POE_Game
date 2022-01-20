@@ -162,7 +162,7 @@ describe('1 skill gem with one support gem', () => {
             {
                 'damage': {
                     'cold': {
-                        'value': 2376.05
+                        'value': 2494.8
                     }
                 },
                 'nonDamage': {
@@ -230,7 +230,7 @@ describe('1 skill gem with two support gem', () => {
         character.equip( 'body', 'tabula_rasa');
         character.setGem(3, { gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
         character.setGem(4, { gemName: 'addedLightningDamageSupport', gemLevel: 1, gemQuality: 0}, 'body');
-        character.setGem(4, { gemName: 'spellEchoSupport', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(5, { gemName: 'spellEchoSupport', gemLevel: 1, gemQuality: 0}, 'body');
         character.setButton('key', 't', 'frostbolt', 'body', 3);
         //when
         const result = action.parseCommand(input);

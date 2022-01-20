@@ -156,7 +156,17 @@ class Equipment {
 
     getFormula(category, subCategory, quality = false) {
         if (quality) {
-            return this.quality[category][subCategory].formula;
+            const quality = {
+                increase: 'value',
+                decrease: 'value'
+            }
+            if (this.quality[category][subCategory].increase) {
+                quality.increase = this.quality[category][subCategory].increase.formula;
+            }
+            if (this.quality[category][subCategory].decrease) {
+                quality.decrease = this.quality[category][subCategory].decrease.formula;
+            }
+            return quality;
         } else {
             return this[category][subCategory].formula;
         }
