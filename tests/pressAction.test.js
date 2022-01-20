@@ -119,22 +119,25 @@ describe('gems on corruption_sanctuary', () => {
         const result = action.parseCommand(input);
         //then
         expect(result).toEqual({
-            'damage': {
+            'damage':
+                {
                 'cold': {
                     'value': 114
                 },
-                'nonDamage': {
+                'lightning': {
+                    'value': 7,
+                }
+                },
+            'nonDamage':
+                {
                     'manaCost': {
                         'value': 10
                     },
                     'castSpeed': {
                         'value': 0.7
                     },
-                    'projectiles': {
-                        'value': 1
-                    },
                 }
-            }});
+            });
     });
     test('iceNova 10 10 + spellEchoSupport 5 5 on corruption_sanctuary', () => {
         //given
@@ -152,23 +155,21 @@ describe('gems on corruption_sanctuary', () => {
         expect(result).toEqual({
             'damage': {
                 'cold': {
-                    'value': 735.075
+                    'value': 736.7085
                 },
-                "lightning": {
-                    "value": 184.49999999999997
-                }
+                'lightning': {
+                    'value': 6.4575,
+                },
             },
-                'nonDamage': {
-                    'manaCost': {
-                        'value': 21.75
-                    },
-                    'castSpeed': {
-                        'value': 0.301
-                    },
-                    'projectiles': {
-                        'value': 2
-                }
-            }});
+            'nonDamage': {
+                'manaCost': {
+                    'value': 21.75
+                },
+                'castSpeed': {
+                    'value': 0.343
+                },
+            }
+        });
     });
 });
 

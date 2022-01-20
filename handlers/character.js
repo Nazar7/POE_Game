@@ -105,6 +105,11 @@ class Character {
             return `Unable to comply, cannot set support gem, select an active one`;
         }
 
+        const bind = this.getBind(device, key);
+        if (bind) {
+            this.unSetButton(bind);
+        }
+
         this.binds[device].push(
             {
                 key: key,
@@ -116,6 +121,16 @@ class Character {
             }
         );
         return this._binds;
+    }
+
+    unSetButton(bind) {
+        const binds = [];
+        for(const bindItem of this.binds) {
+            if (bindItem.key !== bind.key) {
+                binds.push(bindItem);
+            }
+        }
+        this.binds = binds;
     }
 
     getBind(device, key) {

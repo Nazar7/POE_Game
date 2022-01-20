@@ -11,7 +11,7 @@
       "damage": {
         "all": {
           "increase": {
-            "formula": "value + (1 + (0.5 * quality/100))"
+            "formula": "value + ((0.5 * quality/100))"
           }
         }
       }
@@ -35,7 +35,7 @@
       "damage": {
         "all": {
           "increase": {
-            "formula": "value + (1 + (0.5 * quality/100))"
+            "formula": "value + ((0.5 * quality/100))"
           },
           "decrease": {
             "formula": "value + 0.9"
@@ -70,7 +70,7 @@
       "damage": {
         "lightning": {
           "increase": {
-            "formula": "value + (1 + (0.5 * quality/100))"
+            "formula": "value + ((0.5 * quality/100))"
           }
         }
       }
@@ -93,7 +93,7 @@
       "damage": {
         "all": {
           "increase": {
-            "formula": "value + (1 + (0.5 * quality/100))"
+            "formula": "value + ((0.5 * quality/100))"
           }
         }
       }
@@ -133,7 +133,7 @@
       "damage": {
         "chaos": {
           "increase": {
-            "formula": "value + (1 + (0.5 * quality/100))"
+            "formula": "value + ((0.5 * quality/100))"
           }
         }
       }

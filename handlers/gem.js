@@ -146,22 +146,22 @@ class Gem {
             const quality = {
                 increase: 'value',
                 decrease: 'value'
-            }
+            };
             if (this.quality[category][subCategory].increase) {
                 quality.increase = this.quality[category][subCategory].increase.formula.
-                replace('quality', this.qualityLevel).
-                replace('lv', this.level);
+                replaceAll('quality', this.qualityLevel).
+                replaceAll('lv', this.level);
             }
             if (this.quality[category][subCategory].decrease) {
                 quality.decrease = this.quality[category][subCategory].decrease.formula.
-                replace('quality', this.qualityLevel).
-                replace('lv', this.level);
+                replaceAll('quality', this.qualityLevel).
+                replaceAll('lv', this.level);
             }
             return quality;
         } else {
             return this[category][subCategory].formula.
-            replace('quality', this.qualityLevel).
-            replace('lv', this.level);
+            replaceAll('quality', this.qualityLevel).
+            replaceAll('lv', this.level);
         }
     }
 }

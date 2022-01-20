@@ -50,7 +50,7 @@ describe('setbutton action: success cases', () => {
                         "damage": {
                             "cold": {
                                 "increase": {
-                                    "formula": "value + (1 + quality/100)"
+                                    "formula": "value + (quality/100)"
                                 }
                             }
                         }
@@ -86,7 +86,7 @@ describe('setbutton action: success cases', () => {
                     "damage": {
                         "cold": {
                             "increase": {
-                                "formula": "value + (1 + quality/100)"
+                                "formula": "value + (quality/100)"
                             }
                         }
                     }
@@ -118,7 +118,7 @@ describe('setbutton action: success cases', () => {
                         "damage": {
                             "cold": {
                                 "increase": {
-                                    "formula": "value + (1 + quality/100)"
+                                    "formula": "value + (quality/100)"
                                 }
                             }
                         }
@@ -134,7 +134,7 @@ describe('setbutton action: success cases', () => {
                         "damage": {
                             "cold": {
                                 "increase": {
-                                    "formula": "value + (1 + quality/100)"
+                                    "formula": "value + (quality/100)"
                                 }
                             }
                         }
