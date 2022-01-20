@@ -1,7 +1,3 @@
-// const Player = require('./player');
-// const buttons = require('./buttons')
-// const attack = require('./attack')
-
 module.exports = class Action {
     _character = {};
 
@@ -13,6 +9,21 @@ module.exports = class Action {
         this._character = character;
     }
 
+    checkLvOfGem(gemInfo, splitedInput) {
+        const gemInfoArray = splitedInput[2].split('_');
+        gemInfo = {
+            gemName: gemInfoArray[0],
+            gemLevel: gemInfoArray[1] ? parseInt(gemInfoArray[1]) : 1,
+            gemQuality: gemInfoArray[2] ? parseInt(gemInfoArray[2]) : 0
+        }
+        if (gemInfo.gemLevel > 20) {
+            return false;
+        }
+        if (gemInfo.gemQuality > 20) {
+            return false;
+        } else return gemInfo;
+    }
+
     parseCommand(command) {
         const splitedInput = command.split(' ');
         const action = splitedInput[0];
@@ -21,7 +32,7 @@ module.exports = class Action {
         let gemName;
         let device;
         let equipmentType;
-        let gemInfo;
+        // let gemInfo;
         let socketId;
         let equipmentName;
 
@@ -34,11 +45,11 @@ module.exports = class Action {
                 return result;
                 break;
             case 'setgem':
-                const gemInfoArray = splitedInput[2].split('_');
-                gemInfo = {
-                    gemName: gemInfoArray[0],
-                    gemLevel: gemInfoArray[1] ? parseInt(gemInfoArray[1]) : 1,
-                    gemQuality: gemInfoArray[2] ? parseInt(gemInfoArray[2]) : 0
+                // const gemInfoArray = splitedInput[2].split('_');
+                const gemInfoArray = splitedInput[2]
+                const gemInfo = this.checkLvOfGem(gemInfoArray, splitedInput);
+                if (!gemInfo) {
+                    return 'level and quality cannot be more than 20';
                 }
                 socketId = parseInt(splitedInput[1]);
                 equipmentType = splitedInput[3] ?? 'body';

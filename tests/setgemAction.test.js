@@ -41,7 +41,6 @@ describe('setgem actions: errors', () => {
         expect(result).toBe(errorMessage);
     });
 
-    //need fix!
     test('try to set gem on not appropriate color => receive error message', () => {
         //given
         const input = 'setgem 1 greaterMultipleProjectilesSupport body';
@@ -50,6 +49,18 @@ describe('setgem actions: errors', () => {
         const result = action.parseCommand(input);
         //then
         const errorMessage = `Unable to comply, color green is not appropriate`;
+
+        expect(result).toBe(errorMessage);
+    });
+
+    test('try to set gem level more than 20 => receive error message', () => {
+        //given
+        const input = 'setgem 1 greaterMultipleProjectilesSupport_21_31 body';
+        //when
+        character.equip('body', 'corruption_sanctuary');
+        const result = action.parseCommand(input);
+        //then
+        const errorMessage = `level and quality cannot be more than 20`;
 
         expect(result).toBe(errorMessage);
     });

@@ -202,7 +202,6 @@ describe('gems on dendrobate_changed', () => {
 
 describe('1 skill gem with one support gem', () => {
     test('1 skill gem frostbolt with lv 20 and quality 20 with spellEchoSupport default lv & quality (two support tag) | tabula_rasa', () => {
-
         //given
         const character = new Character();
         const action = new Action(character);
@@ -272,9 +271,7 @@ describe('1 skill gem with one support gem', () => {
             }
         );
     });
-
     test('1 skill gem with lv 1 and quality 0 with addedLightningDamageSupport 1 lv & 0 quality ', () => {
-
         //given
         const character = new Character();
         const action = new Action(character);
@@ -310,6 +307,37 @@ describe('1 skill gem with one support gem', () => {
                 }
             }
         );
+    });
+    test('iceNova 1 0 + spellEchoSupport 10 20 | tabula_rasa', () => {
+        //given
+        const character = new Character();
+        const action = new Action(character);
+        const input = 'press key t';
+        character.equip( 'body', 'tabula_rasa');
+        character.setGem(3, { gemName: 'iceNova', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(4, { gemName: 'spellEchoSupport', gemLevel: 10, gemQuality: 20}, 'body');
+        character.setButton('key', 't', 'iceNova', 'body', 3);
+        //when
+        const result = action.parseCommand(input);
+        //then
+        expect(result).toEqual({
+            "damage": {
+                "cold": {
+                    "value": 53.46
+                }
+            },
+            "nonDamage": {
+                "castSpeed": {
+                    "value": 0.308
+                },
+                "manaCost": {
+                    "value": 12.75
+                },
+                "projectiles": {
+                    "value": 2
+                }
+            }
+        });
     });
 });
 
@@ -353,4 +381,10 @@ describe('1 skill gem with two support gem', () => {
             }
         );
     });
+});
+
+describe('from example: full complicated equipment on tabula_rasa: Poisonous Concoction – Ice Nova – Frostbolt – Empower – Spell Cascade – Greater Multiple Projectiles', () => {
+    test('', () => {
+
+    })
 });
