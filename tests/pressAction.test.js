@@ -108,7 +108,7 @@ describe('press action / errors + 1 skill gem without support', () => {
 });
 
 describe('1 skill gem with one support gem', () => {
-    test('1 skill gem with lv 20 and quality 20 with spellEchoSupport default lv & quality (two support tag)', () => {
+    test('1 skill gem frostbolt with lv 20 and quality 20 with spellEchoSupport default lv & quality (two support tag) | tabula_rasa', () => {
 
         //given
         const character = new Character();
@@ -144,7 +144,7 @@ describe('1 skill gem with one support gem', () => {
         );
 
     });
-    test('1 skill gem with lv 20 and quality 20 with spellEchoSupport 10 lv & 10 quality ', () => {
+    test('1 skill gem with lv 20 and quality 20 with spellEchoSupport 10 lv & 10 quality | tabula_rasa ', () => {
 
         //given
         const character = new Character();

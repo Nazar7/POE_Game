@@ -63,9 +63,42 @@ describe('setgem actions: success cases', () => {
         character.equip('body', 'tabula_rasa');
         const result = action.parseCommand(input);
         //then
-        const resultMessage = '';
-
-        expect(result).toBe(resultMessage);
+        const resultMessage = [
+            {
+                "_color": "white",
+                "_gem": {
+                    "_name": "frostbolt",
+                    "_type": "skill"
+                },
+                "_id": 1
+            },
+            {
+                "_color": "white",
+                "_gem": {},
+                "_id": 2
+            },
+            {
+                "_color": "white",
+                "_gem": {},
+                "_id": 3
+            },
+            {
+                "_color": "white",
+                "_gem": {},
+                "_id": 4
+            },
+            {
+                "_color": "white",
+                "_gem": {},
+                "_id": 5
+            },
+            {
+                "_color": "white",
+                "_gem": {},
+                "_id": 6
+            }
+        ];
+        expect(result).toEqual(resultMessage);
     });
     //need fix!
     test('add gem on empty equipment with color slot (corruption_sanctuary)', () => {
@@ -75,8 +108,26 @@ describe('setgem actions: success cases', () => {
         character.equip('body', 'corruption_sanctuary');
         const result = action.parseCommand(input);
         //then
-        const resultMessage = '';
-
-        expect(result).toBe(resultMessage);
+        const resultMessage = [
+            {
+                "_color": "blue",
+                "_gem": {
+                    "_name": "frostbolt",
+                    "_type": "skill"
+                },
+                "_id": 1
+            },
+            {
+                "_color": "red",
+                "_gem": {},
+                "_id": 2
+            },
+            {
+                "_color": "blue",
+                "_gem": {},
+                "_id": 3
+            }
+        ];
+        expect(result).toEqual(resultMessage);
     });
 });

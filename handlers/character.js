@@ -36,7 +36,11 @@ class Character {
             this.unEquip(equipmentType);
         }
         this.equipment.push(equipment);
-        return `Equipment Added: ${JSON.stringify(equipment)}`; //треба щось норм поверати ==> need to add slots of equip
+        const equipmentBaseParams = {
+            name: equipment._name,
+            sockets: equipment._sockets
+        }
+        return equipmentBaseParams;
     }
 
     unEquip(equipmentType) {
@@ -71,21 +75,28 @@ class Character {
         if (socket.checkGemColor(gem.color)) {
             socket.gem = gem;
             gem.socketId = socket.id;
-            return equipmentItem.sockets; //успішно засечено треба щось повернути толкове, по-хоуд всі сокети)
+            const sockedParams = equipmentItem.sockets.map(el => {
+                if (Object.keys(el._gem).length !== 0) {
+                    return {...el, _gem: { _name: el._gem._name, _type: el._gem._type }}
+                }
+                return el;
+            });
+            return sockedParams; //успішно засечено треба щось повернути толкове, по-хоуд всі сокети)
         } else
             // по-кольору не пышло
             return `Unable to comply, color ${gem.color} is not appropriate`
     }
 
-
     setButton(device, key, gemName, equipmentType, socketId) {
         const equipmentItem = this.getEquipmentByType(equipmentType);
         if (!equipmentItem) {
             //  немає до якого предмету прив'язати
+            return 'Unable to comply, add equipment first';
         }
         const gem = equipmentItem.getGemByNameSocketId(gemName, socketId);
         if (!gem) {
             //немає заданого джему
+            return `Unable to comply, add gem first`;
         }
 
         this.binds[device].push(
@@ -98,6 +109,7 @@ class Character {
                 quality: gem.quality,
             }
         );
+        return this._binds;
     }
 
     getBind(device, key) {
@@ -112,6 +124,7 @@ class Character {
     press(device, key) {
         const bind = this.getBind(device, key);
         if (!bind) {
+            return 'set button first';
             // немаэ бында, спробуйте ще
         }
         return this.cast(bind);
