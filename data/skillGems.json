@@ -1,0 +1,139 @@
+{
+  "frostbolt": {
+    "tags": ["Spell", "Projectile", "Cold"],
+    "slot color": "blue",
+    "damage": {
+      "cold": {
+        "formula": "200 + 5*pow(lv, 2)" 
+      }
+    },
+    "quality": {
+      "damage": {
+        "cold": {
+          "increase": {
+            "formula": "value + (quality/100)"
+          }
+        }
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "value + 5 + lv"
+      },
+      "castSpeed": {
+        "formula": "value + 0.75"
+      },
+      "projectiles": {
+        "formula": "value + 1"
+      },
+      "piercing": {
+        "formula": "value + 1"
+      }
+    }
+  },
+  "iceNova": {
+    "tags": ["Spell", "AoE", "Cold", "Nova"],
+    "slot color": "blue",
+    "damage": {
+      "cold": {
+        "formula": "50 + 4 * pow(lv, 2)"
+      }
+    },
+    "quality": {
+      "damage": {
+        "cold": {
+          "increase": {
+            "formula": "value + (quality/100)"
+          }
+        }
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "value + 8 + lv/2"
+      },
+      "castSpeed": {
+        "formula": "value + 0.7"
+      }
+    }
+  },
+  "tornado": {
+    "tags": ["Spell", "Duration", "Physical", "AoE", "Orb"],
+    "slot color": "green",
+    "damage": {
+      "physical": {
+        "formula": "value + 30 + lv * 5"
+      }
+    },
+    "quality": {
+      "nonDamage": {
+        "moveSpeed": {
+          "increase": {
+            "formula": "value + (quality/100)"
+          }
+        }
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "value + 14 + lv/2"
+      },
+      "castSpeed": {
+        "formula": "value + 0.75"
+      },
+      "moveSpeed": {
+        "formula": "value + (lv – 1) * 1.03"
+      }
+    }
+  },
+  "poisonousConcoction": {
+    "tags": ["Attack", "AoE", "Chaos", "Projectile"],
+    "slot color": "green",
+    "useFlask": true,
+    "damage": {
+      "chaos": {
+        "formula": "45 +pow(lv, 5/2) * 0.5 + flask power * (2 + lv /3) / 20"
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "value + 6 + lv/7"
+      },
+      "projectiles": {
+        "formula": "value + 1"
+      },
+      "attackSpeed": {
+        "formula": "value + 1.5"
+      }
+    }
+  },
+  "seismicTrap": {
+    "tags": ["Trap", "Spell", "Duration", "AoE", "Physical"],
+    "slot color": "green",
+    "damage": {
+      "physical": {
+        "formula": "value + 150 + pow (lv, 5/2)"
+      }
+    },
+    "quality": {
+      "damage": {
+        "physical": {
+          "increase": {
+            "formula": "value + (quality/100)"
+          }
+        }
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "12 + lv/2"
+      },
+      "trap lasts 4 seconds": {
+        "formula": "value + 1"
+      },
+      "releases 5 waves": {
+        "formula": "value + 1"
+      }
+    }
+  }
+}

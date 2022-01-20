@@ -1,0 +1,23 @@
+{
+  "small_life_flask": {
+    "sockets_qty": 0,
+    "linked": 0,
+    "color": {
+    },
+    "flaskDamage": 70
+  },
+  "giant_life_flask": {
+    "sockets_qty": 0,
+    "linked": 0,
+    "color": {
+    },
+    "flaskDamage": 830
+  },
+  "divine_life_flask": {
+    "sockets_qty": 0,
+    "linked": 0,
+    "color": {
+    },
+    "flaskDamage": 2400
+  }
+}

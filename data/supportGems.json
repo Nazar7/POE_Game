@@ -1,0 +1,154 @@
+{
+  "greaterMultipleProjectilesSupport": {
+    "tags": ["Support", "Projectile"],
+    "slot color": "green",
+    "damage": {
+      "all": {
+        "formula": "value - ((value * (35 - lv/10))/100)"
+      }
+    },
+    "quality": {
+      "damage": {
+        "all": {
+          "increase": {
+            "formula": "value + ((0.5 * quality/100))"
+          }
+        }
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "value * 1.5"
+      },
+      "projectiles": {
+        "formula": "value + 4"
+      },
+      "angles": {
+        "formula": "value + [-10, -5, 0, 5, 10]"
+      }
+    }
+  },
+  "spellEchoSupport": {
+    "tags": ["Spell", "Support"],
+    "slot color": "blue",
+    "quality": {
+      "damage": {
+        "all": {
+          "increase": {
+            "formula": "value + ((0.5 * quality/100))"
+          },
+          "decrease": {
+            "formula": "value + 0.9"
+          }
+        }
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "value * 1.5"
+      },
+      "castSpeed": {
+        "formula": "value * ( 0.54 - (0.01 * lv ))"
+      },
+      "projectiles": {
+        "formula": "value * 2"
+      },
+      "angles": {
+        "formula": "value + [-10, -5, 0, 5, 10]"
+      }
+    }
+  },
+  "addedLightningDamageSupport": {
+    "tags": ["Support"],
+    "slot color": "blue",
+    "damage": {
+      "lightning": {
+        "formula": "value + pow(lv, 2)"
+      }
+    },
+    "quality": {
+      "damage": {
+        "lightning": {
+          "increase": {
+            "formula": "value + ((0.5 * quality/100))"
+          }
+        }
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "value * 1.2"
+      }
+    }
+  },
+  "spellCascadeSupport": {
+    "tags": ["AoE", "Spell", "Support"],
+    "slot color": "blue",
+    "damage": {
+      "all": {
+        "formula": "value * (0.6 + 0.01 * lv)"
+      }
+    },
+    "quality": {
+      "damage": {
+        "all": {
+          "increase": {
+            "formula": "value + ((0.5 * quality/100))"
+          }
+        }
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "value * 1.3"
+      },
+      "apply to front and back": {
+        "formula": "value + 1"
+      }
+    }
+  },
+  "empowerSupport": {
+    "tags": ["Support"],
+    "slot color": "red",
+    "non-damage": {
+      "manaCost": {
+        "formula": "value * 1.3"
+      }
+    },
+    "affectLevel": {
+      "skillGem": {
+        "formula": "value + (lv/6)"
+      }
+    }
+  },
+  "chanceToPoisonSupport": {
+    "tags": ["Support", "Chaos"],
+    "slot color": "green",
+    "damage": {
+      "chaos": {
+        "formula": "value + 5 * lv"
+      }
+    },
+    "quality": {
+      "damage": {
+        "chaos": {
+          "increase": {
+            "formula": "value + ((0.5 * quality/100))"
+          }
+        }
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "value * 1.2"
+      },
+      "apply to front and back": {
+        "formula": "value + 1"
+      },
+      "+40% chance to poison on hit": {
+        "formula": "value + 1"
+      }
+    }
+  }
+}
+

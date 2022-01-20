@@ -1,71 +1,43 @@
 const readlineSync = require('readline-sync');
+const Character = require('./handlers/character')
 const Action = require('./action');
 
+class App {
+    start() {
+        const character = new Character();
+        const action = new Action(character);
 
-let playerName = readlineSync.question(`What's your name? `);
-console.log('Game Started');
+        // testint
+        // character.equip('body', 'tabula_rasa');
+        // character.equip( 'body', 'dendrobate_changed');
+        //
+        // seismicTrap
+        // character.setGem(1, {gemName: 'iceNova', gemLevel: 1, gemQuality: 0}, 'body');
+        // character.setGem(3, {gemName: 'spellEchoSupport', gemLevel: 1, gemQuality: 0}, 'body');
+        // character.setGem(3, {gemName: 'empowerSupport', gemLevel: 1, gemQuality: 0}, 'body');
+        // character.setGem(3, { gemName: 'frostbolt', gemLevel: 20, gemQuality: 20}, 'body');
+        // character.setGem(4, { gemName: 'spellEchoSupport', gemLevel: 10, gemQuality: 10}, 'body');
+        //character.setButton('key', 't', 'iceNova', 'body', 3);
 
-while (true){
-    let command = readlineSync.question(`Select a command: 1 - Put on armor, 2 - Set gem in item, 5 - Character Info `);
-    // console.log(command)
-    switch (command){
-        case '1':{
-            command = 'equip'
-            let typeOfEquip = readlineSync.question(`Please set type of equip `);
-            let nameOfEquip = readlineSync.question(`Please set name of equip `);
-            let gameStartData = {
-                playerName,
-                command,
-                typeOfEquip,
-                nameOfEquip
-            }
+        // character.setGem(2, { gemName: 'poisonousConcoction', gemLevel: 1, gemQuality: 0}, 'body');
+        //
+        // character.equip( 'body', 'corruption_sanctuary');
+        // character.setGem(1, { gemName: 'iceNova', gemLevel: 10, gemQuality: 10}, 'body');
+        // character.setGem(3, { gemName: 'spellEchoSupport', gemLevel: 5, gemQuality: 5}, 'body');
+        //
+        //
+        // character.setButton('key', 't', 'iceNova', 'body', 1);
+        // character.press( 'key', 't');
 
-            let action = new Action(gameStartData)
-            action.actionLoad()
-            break
-        }
-        case '2':{
-            command = 'set gem'
-            let typeOfEquip = readlineSync.question(`Please select type `);
-            let placeInItem = readlineSync.question(`Please select place in item `)
-            let gem = readlineSync.question(`Please select gem `);
-            let gameStartData = {
-                playerName,
-                command,
-                typeOfEquip,
-                placeInItem,
-                gem
-            }
-
-            var action = new Action(gameStartData)
-            action.actionLoad()
-            break
-        }
-        case '5':{
-            command = 'info'
-            let gameStartData = {
-                playerName,
-                command
-            }
-
-            var action = new Action(gameStartData)
-            action.actionLoad()
-            break
+        while (true) {
+            let command = readlineSync.question(`Enter your action `);
+            const result = action.parseCommand(command);
+            console.log(result);
         }
     }
-
 }
 
-// let getItem = readlineSync.question(`Choose clothes for sockets`)
-// command = getItem
-// action = {
-//     command,
-//
-// }
-// action = new Action(getItem)
-// action.actionLoad()
+const app = new App();
+app.start();
 
-process.stdout.write("hello: ");
-
-
-
+module.exports = App;
