@@ -433,6 +433,7 @@ class CastProcessor {
         /*** CALCULATING DAMAGE INCREAE DESCRESE START*/
         //base damage increase
         for (const damageType of conf.damageTypes) {
+            if (!calculationResult.quality) continue;
             if (damageType === 'all') continue;
             if (calculationResult.damage[damageType]
                 && calculationResult.damage[damageType].value
@@ -473,6 +474,7 @@ class CastProcessor {
 
         //base damage decrease
         for (const damageType of conf.damageTypes) {
+            if (!calculationResult.quality) continue;
             if (damageType === 'all') continue;
             if (calculationResult.damage[damageType]
                 && calculationResult.damage[damageType].value
@@ -507,6 +509,7 @@ class CastProcessor {
         /*** CALCULATING NON DAMAGE INCREAE DESCRESE START*/
         //non damage increase
         for (const nonDamageParam of conf.nonDamageParams) {
+            if (!calculationResult.quality) continue;
             if (nonDamageParam === 'all') continue;
             if (calculationResult.nonDamage[nonDamageParam]
                 && calculationResult.nonDamage[nonDamageParam].value
@@ -536,6 +539,7 @@ class CastProcessor {
         }
         //non damage decrese
         for (const nonDamageParam of conf.nonDamageParams) {
+            if (!calculationResult.quality) continue;
             if (nonDamageParam === 'all') continue;
             if (calculationResult.nonDamage[nonDamageParam]
                 && calculationResult.nonDamage[nonDamageParam].value

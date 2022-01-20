@@ -7,7 +7,7 @@ conf.dataPath = './data/';
 conf.gemTypes = ['skill', 'support'];
 
 //EQUIPMENT CONFIGURATIONS
-conf.equipmentTypes = ['body', 'flask'];
+conf.equipmentTypes = ['body', 'flask', 'weapon'];
 
 //ALLOWED DEVICES
 conf.allowedDevices = ['mouse', 'key'];

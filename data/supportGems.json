@@ -2,16 +2,14 @@
   "greaterMultipleProjectilesSupport": {
     "tags": ["Support", "Projectile"],
     "slot color": "green",
-    "damage": {
-      "all": {
-        "formula": "value - ((value * (35 - lv/10))/100)"
-      }
-    },
     "quality": {
       "damage": {
         "all": {
           "increase": {
             "formula": "value + ((0.5 * quality/100))"
+          },
+          "decrease": {
+            "formula": "value + (35 - (1/10))/100"
           }
         }
       }

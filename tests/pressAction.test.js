@@ -390,7 +390,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
         expect(result).toEqual({
             "damage": {
                 "chaos": {
-                    "value": 25.32
+                    "value": 47.83
                 }
             },
             "nonDamage": {
@@ -398,7 +398,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
                     "value": 1.5
                 },
                 "manaCost": {
-                    "value": 8.17
+                    "value": 8.18
                 },
                 "projectiles": {
                     "value": 1
@@ -425,7 +425,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
         expect(result).toEqual({
             "damage": {
                 "chaos": {
-                    "value": 16.275
+                    "value": 16.69
                 }
             },
             "nonDamage": {
@@ -555,7 +555,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
         expect(result).toEqual({
             "damage": {
                 "cold": {
-                    "value": 133.46
+                    "value": 71.55//133.46
                 }
             },
             "nonDamage": {
@@ -591,7 +591,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
         expect(result).toEqual({
             "damage": {
                 "cold": {
-                    "value": 143.22
+                    "value": 76.78//143.22
                 }
             },
             "nonDamage": {
@@ -622,7 +622,9 @@ describe('flasks', () => {
         //when
         const result = action.parseCommand(input);
         //then
-        expect(result).toEqual();
+        expect(result).toEqual(
+            {"damage": {"chaos": {"value": 45.5}}, "nonDamage": {"attackSpeed": {"value": 1.5}, "manaCost": {"value": 6.14}, "projectiles": {"value": 1}}}
+        );
     });
     test('poisonousConcoction + Small Life Flask | tabula_rasa', () => {
         //given
@@ -636,6 +638,8 @@ describe('flasks', () => {
         //when
         const result = action.parseCommand(input);
         //then
-        expect(result).toEqual();
+        expect(result).toEqual(
+            {"damage": {"chaos": {"value": 53.67}}, "nonDamage": {"attackSpeed": {"value": 1.5}, "manaCost": {"value": 6.14}, "projectiles": {"value": 1}}}
+        );
     });
 });
