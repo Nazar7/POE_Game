@@ -1,0 +1,19 @@
+{
+  "gold_iron_point": {
+    "damage": {
+      "lightning": {
+        "formula": "value + 36",
+        "tags": ["Spell"]
+      }
+    },
+    "dealNo": {
+      "damage": ["lightning", "cold", "fire"]
+    },
+    "affectLevel": {
+      "skillGem": {
+        "formula": "value + 3",
+        "tags": ["Physical", "Spell"]
+      }
+    }
+  }
+}

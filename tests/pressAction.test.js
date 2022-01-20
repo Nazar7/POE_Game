@@ -121,12 +121,9 @@ describe('gems on corruption_sanctuary', () => {
         expect(result).toEqual({
             'damage':
                 {
-                'cold': {
-                    'value': 114
-                },
-                'lightning': {
-                    'value': 7,
-                }
+                    'cold': {
+                        'value': 114
+                    },
                 },
             'nonDamage':
                 {
@@ -156,10 +153,7 @@ describe('gems on corruption_sanctuary', () => {
             'damage': {
                 'cold': {
                     'value': 736.7085
-                },
-                'lightning': {
-                    'value': 6.4575,
-                },
+                }
             },
             'nonDamage': {
                 'manaCost': {

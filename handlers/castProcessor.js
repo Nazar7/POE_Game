@@ -12,6 +12,7 @@ class CastProcessor {
     getSuitableSupportGems(gem, usedEquipment, equipment) {
         const suitableEquipment = [];
         const flasks = [];
+        const dealNo = [];
         const linkedSocketsIds = usedEquipment.getAllLinkedSocketsIds(gem.socketId);
 
         let supportGems = [];
@@ -46,12 +47,49 @@ class CastProcessor {
             }
         }
 
-        return [suitableGems, suitableEquipment, flasks];
+        return [suitableGems, suitableEquipment, flasks, dealNo];
     }
 
     processCalculations(gem, suitableGems, suitableEquipment, flasks) {
         const calculationFormulas = this.prepareCalculationFormulas(gem, suitableGems, suitableEquipment, flasks);
-        const result = this.processCalculationsFormulas(calculationFormulas);
+        let result = this.processCalculationsFormulas(calculationFormulas);
+        result = this.checkDealNo(gem, suitableGems, suitableEquipment, result);
+        result = this.clearZeroData(result);
+        return result;
+    }
+
+    clearZeroData(result) {
+        for(const damageType of conf.damageTypes) {
+            if (result.damage[damageType] && result.damage[damageType].value === 0) {
+                delete result.damage[damageType];
+            }
+        }
+        for(const nonDamageParam of conf.nonDamageParams) {
+            if (result.nonDamage[nonDamageParam] && result.nonDamage[nonDamageParam].value === 0) {
+                delete result.nonDamage[nonDamageParam];
+            }
+        }
+        return result;
+    }
+
+    checkDealNo(gem, suitableGems, suitableEquipment, result) {
+        let affectGemsOrEquipment = [];
+        affectGemsOrEquipment.push(gem);
+        affectGemsOrEquipment = affectGemsOrEquipment.concat(suitableGems);
+        affectGemsOrEquipment = affectGemsOrEquipment.concat(suitableEquipment);
+
+        for (const affectGemOrEquipment of affectGemsOrEquipment) {
+            if (affectGemOrEquipment.dealNo) {
+                if (affectGemOrEquipment.dealNo.damage) {
+                    for(const damageType of affectGemOrEquipment.dealNo.damage) {
+                        if (result.damage[damageType]) {
+                            delete result.damage[damageType];
+                        }
+                    }
+                }
+            }
+
+        }
         return result;
     }
 
@@ -61,11 +99,22 @@ class CastProcessor {
             if (affectGemOrEquipment.affectLevel) {
                 //check if affect for skillGem level exist? calculate
                 if (affectGemOrEquipment.affectLevel.skillGem) {
-                    gem.level = Math.ceil(this.calculateFormula(
-                        gem.level,
-                        affectGemOrEquipment.getFormula('affectLevel','skillGem'),
-                        { value: gem.level }
-                    ));
+
+                    let checkAvail = true;
+                    if (affectGemOrEquipment.affectLevel.skillGem.tags) {
+                        for (const tag of affectGemOrEquipment.affectLevel.skillGem.tags) {
+                            if (!gem.tags.includes(tag)) {
+                                checkAvail = false;
+                            }
+                        }
+                    }
+                    if (checkAvail) {
+                        gem.level = Math.ceil(this.calculateFormula(
+                            gem.level,
+                            affectGemOrEquipment.getFormula('affectLevel','skillGem'),
+                            { value: gem.level }
+                        ));
+                    }
                 }
                 //check if affect for suitableGems(support) level exist? calculate
                 if (affectGemOrEquipment.affectLevel.supportGem) {
@@ -120,7 +169,16 @@ class CastProcessor {
                     if (affectGemOrEquipment.useFlask) {
                         formula = formula.replace('flask power', flaskDamage);
                     }
-                    calculationFormulas.damage[damageType].formulas.push(formula);
+
+                    let checkAvail = true;
+                    if (affectGemOrEquipment.damage[damageType].tags) {
+                        for(const tag of affectGemOrEquipment.damage[damageType].tags) {
+                            if (!gem.tags.includes(tag)) {
+                                checkAvail = false;
+                            }
+                        }
+                    }
+                    if (checkAvail) calculationFormulas.damage[damageType].formulas.push(formula);
                 }
 
                 // quality damage ****
@@ -453,6 +511,7 @@ class CastProcessor {
         if (calculationResult.quality) {
             delete calculationResult.quality;
         }
+
         return calculationResult;
     }
 
