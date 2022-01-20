@@ -251,7 +251,7 @@ describe('1 skill gem with one support gem', () => {
             {
                 'damage': {
                     'cold': {
-                        'value': 2475
+                        'value': 2494.8
                     }
                 },
                 'nonDamage': {
