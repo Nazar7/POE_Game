@@ -152,7 +152,7 @@ describe('gems on corruption_sanctuary', () => {
         expect(result).toEqual({
             'damage': {
                 'cold': {
-                    'value': 736.7085
+                    'value': 736.7
                 }
             },
             'nonDamage': {
@@ -160,7 +160,7 @@ describe('gems on corruption_sanctuary', () => {
                     'value': 21.75
                 },
                 'castSpeed': {
-                    'value': 0.343
+                    'value': 0.34
                 },
             }
         });
@@ -220,7 +220,7 @@ describe('1 skill gem with one support gem', () => {
                         'value': 37.5
                     },
                     'castSpeed': {
-                        'value': 0.3975
+                        'value': 0.4
                     },
                     'projectiles': {
                         'value': 2
@@ -322,13 +322,10 @@ describe('1 skill gem with one support gem', () => {
             },
             "nonDamage": {
                 "castSpeed": {
-                    "value": 0.308
+                    "value": 0.31
                 },
                 "manaCost": {
                     "value": 12.75
-                },
-                "projectiles": {
-                    "value": 2
                 }
             }
         });
@@ -365,7 +362,7 @@ describe('1 skill gem with two support gem', () => {
                         'value': 10.8
                     },
                     'castSpeed': {
-                        'value': 0.3975
+                        'value': 0.4
                     },
                     'projectiles': {
                         'value': 2
@@ -397,7 +394,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
         expect(result).toEqual({
             "damage": {
                 "chaos": {
-                    "value": 30.644
+                    "value": 31.14
                 }
             },
             "nonDamage": {
@@ -405,7 +402,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
                     "value": 1.5
                 },
                 "manaCost": {
-                    "value": 12.25714
+                    "value": 12.27
                 },
                 "projectiles": {
                     "value": 5
@@ -457,7 +454,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
         character.setGem(3, { gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
-        character.setGem(4, { gemName: 'greaterMultipleProjectilesSupport', gemLevel: 0, gemQuality: 0}, 'body');
+        character.setGem(4, { gemName: 'greaterMultipleProjectilesSupport', gemLevel: 1, gemQuality: 0}, 'body');
         character.setButton('key', 't', 'frostbolt', 'body', 3);
         //when
         const result = action.parseCommand(input);
@@ -465,7 +462,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
         expect(result).toEqual({
             "damage": {
                 "cold": {
-                    "value": 133.455
+                    "value": 133.46
                 }
             },
             "nonDamage": {

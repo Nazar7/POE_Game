@@ -29,23 +29,41 @@ class CastProcessor {
 
         const suitableGems = [];
 
-        for (const gemTag of gem.tags.concat('Support')) {
-            for (const supportGem of supportGems) {
-                if (gemTag === 'Support' && supportGem.tags.length === 1 && supportGem.tags[0] === 'Support') {
-                    if (!linkedSocketsIds.includes(supportGem.socketId)) continue;
-                    suitableGems.push(supportGem);
-                    continue;
-                } else if (gemTag === 'Support') {
-                    continue;
-                }
-                for(const supportGemTag of supportGem.tags) {
-                    if (gemTag === supportGemTag) {
-                        if (!linkedSocketsIds.includes(supportGem.socketId)) continue;
-                        suitableGems.push(supportGem);
-                    }
+        gem.tags = gem.tags.concat('Support');
+        for (const supportGem of supportGems) {
+            if (supportGem.tags.length === 1 && supportGem.tags[0] === 'Support') {
+                suitableGems.push(supportGem);
+                continue;
+            }
+            let suitable = true;
+            for(const tag of supportGem.tags) {
+                if(!gem.tags.includes(tag)) {
+                    suitable = false;
                 }
             }
+            if (suitable) {
+                suitableGems.push(supportGem);
+            }
         }
+
+        //OLD ONE LOGIC
+        // for (const gemTag of gem.tags.concat('Support')) {
+        //     for (const supportGem of supportGems) {
+        //         if (gemTag === 'Support' && supportGem.tags.length === 1 && supportGem.tags[0] === 'Support') {
+        //             if (!linkedSocketsIds.includes(supportGem.socketId)) continue;
+        //             suitableGems.push(supportGem);
+        //             continue;
+        //         } else if (gemTag === 'Support') {
+        //             continue;
+        //         }
+        //         const suitable = true;
+        //         for(const supportGemTag of supportGem.tags) {
+        //             if (gemTag !== supportGemTag && linkedSocketsIds.includes(supportGem.socketId)) {
+        //
+        //             }
+        //         }
+        //     }
+        // }
 
         return [suitableGems, suitableEquipment, flasks, dealNo];
     }
@@ -282,6 +300,9 @@ class CastProcessor {
                             formula,
                             { value: calculationResult.damage[damageType].value }
                         );
+                        calculationResult.damage[damageType].value = parseFloat(
+                            calculationResult.damage[damageType].value.toFixed(2)
+                        );
                     }
                 }
             }
@@ -294,6 +315,9 @@ class CastProcessor {
                                 calculationResult.damage[damageType].value,
                                 formula,
                                 { value: calculationResult.damage[damageType].value }
+                            );
+                            calculationResult.damage[damageType].value = parseFloat(
+                                calculationResult.damage[damageType].value.toFixed(2)
                             );
                         }
                     }
@@ -319,6 +343,9 @@ class CastProcessor {
                             calculationResult.nonDamage[nonDamageParam].value,
                             formula,
                             { value: calculationResult.nonDamage[nonDamageParam].value }
+                        );
+                        calculationResult.nonDamage[nonDamageParam].value = parseFloat(
+                            calculationResult.nonDamage[nonDamageParam].value.toFixed(2)
                         );
                     }
                     if (calculationResult.nonDamage[nonDamageParam].value === 0) {
@@ -419,6 +446,9 @@ class CastProcessor {
                 calculationResult.damage[damageType].value =
                     calculationResult.damage[damageType].value
                     * calculationResult.quality.damage[damageType].increase_value;
+                calculationResult.damage[damageType].value = parseFloat(
+                    calculationResult.damage[damageType].value.toFixed(2)
+                );
             }
 
             if (calculationResult.damage[damageType]
@@ -433,6 +463,10 @@ class CastProcessor {
                 calculationResult.damage[damageType].value =
                     calculationResult.damage[damageType].value
                     * calculationResult.quality.damage.all.increase_value;
+
+                calculationResult.damage[damageType].value = parseFloat(
+                    calculationResult.damage[damageType].value.toFixed(2)
+                );
             }
 
         }
@@ -448,6 +482,10 @@ class CastProcessor {
                 calculationResult.damage[damageType].value =
                     calculationResult.damage[damageType].value
                     * calculationResult.quality.damage[damageType].decrease_value;
+
+                calculationResult.damage[damageType].value = parseFloat(
+                    calculationResult.damage[damageType].value.toFixed(2)
+                );
             }
 
             if (calculationResult.damage[damageType]
@@ -457,6 +495,10 @@ class CastProcessor {
                 calculationResult.damage[damageType].value =
                     calculationResult.damage[damageType].value
                     * calculationResult.quality.damage.all.decrease_value;
+
+                calculationResult.damage[damageType].value = parseFloat(
+                    calculationResult.damage[damageType].value.toFixed(2)
+                );
             }
 
         }
@@ -474,6 +516,9 @@ class CastProcessor {
                 calculationResult.nonDamage[nonDamageParam].value =
                     calculationResult.nonDamage[nonDamageParam].value
                     * calculationResult.quality.nonDamage[nonDamageParam].increase_value;
+                calculationResult.nonDamage[nonDamageParam].value = parseFloat(
+                    calculationResult.nonDamage[nonDamageParam].value.toFixed(2)
+                );
             }
 
             if (calculationResult.quality.nonDamage
@@ -482,6 +527,10 @@ class CastProcessor {
                 calculationResult.nonDamage[nonDamageParam].value =
                     calculationResult.nonDamage[nonDamageParam].value
                     * calculationResult.quality.nonDamage.all.increase_value;
+
+                calculationResult.nonDamage[nonDamageParam].value = parseFloat(
+                    calculationResult.nonDamage[nonDamageParam].value.toFixed(2)
+                );
             }
 
         }
@@ -496,6 +545,9 @@ class CastProcessor {
                 calculationResult.nonDamage[nonDamageParam].value =
                     calculationResult.nonDamage[nonDamageParam].value
                     * calculationResult.quality.nonDamage[nonDamageParam].decrease_value;
+                calculationResult.nonDamage[nonDamageParam].value = parseFloat(
+                    calculationResult.nonDamage[nonDamageParam].value.toFixed(2)
+                );
             }
 
             if (calculationResult.quality.nonDamage
@@ -504,6 +556,9 @@ class CastProcessor {
                 calculationResult.nonDamage[nonDamageParam].value =
                     calculationResult.nonDamage[nonDamageParam].value
                     * calculationResult.quality.nonDamage.all.decrease_value;
+                calculationResult.nonDamage[nonDamageParam].value = parseFloat(
+                    calculationResult.nonDamage[nonDamageParam].value.toFixed(2)
+                );
             }
         }
         /*** CALCULATING NON DAMAGE INCREAE DESCRESE END*/
@@ -520,7 +575,7 @@ class CastProcessor {
         let expr = parser.parse(formula);
         value = expr.evaluate(params);
         const m = Math.pow(10,5);
-        return Math.round(value*m)/m;
+        return Math.round(value*m)/m.toFixed(2);
     }
 }
 
