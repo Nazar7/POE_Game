@@ -377,6 +377,38 @@ describe('1 skill gem with two support gem', () => {
 });
 
 describe('from examples: full complicated equipment on tabula_rasa: Poisonous Concoction – Ice Nova – Frostbolt – Empower – Spell Cascade – Greater Multiple Projectiles', () => {
+    test('Poisonous Concoction – Empower 6 0 | tabula_rasa', () => {
+        //given
+        const character = new Character();
+        const action = new Action(character);
+        const input = 'press key t';
+        character.equip( 'body', 'tabula_rasa');
+        character.setGem(1, { gemName: 'poisonousConcoction', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(4, { gemName: 'empowerSupport', gemLevel: 6, gemQuality: 0}, 'body');
+
+        character.setButton('key', 't', 'poisonousConcoction', 'body', 1);
+        //when
+        const result = action.parseCommand(input);
+        //then
+        expect(result).toEqual({
+            "damage": {
+                "chaos": {
+                    "value": 25.32
+                }
+            },
+            "nonDamage": {
+                "attackSpeed": {
+                    "value": 1.5
+                },
+                "manaCost": {
+                    "value": 8.17
+                },
+                "projectiles": {
+                    "value": 1
+                }
+            }
+        });
+    });
     test('Poisonous Concoction – Empower 6 0 – GMP | tabula_rasa', () => {
         //given
         const character = new Character();
@@ -387,17 +419,16 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
         character.setGem(2, { gemName: 'iceNova', gemLevel: 1, gemQuality: 0}, 'body');
         character.setGem(3, { gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
         character.setGem(4, { gemName: 'empowerSupport', gemLevel: 6, gemQuality: 0}, 'body');
-        character.setGem(5, { gemName: 'spellCascadeSupport', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(5, { gemName: 'spellCascadeSupport ', gemLevel: 1, gemQuality: 0}, 'body');
         character.setGem(6, { gemName: 'greaterMultipleProjectilesSupport', gemLevel: 1, gemQuality: 0}, 'body');
         character.setButton('key', 't', 'poisonousConcoction', 'body', 1);
         //when
         const result = action.parseCommand(input);
-
         //then
         expect(result).toEqual({
             "damage": {
                 "chaos": {
-                    "value": 30.644
+                    "value": 16.275
                 }
             },
             "nonDamage": {
@@ -413,42 +444,104 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
             }
         });
     });
-    // test('Ice Nova – Empower 6 0 – Spell Cascade | tabula_rasa', () => {
-    //     //given
-    //     const character = new Character();
-    //     const action = new Action(character);
-    //     const input = 'press key t';
-    //     character.equip( 'body', 'tabula_rasa');
-    //     character.setGem(1, { gemName: 'poisonousConcoction', gemLevel: 1, gemQuality: 0}, 'body');
-    //     character.setGem(2, { gemName: 'iceNova', gemLevel: 1, gemQuality: 0}, 'body');
-    //     character.setGem(3, { gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
-    //     character.setGem(4, { gemName: 'empowerSupport', gemLevel: 6, gemQuality: 0}, 'body');
-    //     character.setGem(5, { gemName: 'spellCascadeSupport', gemLevel: 1, gemQuality: 0}, 'body');
-    //     character.setGem(6, { gemName: 'greaterMultipleProjectilesSupport', gemLevel: 1, gemQuality: 0}, 'body');
-    //     character.setButton('key', 't', 'iceNova', 'body', 2);
-    //     //when
-    //     const result = action.parseCommand(input);
-    //     //then
-    //     expect(result).toEqual();
-    // });
-    // test('Frostbolt – Empower 6 0 - GMP | tabula_rasa', () => {
-    //     //given
-    //     const character = new Character();
-    //     const action = new Action(character);
-    //     const input = 'press key t';
-    //     character.equip( 'body', 'tabula_rasa');
-    //     character.setGem(1, { gemName: 'poisonousConcoction', gemLevel: 1, gemQuality: 0}, 'body');
-    //     character.setGem(2, { gemName: 'iceNova', gemLevel: 1, gemQuality: 0}, 'body');
-    //     character.setGem(3, { gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
-    //     character.setGem(4, { gemName: 'empowerSupport', gemLevel: 6, gemQuality: 0}, 'body');
-    //     character.setGem(5, { gemName: 'spellCascadeSupport', gemLevel: 1, gemQuality: 0}, 'body');
-    //     character.setGem(6, { gemName: 'greaterMultipleProjectilesSupport', gemLevel: 1, gemQuality: 0}, 'body');
-    //     character.setButton('key', 't', 'frostbolt', 'body', 3);
-    //     //when
-    //     const result = action.parseCommand(input);
-    //     //then
-    //     expect(result).toEqual();
-    // });
+
+    test('Ice Nova – Empower 6 0 | tabula_rasa', () => {
+        //given
+        const character = new Character();
+        const action = new Action(character);
+        const input = 'press key t';
+        character.equip( 'body', 'tabula_rasa');
+        character.setGem(1, { gemName: 'poisonousConcoction', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(2, { gemName: 'iceNova', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(3, { gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(4, { gemName: 'empowerSupport', gemLevel: 6, gemQuality: 0}, 'body');
+        character.setButton('key', 't', 'iceNova', 'body', 2);
+        //when
+        const result = action.parseCommand(input);
+        //then
+        expect(result).toEqual({
+            "damage": {
+                "cold": {
+                    "value": 66
+                }
+            },
+            "nonDamage": {
+                "castSpeed": {
+                    "value": 0.7
+                },
+                "manaCost": {
+                    "value": 11.7
+                }
+            }
+        });
+
+    });
+
+    test('Ice Nova – Empower 6 0 – Spell Cascade | tabula_rasa', () => {
+        //given
+        const character = new Character();
+        const action = new Action(character);
+        const input = 'press key t';
+        character.equip( 'body', 'tabula_rasa');
+        character.setGem(1, { gemName: 'poisonousConcoction', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(2, { gemName: 'iceNova', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(3, { gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(4, { gemName: 'empowerSupport', gemLevel: 6, gemQuality: 0}, 'body');
+        character.setGem(5, { gemName: 'spellCascadeSupport', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(6, { gemName: 'greaterMultipleProjectilesSupport', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setButton('key', 't', 'iceNova', 'body', 2);
+        //when
+        const result = action.parseCommand(input);
+        //then
+        expect(result).toEqual({
+            "damage": {
+                "cold": {
+                    "value": 40.26
+                }
+            },
+            "nonDamage": {
+                "castSpeed": {
+                    "value": 0.7
+                },
+                "manaCost": {
+                    "value": 15.21
+                }
+            }
+        });
+    });
+
+    test('Frostbolt + Empower 6 0 | tabula_rasa', () => {
+        //given
+        const character = new Character();
+        const action = new Action(character);
+        const input = 'press key t';
+        character.equip( 'body', 'tabula_rasa');
+        character.setGem(3, { gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(4, { gemName: 'empowerSupport', gemLevel: 6, gemQuality: 0}, 'body');
+        character.setButton('key', 't', 'frostbolt', 'body', 3);
+        //when
+        const result = action.parseCommand(input);
+        //then
+        expect(result).toEqual({
+            "damage": {
+                "cold": {
+                    "value": 220
+                }
+            },
+            "nonDamage": {
+                "castSpeed": {
+                    "value": 0.75
+                },
+                "manaCost": {
+                    "value": 9.1
+                },
+                "projectiles": {
+                    "value": 1
+                }
+            }
+        });
+
+    });
 
     test('Frostbolt – greaterMultipleProjectilesSupport 0 0 | tabula_rasa', () => {
         //given
@@ -457,7 +550,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
         character.setGem(3, { gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
-        character.setGem(4, { gemName: 'greaterMultipleProjectilesSupport', gemLevel: 0, gemQuality: 0}, 'body');
+        character.setGem(4, { gemName: 'greaterMultipleProjectilesSupport', gemLevel: 1, gemQuality: 0}, 'body');
         character.setButton('key', 't', 'frostbolt', 'body', 3);
         //when
         const result = action.parseCommand(input);
@@ -481,10 +574,71 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
             }
         });
     });
+
+    test('Frostbolt – Empower 6 0 - GMP | tabula_rasa', () => {
+        //given
+        const character = new Character();
+        const action = new Action(character);
+        const input = 'press key t';
+        character.equip( 'body', 'tabula_rasa');
+        character.setGem(1, { gemName: 'poisonousConcoction', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(2, { gemName: 'iceNova', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(3, { gemName: 'frostbolt', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(4, { gemName: 'empowerSupport', gemLevel: 6, gemQuality: 0}, 'body');
+        character.setGem(5, { gemName: 'spellCascadeSupport ', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setGem(6, { gemName: 'greaterMultipleProjectilesSupport', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setButton('key', 't', 'frostbolt', 'body', 3);
+        //when
+        const result = action.parseCommand(input);
+        //then
+        expect(result).toEqual({
+            "damage": {
+                "cold": {
+                    "value": 143.22
+                }
+            },
+            "nonDamage": {
+                "castSpeed": {
+                    "value": 0.75
+                },
+                "manaCost": {
+                    "value": 13.65
+                },
+                "projectiles": {
+                    "value": 5
+                }
+            }
+        });
+    });
+
 });
 
-// describe('Empower', () => {
-//     test('', () => {
-//
-//     });
-// });
+describe('flasks', () => {
+    test('poisonousConcoction without flask | tabula_rasa', () => {
+        //given
+        const character = new Character();
+        const action = new Action(character);
+        const input = 'press key t';
+        character.equip( 'body', 'tabula_rasa');
+        character.setGem(3, { gemName: 'poisonousConcoction', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setButton('key', 't', 'poisonousConcoction', 'body', 3);
+        //when
+        const result = action.parseCommand(input);
+        //then
+        expect(result).toEqual();
+    });
+    test('poisonousConcoction + Small Life Flask | tabula_rasa', () => {
+        //given
+        const character = new Character();
+        const action = new Action(character);
+        const input = 'press key t';
+        character.equip( 'body', 'tabula_rasa');
+        character.equip( 'flask', 'small_life_flask');
+        character.setGem(3, { gemName: 'poisonousConcoction', gemLevel: 1, gemQuality: 0}, 'body');
+        character.setButton('key', 't', 'poisonousConcoction', 'body', 3);
+        //when
+        const result = action.parseCommand(input);
+        //then
+        expect(result).toEqual();
+    });
+});
