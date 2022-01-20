@@ -126,7 +126,7 @@
     },
     "non-damage": {
       "manaCost": {
-        "formula": "value + 6 + lv/7"
+        "formula": "12 + lv/2"
       },
       "trap lasts 4 seconds": {
         "formula": "value + 1"

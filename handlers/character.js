@@ -98,6 +98,9 @@ class Character {
             //немає заданого джему
             return `Unable to comply, add gem first`;
         }
+        if(gem.type === 'support') {
+            return `Unable to comply, cannot set support gem, select an active one`;
+        }
 
         this.binds[device].push(
             {
