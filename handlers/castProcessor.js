@@ -118,7 +118,7 @@ class CastProcessor {
                     }
                     let formula = affectGemOrEquipment.getFormula('damage', damageType);
                     if (affectGemOrEquipment.useFlask) {
-                        formula = formula.replace('flask damage', flaskDamage);
+                        formula = formula.replace('flask power', flaskDamage);
                     }
                     calculationFormulas.damage[damageType].formulas.push(formula);
                 }
@@ -263,6 +263,9 @@ class CastProcessor {
                             { value: calculationResult.nonDamage[nonDamageParam].value }
                         );
                     }
+                    if (calculationResult.nonDamage[nonDamageParam].value === 0) {
+                        delete calculationResult.nonDamage[nonDamageParam];
+                    }
                 }
             }
         }
@@ -351,6 +354,10 @@ class CastProcessor {
                 && calculationResult.quality.damage
                 && calculationResult.quality.damage[damageType]
                 && calculationResult.quality.damage[damageType].increase_value) {
+
+                if (calculationResult.quality.damage[damageType].increase_value < 1) {
+                    calculationResult.quality.damage[damageType].increase_value += 1;
+                }
                 calculationResult.damage[damageType].value =
                     calculationResult.damage[damageType].value
                     * calculationResult.quality.damage[damageType].increase_value;
@@ -360,6 +367,11 @@ class CastProcessor {
                 && calculationResult.quality.damage
                 && calculationResult.quality.damage.all
                 && calculationResult.quality.damage.all.increase_value) {
+
+                if (calculationResult.quality.damage.all.increase_value < 1) {
+                    calculationResult.quality.damage.all.increase_value += 1;
+                }
+
                 calculationResult.damage[damageType].value =
                     calculationResult.damage[damageType].value
                     * calculationResult.quality.damage.all.increase_value;

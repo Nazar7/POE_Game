@@ -159,7 +159,7 @@ class Equipment {
             const quality = {
                 increase: 'value',
                 decrease: 'value'
-            }
+            };
             if (this.quality[category][subCategory].increase) {
                 quality.increase = this.quality[category][subCategory].increase.formula;
             }

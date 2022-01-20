@@ -11,7 +11,7 @@
       "damage": {
         "cold": {
           "increase": {
-            "formula": "value + (1 + quality/100)"
+            "formula": "value + (quality/100)"
           }
         }
       }
@@ -43,7 +43,7 @@
       "damage": {
         "cold": {
           "increase": {
-            "formula": "value + (1 + quality/100)"
+            "formula": "value + (quality/100)"
           }
         }
       }
@@ -69,7 +69,7 @@
       "nonDamage": {
         "moveSpeed": {
           "increase": {
-            "formula": "value + (1 + quality/100)"
+            "formula": "value + (quality/100)"
           }
         }
       }
@@ -92,7 +92,7 @@
     "useFlask": true,
     "damage": {
       "chaos": {
-        "formula": "45 +pow(lv, 5/2) * 0.5 + flask power * (2 + lv/3) / 20"
+        "formula": "45 +pow(lv, 5/2) * 0.5 + flask power * (2 + lv /3) / 20"
       }
     },
     "non-damage": {
@@ -119,7 +119,7 @@
       "damage": {
         "physical": {
           "increase": {
-            "formula": "value + (1 + quality/100)"
+            "formula": "value + (quality/100)"
           }
         }
       }
