@@ -28,6 +28,7 @@ describe('setgem actions: errors', () => {
         expect(result).toBe(errorMessage);
 
     });
+
     test('try to set gem on socketId which is not exist => receive error message', () => {
         //given
         const input = 'setgem 7 frostbolt_2_2 body';
@@ -100,7 +101,7 @@ describe('setgem actions: success cases', () => {
         ];
         expect(result).toEqual(resultMessage);
     });
-    //need fix!
+
     test('add gem on empty equipment with color slot (corruption_sanctuary)', () => {
         //given
         const input = 'setgem 1 frostbolt body';
