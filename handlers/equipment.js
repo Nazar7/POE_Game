@@ -1,5 +1,6 @@
 const bodyEquipment = require('../data/bodyEquipment.json');
 const flaskEquipment = require('../data/flaskEquipment.json');
+const weaponEquipment = require('../data/weaponEquipment.json');
 const conf = require('../conf');
 const Socket = require('../handlers/socket');
 
