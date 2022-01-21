@@ -15,5 +15,28 @@
         "tags": ["Physical", "Spell"]
       }
     }
+  },
+  "dread_bane": {
+    "affectLevel": {
+      "skillGem": {
+        "formula": "value + 2",
+        "tags": ["lightning"]
+      }
+    },
+    "damage": {
+      "lightning": {
+        "formula": "value + 56",
+        "tags": ["Spell"]
+      }
+    },
+    "quality": {
+      "damage": {
+        "lightning": {
+          "increase": {
+            "formula": "value + 15"
+          }
+        }
+      }
+    }
   }
 }

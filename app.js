@@ -21,13 +21,13 @@ class App {
 
         // character.setGem(2, { gemName: 'poisonousConcoction', gemLevel: 1, gemQuality: 0}, 'body');
         //
-        character.equip( 'body', 'corruption_sanctuary');
-        character.setGem(1, { gemName: 'poisonousConcoction', gemLevel: 10, gemQuality: 10}, 'body');
-        character.setGem(3, { gemName: 'addedLightningDamageSupport', gemLevel: 5, gemQuality: 5}, 'body');
+        // character.equip( 'body', 'corruption_sanctuary');
+        // character.setGem(1, { gemName: 'poisonousConcoction', gemLevel: 10, gemQuality: 10}, 'body');
+        // character.setGem(3, { gemName: 'addedLightningDamageSupport', gemLevel: 5, gemQuality: 5}, 'body');
         //
         //
-        character.setButton('key', 't', 'poisonousConcoction', 'body', 1);
-        character.press( 'key', 't');
+        // character.setButton('key', 't', 'poisonousConcoction', 'body', 1);
+        // character.press( 'key', 't');
 
         while (true) {
             let command = readlineSync.question(`Enter your action `);
