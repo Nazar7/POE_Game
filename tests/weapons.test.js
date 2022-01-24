@@ -50,7 +50,7 @@ describe('pledge_of_hands', () => {
         expect(result).toEqual({
             "damage": {
                 "cold": {
-                    "value": 0
+                    "value": 4102.56
                 }
             },
             "nonDamage": {
@@ -58,7 +58,7 @@ describe('pledge_of_hands', () => {
                     "value": 0.18
                 },
                 "manaCost": {
-                    "value": 0
+                    "value": 56.55
                 },
                 "projectiles": {
                     "value": 2
@@ -84,15 +84,18 @@ describe('pledge_of_hands', () => {
         expect(result).toEqual({
             "damage": {
                 "cold": {
-                    "value": 273.06
-                }
+                    "value": 5121.54
+                },
+                "lightning": {
+                    "value": 799.2,
+                },
             },
             "nonDamage": {
                 "castSpeed": {
                     "value": 0.18
                 },
                 "manaCost": {
-                    "value": 9
+                    "value": 74.88
                 },
                 "projectiles": {
                     "value": 2

@@ -43,9 +43,12 @@ class CastProcessor {
             if (equipmentItem.type === 'flask') {
                 flasks.push(equipmentItem);
             }
-            if (equipmentItem.type === usedEquipment.type || equipmentItem.type === 'weapon') {
+            if (equipmentItem.type === usedEquipment.type) {
                 supportGems = equipmentItem.getAvailableSocketsGemsByType('support');
                 supportGems.concat(supportGems);
+                suitableEquipment.push(equipmentItem);
+            }
+            if (equipmentItem.type === 'weapon') {
                 suitableEquipment.push(equipmentItem);
             }
         }
