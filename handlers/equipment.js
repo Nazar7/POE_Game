@@ -124,6 +124,7 @@ class Equipment {
         this.nonDamage = equipment['non-damage'] ?? false;
         this.quality = equipment.quality ?? false;
         this.flaskDamage = equipment.flaskDamage ?? false;
+        this.additionalGems = equipment.additionalGems ?? false;
         return this;
     }
 
