@@ -1,7 +1,7 @@
 const Character = require('../handlers/character');
 const Action = require('../action');
 
-describe('pledge_of_hands', () => {
+describe('Pledge of Hands', () => {
     test('frostbolt 20 0 | tabula_rasa + pledge_of_hands', () => {
         //given
         const character = new Character();
@@ -99,6 +99,99 @@ describe('pledge_of_hands', () => {
                 },
                 "projectiles": {
                     "value": 2
+                }
+            }
+        });
+    });
+});
+
+describe('Cold Iron Point', () => {
+    test('frostbolt | tabula_rasa | cold_iron_point', () => {
+        //given
+        const character = new Character();
+        const action = new Action(character);
+        const input = 'press key t';
+        character.equip('body', 'tabula_rasa');
+        character.equip('weapon', 'gold_iron_point');
+        character.setGem(1, { gemName: 'frostbolt', gemLevel: 20, gemQuality: 0}, 'body');
+        character.setButton('key', 't', 'frostbolt', 'body', 1);
+        //when
+        const result = action.parseCommand(input);
+        //then
+        expect(result).toEqual({
+            "damage": {
+                "cold": {
+                    "value": 2227
+                }
+            },
+            "nonDamage": {
+                "castSpeed": {
+                    "value": 0.75
+                },
+                "manaCost": {
+                    "value": 25
+                },
+                "projectiles": {
+                    "value": 1
+                }
+            }
+        });
+    });
+    test('seismicTrap | tabula_rasa | cold_iron_point', () => {
+        //given
+        const character = new Character();
+        const action = new Action(character);
+        const input = 'press key t';
+        character.equip('body', 'tabula_rasa');
+        character.equip('weapon', 'cold_iron_point');
+        character.setGem(1, { gemName: 'seismicTrap', gemLevel: 20, gemQuality: 0}, 'body');
+        character.setButton('key', 't', 'seismicTrap', 'body', 1);
+        //when
+        const result = action.parseCommand(input);
+        //then
+        expect(result).toEqual({
+            "damage": {
+                "physical": {
+                    "value": 2686.99
+                }
+            },
+            "nonDamage": {
+                "manaCost": {
+                    "value": 23.5
+                }
+            }
+        });
+    });
+});
+
+describe('Dread Bane', () => {
+    test('frostbolt | tabula_rasa | dread_bane', () => {
+        //given
+        const character = new Character();
+        const action = new Action(character);
+        const input = 'press key t';
+        character.equip('body', 'tabula_rasa');
+        character.equip('weapon', 'dread_bane');
+        character.setGem(1, { gemName: 'frostbolt', gemLevel: 20, gemQuality: 0}, 'body');
+        character.setButton('key', 't', 'frostbolt', 'body', 1);
+        //when
+        const result = action.parseCommand(input);
+        //then
+        expect(result).toEqual({
+            "damage": {
+                "cold": {
+                    "value": 3422.4
+                }
+            },
+            "nonDamage": {
+                "castSpeed": {
+                    "value": 1.2375
+                },
+                "manaCost": {
+                    "value": 25
+                },
+                "projectiles": {
+                    "value": 1
                 }
             }
         });

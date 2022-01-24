@@ -1,5 +1,5 @@
 {
-  "gold_iron_point": {
+  "cold_iron_point": {
     "damage": {
       "lightning": {
         "formula": "value + 36",
