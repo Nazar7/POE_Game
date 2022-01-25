@@ -5,9 +5,73 @@ const conf = require('../conf');
 class CastProcessor {
 
     calculateCast(gem, usedEquipment, equipment) {
-        const [suitableGems, suitableEquipment, flasks] = this.getSuitableSupportGems(gem, usedEquipment, equipment);
+        // const [suitableGems, suitableEquipment, flasks] = this.getSuitableSupportGems(gem, usedEquipment, equipment);
+
+        let suitableGems = this.getSuitableGems(gem, usedEquipment, equipment);
+        const suitableEquipment = this.getSuitableEquipment(usedEquipment, equipment);
+        const flasks = this.getFlasks(equipment);
+
+        suitableGems = suitableGems.concat(this.getAdditionalGemsFromSuitableGems(suitableGems, suitableEquipment, flasks));
+
         const result = this.processCalculations(gem, suitableGems, suitableEquipment, flasks);
         return result;
+    }
+
+    getSuitableGems(gem, usedEquipment, equipment) {
+        const suitableGems = [];
+        let supportGems = [];
+        const linkedSocketsIds = usedEquipment.getAllLinkedSocketsIds(gem.socketId);
+
+        for(const equipmentItem of equipment) {
+            if (equipmentItem.type === usedEquipment.type) {
+                supportGems = equipmentItem.getAvailableSocketsGemsByType('support');
+                supportGems.concat(supportGems);
+            }
+        }
+
+        const skillGemTags = gem.tags.concat('Support');
+        for (const supportGem of supportGems) {
+            if (supportGem.tags.length === 1 && supportGem.tags[0] === 'Support') {
+                suitableGems.push(supportGem);
+                continue;
+            }
+            let suitable = true;
+            for(const tag of supportGem.tags) {
+                if(!skillGemTags.includes(tag)) { //|| !linkedSocketsIds.includes(supportGem.socketId)
+                    suitable = false;
+                }
+            }
+            if (suitable){
+                suitableGems.push(supportGem);
+            }
+        }
+
+        return suitableGems
+    }
+
+    getSuitableEquipment(usedEquipment, equipment) {
+        const suitableEquipment = [];
+
+        for(const equipmentItem of equipment) {
+            if (equipmentItem.type === usedEquipment.type
+                || equipmentItem.type === 'weapon') {
+                suitableEquipment.push(equipmentItem);
+            }
+        }
+
+        return suitableEquipment;
+    }
+
+    getFlasks(equipment) {
+        const flasks = [];
+
+        for(const equipmentItem of equipment) {
+            if (equipmentItem.type === 'flask') {
+                flasks.push(equipmentItem);
+            }
+        }
+
+        return flasks;
     }
 
     getAdditionalGemsFromSuitableGems(suitableGems, suitableEquipment, flasks) {
@@ -157,7 +221,7 @@ class CastProcessor {
                     if (checkAvail) {
                         gem.level = Math.ceil(this.calculateFormula(
                             gem.level,
-                            affectGemOrEquipment.getFormula('affectLevel','skillGem'),
+                            affectGemOrEquipment.getFormula('affectLevel', 'skillGem'),
                             { value: gem.level }
                         ));
                     }
@@ -169,7 +233,7 @@ class CastProcessor {
                         if (affectGemOrEquipment.skip) continue;
                         suitableGem.level = this.calculateFormula(
                             suitableGem.level,
-                            affectGemOrEquipment.getFormula('affectLevel','supportGem'),
+                            affectGemOrEquipment.getFormula('affectLevel', 'supportGem'),
                             { value: suitableGem.level }
                         );
                     }

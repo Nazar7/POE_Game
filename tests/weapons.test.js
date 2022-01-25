@@ -112,7 +112,7 @@ describe('Cold Iron Point', () => {
         const action = new Action(character);
         const input = 'press key t';
         character.equip('body', 'tabula_rasa');
-        character.equip('weapon', 'gold_iron_point');
+        character.equip('weapon', 'cold_iron_point');
         character.setGem(1, { gemName: 'frostbolt', gemLevel: 20, gemQuality: 0}, 'body');
         character.setButton('key', 't', 'frostbolt', 'body', 1);
         //when
@@ -121,7 +121,7 @@ describe('Cold Iron Point', () => {
         expect(result).toEqual({
             "damage": {
                 "cold": {
-                    "value": 2227
+                    "value": 2236
                 }
             },
             "nonDamage": {
@@ -152,7 +152,7 @@ describe('Cold Iron Point', () => {
         expect(result).toEqual({
             "damage": {
                 "physical": {
-                    "value": 2686.99
+                    "value": 2722.99
                 }
             },
             "nonDamage": {
@@ -180,12 +180,12 @@ describe('Dread Bane', () => {
         expect(result).toEqual({
             "damage": {
                 "cold": {
-                    "value": 3422.4
+                    "value": 2594.4//3422.4
                 }
             },
             "nonDamage": {
                 "castSpeed": {
-                    "value": 1.2375
+                    "value": 0.75//1.2375
                 },
                 "manaCost": {
                     "value": 25

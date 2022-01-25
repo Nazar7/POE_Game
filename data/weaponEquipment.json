@@ -1,7 +1,7 @@
 {
   "cold_iron_point": {
     "damage": {
-      "lightning": {
+      "all": {
         "formula": "value + 36",
         "tags": ["Spell"]
       }
@@ -40,16 +40,17 @@
       }
     },
     "damage": {
-      "lightning": {
+      "cold": {
         "formula": "value + 56",
         "tags": ["Spell"]
       }
     },
     "quality": {
       "damage": {
-        "lightning": {
+        "all": {
           "increase": {
-            "formula": "value + 15"
+            "formula": "value + 0.15",
+            "tags": ["Spell"]
           }
         }
       }
