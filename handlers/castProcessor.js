@@ -251,6 +251,127 @@ class CastProcessor {
         return flaskDamage;
     }
 
+    getDamageFormulas(affectGemOrEquipment, calculationFormulas, flaskDamage, gem) {
+        //get Formulas For damage
+        for (const damageType of conf.damageTypes) {
+            if (affectGemOrEquipment.damage && affectGemOrEquipment.damage[damageType]) {
+                if (!calculationFormulas.damage) {
+                    calculationFormulas.damage = {};
+                }
+                if (!calculationFormulas.damage[damageType]) {
+                    calculationFormulas.damage[damageType] = { formulas: [] };
+                }
+                let formula = affectGemOrEquipment.getFormula('damage', damageType);
+                if (affectGemOrEquipment.useFlask) {
+                    formula = formula.replace('flask power', flaskDamage);
+                }
+
+                let checkAvail = true;
+                if (affectGemOrEquipment.damage[damageType].tags) {
+                    for(const tag of affectGemOrEquipment.damage[damageType].tags) {
+                        if (!gem.tags.includes(tag)) {
+                            checkAvail = false;
+                        }
+                    }
+                }
+                if (checkAvail) calculationFormulas.damage[damageType].formulas.push(formula);
+            }
+
+            // quality damage ****
+            if (affectGemOrEquipment.quality
+                && affectGemOrEquipment.quality.damage
+                && affectGemOrEquipment.quality.damage[damageType]) {
+                if (!calculationFormulas.quality) {
+                    calculationFormulas.quality = {};
+                }
+                if (!calculationFormulas.quality.damage) {
+                    calculationFormulas.quality.damage = {};
+                }
+                if (!calculationFormulas.quality.damage[damageType]) {
+                    calculationFormulas.quality.damage[damageType] =
+                        {
+                            increase: { formulas: [] },
+                            decrease: { formulas: [] }
+                        }
+                }
+                let formula = affectGemOrEquipment.getFormula('damage', damageType, true);
+                if (affectGemOrEquipment.useFlask) {
+                    formula = formula.replace('flask damage', flaskDamage);
+                }
+
+                let checkAvail = true;
+                if (affectGemOrEquipment.quality.damage[damageType].tags) {
+                    for(const tag of affectGemOrEquipment.quality.damage[damageType].tags) {
+                        if (!gem.tags.includes(tag)) {
+                            checkAvail = false;
+                        }
+                    }
+                }
+                if (checkAvail) {
+                    calculationFormulas.quality.damage[damageType].increase.formulas.push(formula.increase);
+                    calculationFormulas.quality.damage[damageType].decrease.formulas.push(formula.decrease);
+                }
+
+            }
+            // quality ****
+        }
+    }
+
+    getNonDamageFormulas(affectGemOrEquipment, calculationFormulas, flaskDamage, gem) {
+        for (const nonDamageParam of conf.nonDamageParams) {
+            if (affectGemOrEquipment.nonDamage && affectGemOrEquipment.nonDamage[nonDamageParam]) {
+                if (!calculationFormulas.nonDamage) {
+                    calculationFormulas.nonDamage = {};
+                }
+                if (!calculationFormulas.nonDamage[nonDamageParam]) {
+                    calculationFormulas.nonDamage[nonDamageParam] = { formulas: [] };
+                }
+                let formula = affectGemOrEquipment.getFormula('nonDamage', nonDamageParam);
+                if (affectGemOrEquipment.useFlask) {
+                    // formula = formula.replace('flask damage', ); add flask logic
+                }
+                calculationFormulas.nonDamage[nonDamageParam].formulas.push(formula);
+            }
+
+            //quality damage ****
+            if (affectGemOrEquipment.quality
+                && affectGemOrEquipment.quality.nonDamage
+                && affectGemOrEquipment.quality.nonDamage[nonDamageParam]) {
+                if (!calculationFormulas.quality) {
+                    calculationFormulas.quality = {};
+                }
+                if (!calculationFormulas.quality.nonDamage) {
+                    calculationFormulas.quality.nonDamage = {};
+                }
+                if (!calculationFormulas.quality.nonDamage[nonDamageParam]) {
+                    calculationFormulas.quality.nonDamage[nonDamageParam] =
+                        {
+                            increase: { formulas: [] },
+                            decrease: { formulas: [] }
+                        };
+                }
+                let formula = affectGemOrEquipment.getFormula('nonDamage', nonDamageParam, true);
+                if (affectGemOrEquipment.useFlask) {
+                    // formula = formula.replace('flask damage', ); add flask logic
+                }
+
+                let checkAvail = true;
+                if (affectGemOrEquipment.quality.nonDamage[nonDamageParam].tags) {
+                    for(const tag of affectGemOrEquipment.quality.nonDamage[nonDamageParam].tags) {
+                        if (!gem.tags.includes(tag)) {
+                            checkAvail = false;
+                        }
+                    }
+                }
+                if (checkAvail) {
+                    calculationFormulas.quality.nonDamage[nonDamageParam].increase.formulas.push(formula.increase);
+                    calculationFormulas.quality.nonDamage[nonDamageParam].decrease.formulas.push(formula.decrease);
+                }
+            }
+            //quality ****
+        }
+    }
+
     prepareCalculationFormulas(gem, suitableGems, suitableEquipment, flasks) {
         this.checkEffectLevel(gem, suitableGems, suitableEquipment);
         const flaskDamage = this.getFlasksDamage(flasks);
@@ -263,140 +384,19 @@ class CastProcessor {
         affectGemsOrEquipment = affectGemsOrEquipment.concat(suitableEquipment);
 
         for (const affectGemOrEquipment of affectGemsOrEquipment) {
-
-
             /*** GET FORMULAS  FOR DAMAGE START*/
-            //get Formulas For damage
-            for (const damageType of conf.damageTypes) {
-                if (affectGemOrEquipment.damage && affectGemOrEquipment.damage[damageType]) {
-                    if (!calculationFormulas.damage) {
-                        calculationFormulas.damage = {};
-                    }
-                    if (!calculationFormulas.damage[damageType]) {
-                        calculationFormulas.damage[damageType] = { formulas: [] };
-                    }
-                    let formula = affectGemOrEquipment.getFormula('damage', damageType);
-                    if (affectGemOrEquipment.useFlask) {
-                        formula = formula.replace('flask power', flaskDamage);
-                    }
-
-                    let checkAvail = true;
-                    if (affectGemOrEquipment.damage[damageType].tags) {
-                        for(const tag of affectGemOrEquipment.damage[damageType].tags) {
-                            if (!gem.tags.includes(tag)) {
-                                checkAvail = false;
-                            }
-                        }
-                    }
-                    if (checkAvail) calculationFormulas.damage[damageType].formulas.push(formula);
-                }
-
-                // quality damage ****
-                if (affectGemOrEquipment.quality
-                    && affectGemOrEquipment.quality.damage
-                    && affectGemOrEquipment.quality.damage[damageType]) {
-                    if (!calculationFormulas.quality) {
-                        calculationFormulas.quality = {};
-                    }
-                    if (!calculationFormulas.quality.damage) {
-                        calculationFormulas.quality.damage = {};
-                    }
-                    if (!calculationFormulas.quality.damage[damageType]) {
-                        calculationFormulas.quality.damage[damageType] =
-                            {
-                                increase: { formulas: [] },
-                                decrease: { formulas: [] }
-                            }
-                    }
-                    let formula = affectGemOrEquipment.getFormula('damage', damageType, true);
-                    if (affectGemOrEquipment.useFlask) {
-                        formula = formula.replace('flask damage', flaskDamage);
-                    }
-
-                    let checkAvail = true;
-                    if (affectGemOrEquipment.quality.damage[damageType].tags) {
-                        for(const tag of affectGemOrEquipment.quality.damage[damageType].tags) {
-                            if (!gem.tags.includes(tag)) {
-                                checkAvail = false;
-                            }
-                        }
-                    }
-                    if (checkAvail) {
-                        calculationFormulas.quality.damage[damageType].increase.formulas.push(formula.increase);
-                        calculationFormulas.quality.damage[damageType].decrease.formulas.push(formula.decrease);
-                    }
-
-                }
-                // quality ****
-            }
+            this.getDamageFormulas(affectGemOrEquipment, calculationFormulas, flaskDamage, gem);
             /*** GET FORMULAS  FOR DAMAGE END*/
 
-
             /*** GET FORMULAS  FOR NON DAMAGE START*/
-            //get formulas for non damage
-            for (const nonDamageParam of conf.nonDamageParams) {
-                if (affectGemOrEquipment.nonDamage && affectGemOrEquipment.nonDamage[nonDamageParam]) {
-                    if (!calculationFormulas.nonDamage) {
-                        calculationFormulas.nonDamage = {};
-                    }
-                    if (!calculationFormulas.nonDamage[nonDamageParam]) {
-                        calculationFormulas.nonDamage[nonDamageParam] = { formulas: [] };
-                    }
-                    let formula = affectGemOrEquipment.getFormula('nonDamage', nonDamageParam);
-                    if (affectGemOrEquipment.useFlask) {
-                        // formula = formula.replace('flask damage', ); add flask logic
-                    }
-                    calculationFormulas.nonDamage[nonDamageParam].formulas.push(formula);
-                }
-
-                //quality damage ****
-                if (affectGemOrEquipment.quality
-                    && affectGemOrEquipment.quality.nonDamage
-                    && affectGemOrEquipment.quality.nonDamage[nonDamageParam]) {
-                    if (!calculationFormulas.quality) {
-                        calculationFormulas.quality = {};
-                    }
-                    if (!calculationFormulas.quality.nonDamage) {
-                        calculationFormulas.quality.nonDamage = {};
-                    }
-                    if (!calculationFormulas.quality.nonDamage[nonDamageParam]) {
-                        calculationFormulas.quality.nonDamage[nonDamageParam] =
-                            {
-                                increase: { formulas: [] },
-                                decrease: { formulas: [] }
-                            };
-                    }
-                    let formula = affectGemOrEquipment.getFormula('nonDamage', nonDamageParam, true);
-                    if (affectGemOrEquipment.useFlask) {
-                        // formula = formula.replace('flask damage', ); add flask logic
-                    }
-
-                    let checkAvail = true;
-                    if (affectGemOrEquipment.quality.nonDamage[nonDamageParam].tags) {
-                        for(const tag of affectGemOrEquipment.quality.nonDamage[nonDamageParam].tags) {
-                            if (!gem.tags.includes(tag)) {
-                                checkAvail = false;
-                            }
-                        }
-                    }
-                    if (checkAvail) {
-                        calculationFormulas.quality.nonDamage[nonDamageParam].increase.formulas.push(formula.increase);
-                        calculationFormulas.quality.nonDamage[nonDamageParam].decrease.formulas.push(formula.decrease);
-                    }
-                }
-                //quality ****
-            }
+            this.getNonDamageFormulas(affectGemOrEquipment, calculationFormulas, flaskDamage, gem);
             /*** GET FORMULAS  FOR NON DAMAGE END*/
-            //get formulas for quality (increase decrease)
         }
 
         return calculationFormulas;
     }
 
-    processCalculationsFormulas(calculationFormulas) {
-        const calculationResult = {};
-
-        /*** CALCULATING DAMAGE START*/
+    calculateDamage(calculationFormulas, calculationResult) {
         if (calculationFormulas.damage) {
             for (const damageType of conf.damageTypes) {
                 if (damageType === 'all') continue;
@@ -439,9 +439,9 @@ class CastProcessor {
                 }
             }
         }
-        /*** CALCULATING DAMAGE END*/
+    }
 
-        /*** CALCULATING NON DAMAGE START*/
+    calculateNonDamage(calculationFormulas, calculationResult) {
         if (calculationFormulas.nonDamage) {
             for (const nonDamageParam of conf.nonDamageParams) {
                 if (!calculationFormulas.nonDamage[nonDamageParam]) continue;
@@ -469,10 +469,9 @@ class CastProcessor {
                 }
             }
         }
-        /*** CALCULATING NON DAMAGE END*/
+    }
 
-
-        /*** CALCULATING QUALITY START*/
+    calculateQuality(calculationFormulas, calculationResult) {
         if (calculationFormulas.quality) {
             //check quality damage ******
             for (const damageType of conf.damageTypes) {
@@ -541,11 +540,9 @@ class CastProcessor {
             }
             //check quality non damage ******
         }
+    }
 
-        /*** CALCULATING QUALITY END*/
-
-
-        /*** CALCULATING DAMAGE INCREAE DESCRESE START*/
+    calculateDamageIncreaseDecrease(calculationFormulas, calculationResult) {
         //base damage increase
         for (const damageType of conf.damageTypes) {
             if (!calculationResult.quality) continue;
@@ -619,9 +616,9 @@ class CastProcessor {
             }
 
         }
-        /*** CALCULATING DAMAGE INCREAE DESCRESE END*/
+    }
 
-        /*** CALCULATING NON DAMAGE INCREAE DESCRESE START*/
+    calculateNonDamageIncreaseDecrease(calculationFormulas, calculationResult) {
         //non damage increase
         for (const nonDamageParam of conf.nonDamageParams) {
             if (!calculationResult.quality) continue;
@@ -680,6 +677,30 @@ class CastProcessor {
                 );
             }
         }
+    }
+
+    processCalculationsFormulas(calculationFormulas) {
+        const calculationResult = {};
+
+        /*** CALCULATING DAMAGE START*/
+        this.calculateDamage(calculationFormulas, calculationResult);
+        /*** CALCULATING DAMAGE END*/
+
+        /*** CALCULATING NON DAMAGE START*/
+       this.calculateNonDamage(calculationFormulas, calculationResult);
+        /*** CALCULATING NON DAMAGE END*/
+
+        /*** CALCULATING QUALITY START*/
+        this.calculateQuality(calculationFormulas, calculationResult);
+        /*** CALCULATING QUALITY END*/
+
+
+        /*** CALCULATING DAMAGE INCREAE DESCRESE START*/
+        this.calculateDamageIncreaseDecrease(calculationFormulas, calculationResult);
+        /*** CALCULATING DAMAGE INCREAE DESCRESE END*/
+
+        /*** CALCULATING NON DAMAGE INCREAE DESCRESE START*/
+        this.calculateNonDamageIncreaseDecrease(calculationFormulas, calculationResult);
         /*** CALCULATING NON DAMAGE INCREAE DESCRESE END*/
 
         if (calculationResult.quality) {
