@@ -205,6 +205,7 @@ class CastProcessor {
 
     checkEffectLevel(gem, suitableGems, suitableEquipment) {
         const affectGemsOrEquipment = suitableGems.concat(suitableEquipment);
+        affectGemsOrEquipment.push(gem);
         for(let affectGemOrEquipment of affectGemsOrEquipment) {
             if (affectGemOrEquipment.affectLevel) {
                 //check if affect for skillGem level exist? calculate
@@ -273,6 +274,11 @@ class CastProcessor {
                             checkAvail = false;
                         }
                     }
+                }
+                if (affectGemOrEquipment.availableDamageTypes
+                    && affectGemOrEquipment.availableDamageTypes.length !== 0
+                    && !affectGemOrEquipment.availableDamageTypes.includes(damageType)) {
+                    checkAvail = false;
                 }
                 if (checkAvail) calculationFormulas.damage[damageType].formulas.push(formula);
             }
@@ -372,8 +378,19 @@ class CastProcessor {
         }
     }
 
+    checkAvailDamageTypes(gem, suitableGems, suitableEquipment) {
+        const affectGemsOrEquipment = [].concat(suitableGems);//suitableGems.concat(suitableEquipment);
+        affectGemsOrEquipment.push(gem);
+        for (const affectGemOrEquipment of affectGemsOrEquipment) {
+            if (affectGemOrEquipment.allDamageTypes.length !== 0) {
+                affectGemOrEquipment.availableDamageTypesIterator();
+            }
+        }
+    }
+
     prepareCalculationFormulas(gem, suitableGems, suitableEquipment, flasks) {
         this.checkEffectLevel(gem, suitableGems, suitableEquipment);
+        this.checkAvailDamageTypes(gem, suitableGems, suitableEquipment);
         const flaskDamage = this.getFlasksDamage(flasks);
 
         const calculationFormulas = {};

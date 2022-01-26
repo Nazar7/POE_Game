@@ -15,6 +15,9 @@ class Gem {
     _level = 1;
     _qualityLevel = 0;
     _socketId = 0;
+    _allDamageTypes = [];
+    _availableDamageTypes = [];
+    _damageTypeIterator = 0;
 
     get name() {
         return this._name;
@@ -112,6 +115,43 @@ class Gem {
         this._socketId = value;
     }
 
+    get allDamageTypes() {
+        return this._allDamageTypes;
+    }
+
+    set allDamageTypes(value) {
+        this._allDamageTypes = value;
+    }
+
+    get availableDamageTypes() {
+        return this._availableDamageTypes;
+    }
+
+    set availableDamageTypes(value) {
+        this._availableDamageTypes = value;
+    }
+
+    get damageTypeIterator() {
+        return this._damageTypeIterator;
+    }
+
+    set damageTypeIterator(value) {
+        this._damageTypeIterator = value;
+    }
+
+    availableDamageTypesIterator() {
+        if (this.allDamageTypes.length !== 0
+            && this.allDamageTypes[this.damageTypeIterator]) {
+            this.availableDamageTypes.push(this.allDamageTypes[this.damageTypeIterator]);
+
+            if (this.damageTypeIterator + 1 === this.allDamageTypes.length) {
+                this.damageTypeIterator = 0;
+            } else {
+                this.damageTypeIterator += 1;
+            }
+        }
+    }
+
     load(gemInfo) {
 
         let gem = false;
@@ -138,6 +178,7 @@ class Gem {
         this.quality = gem.quality ?? false;
         this.level = gemInfo.gemLevel ?? 1;
         this.qualityLevel = gemInfo.gemQuality ?? 0;
+        this.allDamageTypes = gemInfo.allDamageTypes ?? [];
         return this;
     }
 
