@@ -16,7 +16,7 @@ conf.allowedDevices = ['mouse', 'key'];
 conf.damageTypes = ['cold', 'chaos', 'lightning', 'physical', 'all'];
 
 //GEM PARAMS
-conf.nonDamageParams = ['manaCost', 'castSpeed', 'attackSpeed', 'projectiles'];
+conf.nonDamageParams = ['manaCost', 'castSpeed', 'attackSpeed', 'projectiles', 'angles'];
 conf.damageParams = ['damage'];
 
 module.exports = conf;

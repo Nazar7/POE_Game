@@ -454,14 +454,21 @@ class CastProcessor {
                     }
 
                     for(const formula of calculationFormulas.nonDamage[nonDamageParam].formulas) {
+                        let angles = false;
+                        if (nonDamageParam === 'angles') {
+                            angles = true;
+                        }
                         calculationResult.nonDamage[nonDamageParam].value = this.calculateFormula(
                             calculationResult.nonDamage[nonDamageParam].value,
                             formula,
-                            { value: calculationResult.nonDamage[nonDamageParam].value }
+                            { value: calculationResult.nonDamage[nonDamageParam].value },
+                            angles
                         );
-                        calculationResult.nonDamage[nonDamageParam].value = parseFloat(
-                            calculationResult.nonDamage[nonDamageParam].value.toFixed(2)
-                        );
+                        if (nonDamageParam !== 'angles') {
+                            calculationResult.nonDamage[nonDamageParam].value = parseFloat(
+                                calculationResult.nonDamage[nonDamageParam].value.toFixed(2)
+                            );
+                        }
                     }
                     if (calculationResult.nonDamage[nonDamageParam].value === 0) {
                         delete calculationResult.nonDamage[nonDamageParam];
@@ -710,12 +717,36 @@ class CastProcessor {
         return calculationResult;
     }
 
-    calculateFormula(value, formula, params) {
-        const parser = new Parser();
-        let expr = parser.parse(formula);
-        value = expr.evaluate(params);
-        const m = Math.pow(10,5);
-        return Math.round(value*m)/m.toFixed(2);
+    calculateFormula(value, formula, params, angles = false) {
+        if (angles) {
+            let arrayStart = [0, 0, 0, 0, 0];
+            if (value !== 0) {
+                value = value.replace('[', '');
+                value = value.replace(']', '');
+                arrayStart = value.split(', ');
+            }
+            let arrayToAdd = [0, 0, 0, 0, 0];
+            const match = formula.match('\\[(?<arrayToAdd>.*)]');
+            if (match !== null && match.groups.arrayToAdd) {
+                arrayToAdd = match.groups.arrayToAdd.split(', ');
+            }
+            let arrayFinal = [0, 0, 0, 0, 0]
+            if (arrayStart.length === arrayToAdd.length) {
+                arrayFinal = [];
+                for (let i = 0; i < arrayStart.length; i++) {
+                    arrayFinal[i] = parseInt(arrayStart[i]) + parseInt(arrayToAdd[i]);
+                }
+            }
+            arrayFinal = '[' + arrayFinal.join(', ') + ']';
+
+            return arrayFinal;
+        } else {
+            const parser = new Parser();
+            let expr = parser.parse(formula);
+            value = expr.evaluate(params);
+            const m = Math.pow(10,5);
+            return Math.round(value*m)/m.toFixed(2);
+        }
     }
 }
 

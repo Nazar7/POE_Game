@@ -156,6 +156,9 @@ describe('gems on corruption_sanctuary', () => {
                 }
             },
             'nonDamage': {
+                "angles":  {
+                    "value": "[-10, -5, 0, 5, 10]",
+                },
                 'manaCost': {
                     'value': 21.75
                 },
@@ -216,6 +219,9 @@ describe('1 skill gem with one support gem', () => {
                     }
                 },
                 'nonDamage': {
+                    "angles":  {
+                        "value": "[-10, -5, 0, 5, 10]",
+                    },
                     'manaCost': {
                         'value': 37.5
                     },
@@ -252,6 +258,9 @@ describe('1 skill gem with one support gem', () => {
                     }
                 },
                 'nonDamage': {
+                    "angles":  {
+                        "value": "[-10, -5, 0, 5, 10]",
+                    },
                     'manaCost': {
                         'value': 37.5
                     },
@@ -321,6 +330,9 @@ describe('1 skill gem with one support gem', () => {
                 }
             },
             "nonDamage": {
+                "angles":  {
+                    "value": "[-10, -5, 0, 5, 10]",
+                },
                 "castSpeed": {
                     "value": 0.31
                 },
@@ -358,6 +370,9 @@ describe('1 skill gem with two support gem', () => {
                     }
                 },
                 'nonDamage': {
+                    "angles":  {
+                        "value": "[-10, -5, 0, 5, 10]",
+                    },
                     'manaCost': {
                         'value': 10.8
                     },
@@ -429,6 +444,9 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
                 }
             },
             "nonDamage": {
+                "angles":  {
+                    "value": "[-10, -5, 0, 5, 10]",
+                },
                 "attackSpeed": {
                     "value": 1.5
                 },
@@ -559,6 +577,9 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
                 }
             },
             "nonDamage": {
+                "angles":  {
+                    "value": "[-10, -5, 0, 5, 10]",
+                },
                 "castSpeed": {
                     "value": 0.75
                 },
@@ -595,6 +616,9 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
                 }
             },
             "nonDamage": {
+                "angles":  {
+                    "value": "[-10, -5, 0, 5, 10]",
+                },
                 "castSpeed": {
                     "value": 0.75
                 },

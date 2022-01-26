@@ -21,6 +21,9 @@ describe('Pledge of Hands', () => {
                 }
             },
             "nonDamage": {
+                "angles":  {
+                    "value": "[-10, -5, 0, 5, 10]",
+                },
                 "castSpeed": {
                     "value": 0.18
                 },
@@ -54,6 +57,9 @@ describe('Pledge of Hands', () => {
                 }
             },
             "nonDamage": {
+                "angles":  {
+                    "value": "[-10, -5, 0, 5, 10]",
+                },
                 "castSpeed": {
                     "value": 0.18
                 },
@@ -91,6 +97,9 @@ describe('Pledge of Hands', () => {
                 },
             },
             "nonDamage": {
+                "angles":  {
+                    "value": "[-10, -5, 0, 5, 10]",
+                },
                 "castSpeed": {
                     "value": 0.18
                 },
