@@ -135,5 +135,87 @@
         "formula": "value + 1"
       }
     }
+  },
+  "wildStrike": {
+    "tags": ["Attack", "Melee",
+      "Strike", "Lightning", "Cold", "Fire", "Projectile", "AoE", "Chaining", "Prismatic"],
+    "slot color": "green",
+    "allDamageTypes": ["fire", "lightning", "cold"],
+    "needWeapon": true,
+    "damage": {
+      "fire": {
+        "formula": "value + 250 + 8 * pow (lv, 3)"
+      },
+      "lightning": {
+        "formula": "value + 250 + 8 * pow (lv, 3)"
+      },
+      "cold": {
+        "formula": "value + 250 + 8 * pow (lv, 3)"
+      }
+    },
+    "quality": {
+      "damage": {
+        "fire": {
+          "increase": {
+            "formula": "value + (quality/100)"
+          }
+        },
+        "cold": {
+          "increase": {
+            "formula": "value + (quality/100)"
+          }
+        },
+        "lightning": {
+          "increase": {
+            "formula": "value + (quality/100)"
+          }
+        }
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "6"
+      },
+      "castSpeed": {
+        "formula": "1800"
+      },
+      "attackSpeed": {
+        "formula": "1"
+      },
+      "projectiles": {
+        "formula": "value + 2"
+      }
+    }
+  },
+  "frostbite": {
+    "tags": ["Spell", "AoE", "Duration", "Cold", "Curse", "Hex"],
+    "slot color": "blue",
+    "damage": { },
+    "vulnerability": {
+      "cold": {
+        "formula": "0.3 + lv * 0.1"
+      }
+    },
+    "quality": {
+      "damage": {
+        "cold": {
+          "increase": {
+            "formula": "value + (quality/100)"
+          }
+        }
+      },
+      "vulnerability": {
+        "cold": {
+          "increase": {
+            "formula": "value + (quality/100)"
+          }
+        }
+      }
+    },
+    "non-damage": {
+      "manaCost": {
+        "formula": "value + 25 + lv"
+      }
+    }
   }
 }
