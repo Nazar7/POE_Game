@@ -15,6 +15,11 @@ class Gem {
     _level = 1;
     _qualityLevel = 0;
     _socketId = 0;
+    _allDamageTypes = [];
+    _availableDamageType = false;
+    _damageTypeIterator = 0;
+    _needWeapon = false;
+    _vulnerability = {};
 
     get name() {
         return this._name;
@@ -112,6 +117,59 @@ class Gem {
         this._socketId = value;
     }
 
+    get allDamageTypes() {
+        return this._allDamageTypes;
+    }
+
+    set allDamageTypes(value) {
+        this._allDamageTypes = value;
+    }
+
+    get availableDamageType() {
+        return this._availableDamageType;
+    }
+
+    set availableDamageType(value) {
+        this._availableDamageType = value;
+    }
+
+    get damageTypeIterator() {
+        return this._damageTypeIterator;
+    }
+
+    set damageTypeIterator(value) {
+        this._damageTypeIterator = value;
+    }
+
+    get needWeapon() {
+        return this._needWeapon;
+    }
+
+    set needWeapon(value) {
+        this._needWeapon = value;
+    }
+
+    get vulnerability() {
+        return this._vulnerability;
+    }
+
+    set vulnerability(value) {
+        this._vulnerability = value;
+    }
+
+    availableDamageTypesIterator() {
+        if (this.allDamageTypes.length !== 0
+            && this.allDamageTypes[this.damageTypeIterator]) {
+            this.availableDamageType = this.allDamageTypes[this.damageTypeIterator];
+
+            if (this.damageTypeIterator + 1 === this.allDamageTypes.length) {
+                this.damageTypeIterator = 0;
+            } else {
+                this.damageTypeIterator += 1;
+            }
+        }
+    }
+
     load(gemInfo) {
 
         let gem = false;
@@ -138,6 +196,9 @@ class Gem {
         this.quality = gem.quality ?? false;
         this.level = gemInfo.gemLevel ?? 1;
         this.qualityLevel = gemInfo.gemQuality ?? 0;
+        this.allDamageTypes = gem.allDamageTypes ?? [];
+        this.vulnerability = gem.vulnerability ?? false;
+        this.needWeapon = gem.needWeapon ?? false;
         return this;
     }
 

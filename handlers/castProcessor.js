@@ -170,7 +170,7 @@ class CastProcessor {
 
     clearZeroData(result) {
         for(const damageType of conf.damageTypes) {
-            if (result.damage[damageType] && result.damage[damageType].value === 0) {
+            if (result.damage && result.damage[damageType] && result.damage[damageType].value === 0) {
                 delete result.damage[damageType];
             }
         }
@@ -205,6 +205,7 @@ class CastProcessor {
 
     checkEffectLevel(gem, suitableGems, suitableEquipment) {
         const affectGemsOrEquipment = suitableGems.concat(suitableEquipment);
+        affectGemsOrEquipment.push(gem);
         for(let affectGemOrEquipment of affectGemsOrEquipment) {
             if (affectGemOrEquipment.affectLevel) {
                 //check if affect for skillGem level exist? calculate
@@ -274,6 +275,10 @@ class CastProcessor {
                         }
                     }
                 }
+                if (affectGemOrEquipment.availableDamageType
+                    && affectGemOrEquipment.availableDamageType !== damageType) {
+                    checkAvail = false;
+                }
                 if (checkAvail) calculationFormulas.damage[damageType].formulas.push(formula);
             }
 
@@ -312,6 +317,47 @@ class CastProcessor {
                     calculationFormulas.quality.damage[damageType].decrease.formulas.push(formula.decrease);
                 }
 
+            }
+            // quality ****
+        }
+    }
+
+    getVulnerabilityFormulas(affectGemOrEquipment, calculationFormulas, flaskDamage, gem) {
+        //get Formulas For damage
+        for (const damageType of conf.damageTypes) {
+            if (affectGemOrEquipment.vulnerability && affectGemOrEquipment.vulnerability[damageType]) {
+                if (!calculationFormulas.vulnerability) {
+                    calculationFormulas.vulnerability = {};
+                }
+                if (!calculationFormulas.vulnerability[damageType]) {
+                    calculationFormulas.vulnerability[damageType] = { formulas: [] };
+                }
+                let formula = affectGemOrEquipment.getFormula('vulnerability', damageType);
+
+                calculationFormulas.vulnerability[damageType].formulas.push(formula);
+            }
+
+            // quality damage ****
+            if (affectGemOrEquipment.quality
+                && affectGemOrEquipment.quality.vulnerability
+                && affectGemOrEquipment.quality.vulnerability[damageType]) {
+                if (!calculationFormulas.quality) {
+                    calculationFormulas.quality = {};
+                }
+                if (!calculationFormulas.quality.vulnerability) {
+                    calculationFormulas.quality.vulnerability = {};
+                }
+                if (!calculationFormulas.quality.vulnerability[damageType]) {
+                    calculationFormulas.quality.vulnerability[damageType] =
+                        {
+                            increase: { formulas: [] },
+                            decrease: { formulas: [] }
+                        }
+                }
+                let formula = affectGemOrEquipment.getFormula('vulnerability', damageType, true);
+
+                calculationFormulas.quality.damage[damageType].increase.formulas.push(formula.increase);
+                calculationFormulas.quality.damage[damageType].decrease.formulas.push(formula.decrease);
             }
             // quality ****
         }
@@ -372,8 +418,19 @@ class CastProcessor {
         }
     }
 
+    checkAvailDamageTypes(gem, suitableGems, suitableEquipment) {
+        const affectGemsOrEquipment = [].concat(suitableGems);//suitableGems.concat(suitableEquipment);
+        affectGemsOrEquipment.push(gem);
+        for (const affectGemOrEquipment of affectGemsOrEquipment) {
+            if (affectGemOrEquipment.allDamageTypes.length !== 0) {
+                affectGemOrEquipment.availableDamageTypesIterator();
+            }
+        }
+    }
+
     prepareCalculationFormulas(gem, suitableGems, suitableEquipment, flasks) {
         this.checkEffectLevel(gem, suitableGems, suitableEquipment);
+        this.checkAvailDamageTypes(gem, suitableGems, suitableEquipment);
         const flaskDamage = this.getFlasksDamage(flasks);
 
         const calculationFormulas = {};
@@ -387,6 +444,10 @@ class CastProcessor {
             /*** GET FORMULAS  FOR DAMAGE START*/
             this.getDamageFormulas(affectGemOrEquipment, calculationFormulas, flaskDamage, gem);
             /*** GET FORMULAS  FOR DAMAGE END*/
+
+            /*** GET FORMULAS  FOR VULNERABILITY START*/
+            this.getVulnerabilityFormulas(affectGemOrEquipment, calculationFormulas, flaskDamage, gem);
+            /*** GET FORMULAS  FOR VULNERABILITY END*/
 
             /*** GET FORMULAS  FOR NON DAMAGE START*/
             this.getNonDamageFormulas(affectGemOrEquipment, calculationFormulas, flaskDamage, gem);
@@ -433,6 +494,51 @@ class CastProcessor {
                             );
                             calculationResult.damage[damageType].value = parseFloat(
                                 calculationResult.damage[damageType].value.toFixed(2)
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    calculateVulnerability(calculationFormulas, calculationResult) {
+        if (calculationFormulas.vulnerability) {
+            for (const damageType of conf.damageTypes) {
+                if (damageType === 'all') continue;
+                if (!calculationFormulas.vulnerability[damageType]) continue;
+                if (calculationFormulas.vulnerability[damageType].formulas) {
+                    if (!calculationResult.vulnerability) {
+                        calculationResult.vulnerability = {};
+                    }
+                    if (!calculationResult.vulnerability[damageType]) {
+                        calculationResult.vulnerability[damageType] = { value: 0 };
+                    }
+
+                    for(const formula of calculationFormulas.vulnerability[damageType].formulas) {
+                        calculationResult.vulnerability[damageType].value = this.calculateFormula(
+                            calculationResult.vulnerability[damageType].value,
+                            formula,
+                            { value: calculationResult.vulnerability[damageType].value }
+                        );
+                        calculationResult.vulnerability[damageType].value = parseFloat(
+                            calculationResult.vulnerability[damageType].value.toFixed(2)
+                        );
+                    }
+                }
+            }
+
+            if (calculationFormulas.vulnerability.all && calculationFormulas.vulnerability.all.formulas) {
+                for(const formula of calculationFormulas.vulnerability.all.formulas) {
+                    for (const damageType of conf.damageTypes) {
+                        if (calculationResult.vulnerability[damageType]) {
+                            calculationResult.vulnerability[damageType].value = this.calculateFormula(
+                                calculationResult.vulnerability[damageType].value,
+                                formula,
+                                { value: calculationResult.vulnerability[damageType].value }
+                            );
+                            calculationResult.vulnerability[damageType].value = parseFloat(
+                                calculationResult.vulnerability[damageType].value.toFixed(2)
                             );
                         }
                     }
@@ -554,7 +660,8 @@ class CastProcessor {
         for (const damageType of conf.damageTypes) {
             if (!calculationResult.quality) continue;
             if (damageType === 'all') continue;
-            if (calculationResult.damage[damageType]
+            if (calculationResult.damage
+                && calculationResult.damage[damageType]
                 && calculationResult.damage[damageType].value
                 && calculationResult.quality.damage
                 && calculationResult.quality.damage[damageType]
@@ -571,7 +678,8 @@ class CastProcessor {
                 );
             }
 
-            if (calculationResult.damage[damageType]
+            if (calculationResult.damage
+                && calculationResult.damage[damageType]
                 && calculationResult.quality.damage
                 && calculationResult.quality.damage.all
                 && calculationResult.quality.damage.all.increase_value) {
@@ -595,7 +703,8 @@ class CastProcessor {
         for (const damageType of conf.damageTypes) {
             if (!calculationResult.quality) continue;
             if (damageType === 'all') continue;
-            if (calculationResult.damage[damageType]
+            if (calculationResult.damage
+                && calculationResult.damage[damageType]
                 && calculationResult.damage[damageType].value
                 && calculationResult.quality.damage
                 && calculationResult.quality.damage[damageType]
@@ -609,7 +718,8 @@ class CastProcessor {
                 );
             }
 
-            if (calculationResult.damage[damageType]
+            if (calculationResult.damage
+                && calculationResult.damage[damageType]
                 && calculationResult.quality.damage
                 && calculationResult.quality.damage.all
                 && calculationResult.quality.damage.all.decrease_value) {
@@ -619,6 +729,82 @@ class CastProcessor {
 
                 calculationResult.damage[damageType].value = parseFloat(
                     calculationResult.damage[damageType].value.toFixed(2)
+                );
+            }
+
+        }
+    }
+
+    calculateVulnerabilityIncreaseDecrease(calculationFormulas, calculationResult) {
+        //base damage increase
+        for (const damageType of conf.damageTypes) {
+            if (!calculationResult.quality) continue;
+            if (damageType === 'all') continue;
+            if (calculationResult.vulnerability[damageType]
+                && calculationResult.vulnerability[damageType].value
+                && calculationResult.quality.vulnerability
+                && calculationResult.quality.vulnerability[damageType]
+                && calculationResult.quality.vulnerability[damageType].increase_value) {
+
+                if (calculationResult.quality.vulnerability[damageType].increase_value < 1) {
+                    calculationResult.quality.vulnerability[damageType].increase_value += 1;
+                }
+                calculationResult.vulnerability[damageType].value =
+                    calculationResult.vulnerability[damageType].value
+                    * calculationResult.quality.vulnerability[damageType].increase_value;
+                calculationResult.vulnerability[damageType].value = parseFloat(
+                    calculationResult.vulnerability[damageType].value.toFixed(2)
+                );
+            }
+
+            if (calculationResult.vulnerability[damageType]
+                && calculationResult.quality.vulnerability
+                && calculationResult.quality.vulnerability.all
+                && calculationResult.quality.vulnerability.all.increase_value) {
+
+                if (calculationResult.quality.vulnerability.all.increase_value < 1) {
+                    calculationResult.quality.vulnerability.all.increase_value += 1;
+                }
+
+                calculationResult.vulnerability[damageType].value =
+                    calculationResult.vulnerability[damageType].value
+                    * calculationResult.quality.vulnerability.all.increase_value;
+
+                calculationResult.vulnerability[damageType].value = parseFloat(
+                    calculationResult.vulnerability[damageType].value.toFixed(2)
+                );
+            }
+
+        }
+
+        //base damage decrease
+        for (const damageType of conf.damageTypes) {
+            if (!calculationResult.quality) continue;
+            if (damageType === 'all') continue;
+            if (calculationResult.vulnerability[damageType]
+                && calculationResult.vulnerability[damageType].value
+                && calculationResult.quality.vulnerability
+                && calculationResult.quality.vulnerability[damageType]
+                && calculationResult.quality.vulnerability[damageType].decrease_value) {
+                calculationResult.vulnerability[damageType].value =
+                    calculationResult.vulnerability[damageType].value
+                    * calculationResult.quality.vulnerability[damageType].decrease_value;
+
+                calculationResult.vulnerability[damageType].value = parseFloat(
+                    calculationResult.vulnerability[damageType].value.toFixed(2)
+                );
+            }
+
+            if (calculationResult.vulnerability[damageType]
+                && calculationResult.quality.vulnerability
+                && calculationResult.quality.vulnerability.all
+                && calculationResult.quality.vulnerability.all.decrease_value) {
+                calculationResult.vulnerability[damageType].value =
+                    calculationResult.vulnerability[damageType].value
+                    * calculationResult.quality.vulnerability.all.decrease_value;
+
+                calculationResult.vulnerability[damageType].value = parseFloat(
+                    calculationResult.vulnerability[damageType].value.toFixed(2)
                 );
             }
 
@@ -693,6 +879,10 @@ class CastProcessor {
         this.calculateDamage(calculationFormulas, calculationResult);
         /*** CALCULATING DAMAGE END*/
 
+        /*** CALCULATING VULNERABILITY START*/
+        this.calculateVulnerability(calculationFormulas, calculationResult);
+        /*** CALCULATING VULNERABILITY END*/
+
         /*** CALCULATING NON DAMAGE START*/
        this.calculateNonDamage(calculationFormulas, calculationResult);
         /*** CALCULATING NON DAMAGE END*/
@@ -705,6 +895,10 @@ class CastProcessor {
         /*** CALCULATING DAMAGE INCREAE DESCRESE START*/
         this.calculateDamageIncreaseDecrease(calculationFormulas, calculationResult);
         /*** CALCULATING DAMAGE INCREAE DESCRESE END*/
+
+        /*** CALCULATING VULNERABILITY INCREAE DESCRESE START*/
+        this.calculateVulnerabilityIncreaseDecrease(calculationFormulas, calculationResult);
+        /*** CALCULATING VULNERABILITY INCREAE DESCRESE END*/
 
         /*** CALCULATING NON DAMAGE INCREAE DESCRESE START*/
         this.calculateNonDamageIncreaseDecrease(calculationFormulas, calculationResult);

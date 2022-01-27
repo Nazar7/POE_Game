@@ -13,7 +13,7 @@ conf.equipmentTypes = ['body', 'flask', 'weapon'];
 conf.allowedDevices = ['mouse', 'key'];
 
 //DAMAGE TYPES
-conf.damageTypes = ['cold', 'chaos', 'lightning', 'physical', 'all'];
+conf.damageTypes = ['fire', 'cold', 'chaos', 'lightning', 'physical', 'all'];
 
 //GEM PARAMS
 conf.nonDamageParams = ['manaCost', 'castSpeed', 'attackSpeed', 'projectiles', 'angles'];

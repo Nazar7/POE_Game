@@ -160,6 +160,10 @@ class Character {
         if (!gem) {
             // не стало джему який забынджено
         }
+        if(gem.needWeapon && !this.getEquipmentByType('weapon')) {
+            return {'message': 'Required equipped weapon!'};
+        }
+
         const castProcessor = new CastProcessor();
         const result = castProcessor.calculateCast(gem, equipmentItem, this._equipment);
         return result;
