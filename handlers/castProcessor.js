@@ -740,7 +740,8 @@ class CastProcessor {
         for (const damageType of conf.damageTypes) {
             if (!calculationResult.quality) continue;
             if (damageType === 'all') continue;
-            if (calculationResult.vulnerability[damageType]
+            if (calculationResult.vulnerability
+                && calculationResult.vulnerability[damageType]
                 && calculationResult.vulnerability[damageType].value
                 && calculationResult.quality.vulnerability
                 && calculationResult.quality.vulnerability[damageType]
@@ -757,7 +758,8 @@ class CastProcessor {
                 );
             }
 
-            if (calculationResult.vulnerability[damageType]
+            if (calculationResult.vulnerability
+                && calculationResult.vulnerability[damageType]
                 && calculationResult.quality.vulnerability
                 && calculationResult.quality.vulnerability.all
                 && calculationResult.quality.vulnerability.all.increase_value) {
@@ -781,7 +783,8 @@ class CastProcessor {
         for (const damageType of conf.damageTypes) {
             if (!calculationResult.quality) continue;
             if (damageType === 'all') continue;
-            if (calculationResult.vulnerability[damageType]
+            if (calculationResult.vulnerability
+                && calculationResult.vulnerability[damageType]
                 && calculationResult.vulnerability[damageType].value
                 && calculationResult.quality.vulnerability
                 && calculationResult.quality.vulnerability[damageType]
@@ -795,7 +798,8 @@ class CastProcessor {
                 );
             }
 
-            if (calculationResult.vulnerability[damageType]
+            if (calculationResult.vulnerability
+                && calculationResult.vulnerability[damageType]
                 && calculationResult.quality.vulnerability
                 && calculationResult.quality.vulnerability.all
                 && calculationResult.quality.vulnerability.all.decrease_value) {
