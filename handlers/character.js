@@ -145,7 +145,7 @@ class Character {
     press(device, key) {
         const bind = this.getBind(device, key);
         if (!bind) {
-            return 'set button first';
+            return 'Set button(bind) first';
             // немаэ бында, спробуйте ще
         }
         return this.cast(bind);
@@ -154,14 +154,14 @@ class Character {
     cast(bind) {
         const equipmentItem = this.getEquipmentByType(bind.equipmentType);
         if (!equipmentItem) {
-            //  не стало еквыпменту на який забындджжено
+            return 'There is currently no bound equipment';
         }
         const gem = equipmentItem.getGemByNameSocketId(bind.gemName, bind.socketId);
         if (!gem) {
-            // не стало джему який забынджено
+            return 'There is currently no bound gem';
         }
         if(gem.needWeapon && !this.getEquipmentByType('weapon')) {
-            return {'message': 'Required equipped weapon!'};
+            return 'This gem ' + gem.name + ' required equipped weapon!';
         }
 
         const castProcessor = new CastProcessor();

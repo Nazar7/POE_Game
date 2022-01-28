@@ -75,6 +75,8 @@ module.exports = class Action {
                 key = splitedInput[2];
                 device = splitedInput[1];
                 result = this.character.press(device, key);
+                if (typeof result !== 'object') return result;
+
                 const opponentLife = this.opponent.reduceLife(result);
                 return {result, 'opponent life': opponentLife};
                 break;
