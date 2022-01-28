@@ -2,11 +2,21 @@ const Character = require('../handlers/character');
 const Action = require('../action');
 const Opponent = require('../handlers/opponent');
 
+const resistance = {
+    "resistance": {
+        "fire": 0,
+        "cold": 0,
+        "chaos": 0,
+        "lightning": 0,
+        "physical": 0
+    }
+};
+
 describe('press action / errors + 1 skill gem without support | tabula_rasa', () => {
     test('1 skill gem with default lv (1) and quality (0)  => receive all skill info ', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, {"cold": 0});
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -40,7 +50,7 @@ describe('press action / errors + 1 skill gem without support | tabula_rasa', ()
     test('1 skill gem with lv 20 and quality 20  => receive all skill info ', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -75,7 +85,7 @@ describe('press action / errors + 1 skill gem without support | tabula_rasa', ()
     test('1 skill gem with lv 20 and quality 20 and 1 non support gem => receive all skill info without any changes from support gem', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -114,7 +124,7 @@ describe('gems on corruption_sanctuary', () => {
     test('iceNova 1 0 on corruption_sanctuary', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'corruption_sanctuary');
@@ -144,7 +154,7 @@ describe('gems on corruption_sanctuary', () => {
     test('iceNova 10 10 + spellEchoSupport 5 5 on corruption_sanctuary', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'corruption_sanctuary');
@@ -180,7 +190,7 @@ describe('gems on dendrobate_changed', () => {
     test('seismicTrap  1 0 on dendrobate_changed => does not influence on damage (physical)', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'dendrobate_changed');
@@ -208,7 +218,7 @@ describe('1 skill gem with one support gem', () => {
     test('1 skill gem frostbolt with lv 20 and quality 20 with spellEchoSupport default lv & quality (two support tag) | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -248,7 +258,7 @@ describe('1 skill gem with one support gem', () => {
 
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -286,7 +296,7 @@ describe('1 skill gem with one support gem', () => {
     test('1 skill gem with lv 1 and quality 0 with addedLightningDamageSupport 1 lv & 0 quality ', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -324,7 +334,7 @@ describe('1 skill gem with one support gem', () => {
     test('iceNova 1 0 + spellEchoSupport 10 20 | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -359,7 +369,7 @@ describe('1 skill gem with two support gem', () => {
     test('1 skill gem frostbolt 1 0 + addedLightningDamageSupport 1 0  + spellEchoSupport 1 0 | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -404,7 +414,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
     test('Poisonous Concoction – Empower 6 0 | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -437,7 +447,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
     test('Poisonous Concoction – Empower 6 0 – GMP | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -477,7 +487,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
     test('Ice Nova – Empower 6 0 | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -510,7 +520,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
     test('Ice Nova – Empower 6 0 – Spell Cascade | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -544,7 +554,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
     test('Frostbolt + Empower 6 0 | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -578,7 +588,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
     test('Frostbolt – greaterMultipleProjectilesSupport 0 0 | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -614,7 +624,7 @@ describe('from examples: full complicated equipment on tabula_rasa: Poisonous Co
     test('Frostbolt – Empower 6 0 - GMP | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -657,7 +667,7 @@ describe('flasks', () => {
     test('poisonousConcoction without flask | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -673,7 +683,7 @@ describe('flasks', () => {
     test('poisonousConcoction + Small Life Flask | tabula_rasa', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');

@@ -1,6 +1,7 @@
 class Opponent {
-    constructor(life) {
+    constructor(life, resistance) {
         this.Life = life;
+        this.resistance = resistance;
         this.vulnerability = {};
     }
 
@@ -29,9 +30,16 @@ class Opponent {
         }
     }
 
-    checkResistance(resistance, damageType) {
-        if (resistance[damageType] !== 0) {
-            return (100 - resistance[damageType]) / 100;
+    checkVulnerability(gem) {
+        if (!gem.vulnerability) return;
+        for (const [damageType, value] of Object.entries(gem.vulnerability)) {
+            this.addVulnerability(gem, damageType);
+        }
+    }
+
+    checkResistance(damageType) {
+        if (this.resistance[damageType] !== 0) {
+            return (100 - this.resistance[damageType]) / 100;
         } else return 1;
     }
 
@@ -47,15 +55,20 @@ class Opponent {
         } else return 1;
     }
 
-    reduceLife(gem, resistance) {
-        const damageType = this.findDamageType(gem);
-        this.addVulnerability(gem, damageType);
-        const resistanceValue = this.checkResistance(resistance, damageType);
-        const damage = this.findDamageValue(gem, damageType);
-        const vulnerability = this.vulnerability[damageType] ? this.vulnerability[damageType] : 1;
-        const projectiles = this.findProjectilesValue(gem);
+    reduce(gem) {
+        // if (!gem.damage) return;
+        for (const [damageType, value] of Object.entries(gem.damage)) {
+            const resistanceValue = this.checkResistance(damageType);
+            const damage = this.findDamageValue(gem, damageType);
+            const vulnerability = this.vulnerability[damageType] ? this.vulnerability[damageType] : 1;
+            const projectiles = this.findProjectilesValue(gem);
+            this.Life -= (damage * resistanceValue * vulnerability * projectiles);
+        }
+    }
 
-        this.Life -= (damage * resistanceValue * vulnerability * projectiles);
+    reduceLife(gem) {
+        this.checkVulnerability(gem);
+        this.reduce(gem)
         return this.Life;
     }
 }

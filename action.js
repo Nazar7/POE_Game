@@ -1,6 +1,3 @@
-const opponentData = require('./data/opponent.json');
-const resistance = opponentData["resistance"];
-
 module.exports = class Action {
     _character = {};
     _opponent = {};
@@ -78,7 +75,7 @@ module.exports = class Action {
                 key = splitedInput[2];
                 device = splitedInput[1];
                 result = this.character.press(device, key);
-                const opponentLife = this.opponent.reduceLife(result, resistance);
+                const opponentLife = this.opponent.reduceLife(result);
                 return {result, 'opponent life': opponentLife};
                 break;
             default:

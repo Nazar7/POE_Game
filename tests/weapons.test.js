@@ -2,11 +2,21 @@ const Character = require('../handlers/character');
 const Action = require('../action');
 const Opponent = require('../handlers/opponent');
 
+const resistance = {
+    "resistance": {
+        "fire": 0,
+        "cold": 0,
+        "chaos": 0,
+        "lightning": 0,
+        "physical": 0
+    }
+};
+
 describe('Pledge of Hands', () => {
     test('frostbolt 20 0 | tabula_rasa + pledge_of_hands', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -42,7 +52,7 @@ describe('Pledge of Hands', () => {
     test('frostbolt (20|0) + Empower (20|0)| tabula_rasa + pledge_of_hands', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
@@ -79,7 +89,7 @@ describe('Pledge of Hands', () => {
     test('Frostbolt (20|0) – Empower (20|0) – Added Lightning Damage Support (20|20) | corruption_sanctuary + pledge_of_hands', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'corruption_sanctuary');
@@ -122,7 +132,7 @@ describe('Cold Iron Point', () => {
     test('frostbolt | tabula_rasa | cold_iron_point', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip('body', 'tabula_rasa');
@@ -154,7 +164,7 @@ describe('Cold Iron Point', () => {
     test('seismicTrap | tabula_rasa | cold_iron_point', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip('body', 'tabula_rasa');
@@ -183,7 +193,7 @@ describe('Dread Bane', () => {
     test('frostbolt | tabula_rasa | dread_bane', () => {
         //given
         const character = new Character();
-        const opponent = new Opponent(10000);
+        const opponent = new Opponent(10000, resistance);
         const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip('body', 'tabula_rasa');
