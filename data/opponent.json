@@ -1,0 +1,9 @@
+{
+  "resistance": {
+    "fire": 0,
+    "cold": 0,
+    "chaos": 0,
+    "lightning": 0,
+    "physical": 0
+  }
+}

@@ -1,11 +1,13 @@
 const Character = require('../handlers/character');
 const Action = require('../action');
+const Opponent = require('../handlers/opponent');
 
 describe('Pledge of Hands', () => {
     test('frostbolt 20 0 | tabula_rasa + pledge_of_hands', () => {
         //given
         const character = new Character();
-        const action = new Action(character);
+        const opponent = new Opponent(10000);
+        const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
         character.equip( 'weapon', 'pledge_of_hands');
@@ -14,7 +16,7 @@ describe('Pledge of Hands', () => {
         //when
         const result = action.parseCommand(input);
         //then
-        expect(result).toEqual({
+        expect(result.result).toEqual({
             "damage": {
                 "cold": {
                     "value": 2930.4
@@ -40,7 +42,8 @@ describe('Pledge of Hands', () => {
     test('frostbolt (20|0) + Empower (20|0)| tabula_rasa + pledge_of_hands', () => {
         //given
         const character = new Character();
-        const action = new Action(character);
+        const opponent = new Opponent(10000);
+        const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'tabula_rasa');
         character.equip( 'weapon', 'pledge_of_hands');
@@ -50,7 +53,7 @@ describe('Pledge of Hands', () => {
         //when
         const result = action.parseCommand(input);
         //then
-        expect(result).toEqual({
+        expect(result.result).toEqual({
             "damage": {
                 "cold": {
                     "value": 4102.56
@@ -76,7 +79,8 @@ describe('Pledge of Hands', () => {
     test('Frostbolt (20|0) – Empower (20|0) – Added Lightning Damage Support (20|20) | corruption_sanctuary + pledge_of_hands', () => {
         //given
         const character = new Character();
-        const action = new Action(character);
+        const opponent = new Opponent(10000);
+        const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip( 'body', 'corruption_sanctuary');
         character.equip( 'weapon', 'pledge_of_hands');
@@ -87,7 +91,7 @@ describe('Pledge of Hands', () => {
         //when
         const result = action.parseCommand(input);
         //then
-        expect(result).toEqual({
+        expect(result.result).toEqual({
             "damage": {
                 "cold": {
                     "value": 5121.54
@@ -118,7 +122,8 @@ describe('Cold Iron Point', () => {
     test('frostbolt | tabula_rasa | cold_iron_point', () => {
         //given
         const character = new Character();
-        const action = new Action(character);
+        const opponent = new Opponent(10000);
+        const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip('body', 'tabula_rasa');
         character.equip('weapon', 'cold_iron_point');
@@ -127,7 +132,7 @@ describe('Cold Iron Point', () => {
         //when
         const result = action.parseCommand(input);
         //then
-        expect(result).toEqual({
+        expect(result.result).toEqual({
             "damage": {
                 "cold": {
                     "value": 2236
@@ -149,7 +154,8 @@ describe('Cold Iron Point', () => {
     test('seismicTrap | tabula_rasa | cold_iron_point', () => {
         //given
         const character = new Character();
-        const action = new Action(character);
+        const opponent = new Opponent(10000);
+        const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip('body', 'tabula_rasa');
         character.equip('weapon', 'cold_iron_point');
@@ -158,7 +164,7 @@ describe('Cold Iron Point', () => {
         //when
         const result = action.parseCommand(input);
         //then
-        expect(result).toEqual({
+        expect(result.result).toEqual({
             "damage": {
                 "physical": {
                     "value": 2722.99
@@ -177,7 +183,8 @@ describe('Dread Bane', () => {
     test('frostbolt | tabula_rasa | dread_bane', () => {
         //given
         const character = new Character();
-        const action = new Action(character);
+        const opponent = new Opponent(10000);
+        const action = new Action(character, opponent);
         const input = 'press key t';
         character.equip('body', 'tabula_rasa');
         character.equip('weapon', 'dread_bane');
@@ -186,7 +193,7 @@ describe('Dread Bane', () => {
         //when
         const result = action.parseCommand(input);
         //then
-        expect(result).toEqual({
+        expect(result.result).toEqual({
             "damage": {
                 "cold": {
                     "value": 2594.4//3422.4
