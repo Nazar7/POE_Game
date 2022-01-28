@@ -1,12 +1,18 @@
 module.exports = class Action {
     _character = {};
+    _opponent = {};
 
     get character() {
         return this._character;
     }
 
-    constructor(character) {
+    get opponent() {
+        return this._opponent;
+    }
+
+    constructor(character, opponent) {
         this._character = character;
+        this._opponent = opponent;
     }
 
     checkLvOfGem(gemInfo, splitedInput) {
@@ -69,7 +75,8 @@ module.exports = class Action {
                 key = splitedInput[2];
                 device = splitedInput[1];
                 result = this.character.press(device, key);
-                return result;
+                const opponentLife = this.opponent.reduceLife(result);
+                return {result, 'opponent life': opponentLife};
                 break;
             default:
                 const error = 'unable to comply, there is no such action'

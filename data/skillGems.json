@@ -190,7 +190,11 @@
   "frostbite": {
     "tags": ["Spell", "AoE", "Duration", "Cold", "Curse", "Hex"],
     "slot color": "blue",
-    "damage": { },
+    "damage": {
+      "cold": {
+        "formula": "0"
+      }
+    },
     "vulnerability": {
       "cold": {
         "formula": "0.3 + lv * 0.1"
