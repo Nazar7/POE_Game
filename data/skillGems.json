@@ -197,7 +197,7 @@
     },
     "vulnerability": {
       "cold": {
-        "formula": "0.3 + lv * 0.1"
+        "formula": "0.3 + lv * 0.01"
       }
     },
     "quality": {
